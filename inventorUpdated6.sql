@@ -51,9 +51,9 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `inventory_Updated`.`SHIRTs` (
   `product_id` INT NOT NULL AUTO_INCREMENT ,
   `category` INT NOT NULL ,
-  `style` VARCHAR(45) NOT NULL ,
-  `gender` VARCHAR(45) NOT NULL ,
-  `size` VARCHAR(45) NOT NULL ,
+  `style` INT NOT NULL ,
+  `gender` INT NOT NULL ,
+  `size` INT NOT NULL ,
   `picture` VARCHAR(45) NOT NULL ,
   `NuminInventory` INT NOT NULL ,
   `disabled` TINYINT(1) NOT NULL ,
