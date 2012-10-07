@@ -44,6 +44,36 @@ CREATE  TABLE IF NOT EXISTS `inventory_Updated`.`GENDER` (
   PRIMARY KEY (`gender_id`, `gender_type`) )
 ENGINE = InnoDB;
 
+INSERT INTO SIZE Values(1, 'S');
+INSERT into SIZE Values (2, 'M');
+INSERT into SIZE values (3, 'L');
+INSERT into SIze values (4, 'XL');
+INSERT into SIze values (5, '2XL');
+INSERT into SIze values (6, '3XL');
+INSERT into SIze values (7, '4XL');
+
+INSERT into GENDER values (1, 'Men');
+INSERT into gender values (2, 'Women');
+Insert into gender values (3, 'Kid');
+
+INSERT into category values (1, 'Retro Button Up Shirts');
+Insert into category values (2, 'Polo Sports Shirts');
+Insert into category values (3, 'T-Shirts');
+Insert into category values (4, 'Polo Bowling Shirts');
+
+Insert into style values (1, 'LASER : Dry-Excel Elite');
+Insert into style values (2, 'Big Dom : 50s Bowling Shirt');
+Insert into style values (3, 'Player : Bowling Lounge Shirt');
+Insert into style values (4, 'Ladies Betty B Button Down Bowling Shirt');
+Insert into style values (5, 'Lady Miami : Womens Bowling Camp Shirt');
+Insert into style values (6, 'Ladies Classic Easy to Look Great Button Down');
+Insert into style values (7, 'Swing kids Retro Shirt');
+Insert into style values (8, 'Kids Rock n Roll 50s Shirt');
+Insert into style values (9, 'Kids Classic Retro 50s');
+
+
+
+
 
 -- -----------------------------------------------------
 -- Table `inventory_Updated`.`SHIRTs`
