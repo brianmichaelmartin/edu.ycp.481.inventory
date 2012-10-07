@@ -34,7 +34,7 @@ public class main {
 	public static void main(String[] args){
 		int choice = -1;
 		BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
-		while(choice < 0){
+		//while(choice < 0){
 			System.out.println("Please enter 1 to search, or 2 to add a new item");
 			try {
 					choice = br.read();
@@ -43,7 +43,7 @@ public class main {
 					System.out.println("ERROR: Please enter 1 or 2");
 					e.printStackTrace();
 				}
-		}
+		//}
 		if (choice == 1){
 			System.out.println("Would you like to search by: \n1.Category\n2.Size\n3.Gender\n4.Style?");
 			try {
@@ -82,6 +82,14 @@ public class main {
 				
 				System.out.print("\nSize: ");
 				String siz = br.readLine();
+				
+				System.out.println("\nGender: ");
+				String gend = br.readLine();
+				
+				System.out.println("\nNumber of items: ");
+				int num = br.read();
+				
+				newEntry(cat, sty, siz, gend, num);
 				
 				
 			} catch (IOException e){
