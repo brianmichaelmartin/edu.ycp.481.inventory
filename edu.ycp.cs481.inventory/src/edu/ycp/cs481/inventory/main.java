@@ -37,7 +37,7 @@ public class main {
 		//while(choice < 0){
 			System.out.print("Please enter 1 to search, or 2 to add a new item: ");
 			try {
-					choice = (Integer)br.read();
+					choice = Integer.parseInt(br.readLine());
 					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -48,7 +48,7 @@ public class main {
 		if (choice == 1){
 			System.out.println("Would you like to search by: \n1.Category\n2.Size\n3.Gender\n4.Style?");
 			try {
-				int searchChoice = br.read();
+				int searchChoice = Integer.parseInt(br.readLine());
 				if (searchChoice == 1){
 					System.out.print("Please enter the category you'd like to search for: ");
 					String cat = br.readLine();
@@ -88,7 +88,7 @@ public class main {
 				String gend = br.readLine();
 				
 				System.out.println("\nNumber of items: ");
-				int num = br.read();
+				int num = Integer.parseInt(br.readLine());
 				
 				newEntry(cat, sty, siz, gend, num);
 				
