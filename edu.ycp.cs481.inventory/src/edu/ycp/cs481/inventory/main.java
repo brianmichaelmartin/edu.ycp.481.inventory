@@ -35,9 +35,10 @@ public class main {
 		int choice = -1;
 		BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
 		//while(choice < 0){
-			System.out.println("Please enter 1 to search, or 2 to add a new item");
+			System.out.print("Please enter 1 to search, or 2 to add a new item: ");
 			try {
-					choice = br.read();
+					choice = (Integer)br.read();
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					System.out.println("ERROR: Please enter 1 or 2");
