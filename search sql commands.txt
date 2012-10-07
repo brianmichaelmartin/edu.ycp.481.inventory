@@ -1,0 +1,11 @@
+
+search by catagory
+search by size
+search by gender
+
+SELECT * FROM shirts
+Where Field='value';
+
+example
+SELECT * FROM shirts
+WHERE size='M';
