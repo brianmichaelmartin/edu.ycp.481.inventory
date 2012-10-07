@@ -1,0 +1,17 @@
+package edu.ycp.cs481.inventory;
+
+public class DBtask {
+	
+	public DBtask(/*pass referance to database?*/)
+	{
+		
+	}
+	public void insert(/*values to insert*/)
+	{
+		
+	}
+	public void search()
+	{
+		
+	}
+}

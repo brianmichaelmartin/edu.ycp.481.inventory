@@ -1,0 +1,7 @@
+package edu.ycp.cs481.inventory;
+
+public class main {
+	//String s = new String("Hello World");
+	System.out.print("Hello World");
+	
+}

@@ -1,0 +1,15 @@
+package edu.ycp.cs481.inventory;
+
+import java.sql.Statement;
+
+public class main {
+	public class SQLconnect
+	{
+		try{
+		Statement stmt;
+		Class.forName("com.mysql.jdbc.Driver");
+		}catch( Exception e){
+			e.printStackTrace();
+		}
+	}
+}

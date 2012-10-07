@@ -1,0 +1,9 @@
+package edu.ycp.cs481.inventory;
+
+public class Database {
+	public void Insert()
+	{
+		System.out.print("test");
+	}
+	
+}

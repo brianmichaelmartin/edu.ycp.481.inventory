@@ -1,0 +1,9 @@
+package edu.ycp.cs481.inventory;
+
+public class main {
+	public class SQLconnect
+	{
+		Class.forName("com.mysql.jdbc.Driver");
+		
+	}
+}

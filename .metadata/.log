@@ -1,0 +1,13 @@
+!SESSION 2012-10-01 12:41:10.208 -----------------------------------------------
+eclipse.buildId=I20120608-1400
+java.version=1.7.0_07
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2012-10-01 12:41:20.189
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2012-10-03 16:57:28.814
+!MESSAGE Failed to open search index.
