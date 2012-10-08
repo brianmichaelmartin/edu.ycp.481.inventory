@@ -11,3 +11,79 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.
 
 !ENTRY org.eclipse.m2e.logback.appender 4 0 2012-10-03 16:57:28.814
 !MESSAGE Failed to open search index.
+
+!ENTRY org.eclipse.equinox.security 1 0 2012-10-07 17:54:56.495
+!MESSAGE New keyring password generated. 
+
+!ENTRY org.eclipse.egit.core 4 0 2012-10-07 17:54:56.624
+!MESSAGE An exception occurred during push on URI https://github.com/brianmichaelmartin/edu.ycp.481.inventory.git: https://github.com/brianmichaelmartin/edu.ycp.481.inventory.git: not authorized
+!STACK 0
+org.eclipse.jgit.api.errors.TransportException: https://github.com/brianmichaelmartin/edu.ycp.481.inventory.git: not authorized
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:157)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:226)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI.execute(PushOperationUI.java:145)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI$1.run(PushOperationUI.java:202)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: org.eclipse.jgit.errors.TransportException: https://github.com/brianmichaelmartin/edu.ycp.481.inventory.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:447)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:366)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:130)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1127)
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:153)
+	... 4 more
+
+!ENTRY org.eclipse.team.core 4 -6 2012-10-07 17:59:05.212
+!MESSAGE Some conflicting changes cannot be merged automatically. These changes will have to be merged manually.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Some conflicting changes cannot be merged automatically. These changes will have to be merged manually.
+	at org.eclipse.team.internal.ui.mapping.ResourceMergeHandler$1.execute(ResourceMergeHandler.java:60)
+	at org.eclipse.team.ui.mapping.SynchronizationOperation.run(SynchronizationOperation.java:121)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.team.core 4 1 2012-10-07 17:59:05.213
+!MESSAGE Some conflicting changes cannot be merged automatically. These changes will have to be merged manually.
+
+!ENTRY org.eclipse.egit.core 4 0 2012-10-07 18:00:04.858
+!MESSAGE An exception occurred during push on URI https://github.com/brianmichaelmartin/edu.ycp.481.inventory.git: https://github.com/brianmichaelmartin/edu.ycp.481.inventory.git: not authorized
+!STACK 0
+org.eclipse.jgit.api.errors.TransportException: https://github.com/brianmichaelmartin/edu.ycp.481.inventory.git: not authorized
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:157)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:226)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI.execute(PushOperationUI.java:145)
+	at org.eclipse.egit.ui.internal.push.PushOperationUI$1.run(PushOperationUI.java:202)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: org.eclipse.jgit.errors.TransportException: https://github.com/brianmichaelmartin/edu.ycp.481.inventory.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:447)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:366)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:130)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1127)
+	at org.eclipse.jgit.api.PushCommand.call(PushCommand.java:153)
+	... 4 more
+
+!ENTRY org.eclipse.egit.core 4 0 2012-10-07 18:01:11.471
+!MESSAGE Wrong Repository State: MERGING
+!STACK 0
+org.eclipse.jgit.api.errors.WrongRepositoryStateException: Wrong Repository State: MERGING
+	at org.eclipse.jgit.api.RebaseCommand.checkParameters(RebaseCommand.java:705)
+	at org.eclipse.jgit.api.RebaseCommand.call(RebaseCommand.java:202)
+	at org.eclipse.egit.core.op.RebaseOperation$1.run(RebaseOperation.java:102)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2326)
+	at org.eclipse.egit.core.op.RebaseOperation.execute(RebaseOperation.java:119)
+	at org.eclipse.egit.ui.internal.commands.shared.AbstractRebaseCommandHandler$1.run(AbstractRebaseCommandHandler.java:67)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.egit.ui 4 0 2012-10-07 18:10:06.331
+!MESSAGE Cannot pull into a repository with state: MERGING
+!STACK 0
+org.eclipse.jgit.api.errors.WrongRepositoryStateException: Cannot pull into a repository with state: MERGING
+	at org.eclipse.jgit.api.PullCommand.call(PullCommand.java:146)
+	at org.eclipse.egit.core.op.PullOperation$1.run(PullOperation.java:90)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2326)
+	at org.eclipse.egit.core.op.PullOperation.execute(PullOperation.java:121)
+	at org.eclipse.egit.ui.internal.pull.PullOperationUI.execute(PullOperationUI.java:117)
+	at org.eclipse.egit.ui.internal.pull.PullOperationUI$1.run(PullOperationUI.java:92)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

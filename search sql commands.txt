@@ -9,3 +9,12 @@ Where Field='value';
 example
 SELECT * FROM shirts
 WHERE size='M';
+
+SELECT * FROM shirts, style, size, gender, category
+where shirts.style_id = style.style_id
+AND
+shirts.size_id = size.size_id
+AND
+shirts.gender_id = gender.gender_id
+AND
+shirts.category_id = category.category_ID;

@@ -1,12 +1,15 @@
-
-INSERT INTO shirts (`product_id`, `category`, `style`, `gender`, `size`, `picture`, `NuminInventory`, `disabled`, `inStock`, `barCode`, `dateAdded`, `lastModified`, `CATEGORY_category_id`, CATEGORY_category_type)
-VALUES ('product_id', 'category', 'style', 'gender', 'size', 'picture', 'NuminInventory', 'disabled', 'inStock', 'barCode', 'dateAdded', 'lastModified', 'CATEGORY_category_id', 'CATEGORY_category_type');
+INSERT INTO `inventory_updated`.`shirts` (`product_id`, `category`, `style`, `gender`, `size`, `picture`, `NuminInventory`, `disabled`, `inStock`, `barCode`, `dateAdded`, `lastModified`, `CATEGORY_category_id`, CATEGORY_category_type, `STYLE_style_id`, `STYLE_style_type`, `SIZe_size_id`, `SIZe_size_type`, `GENDER_gender_id`, `GENDER_gender_type`))
+VALUES ('1', 'Category#', 'style#', 'gender#', 'size#', 'null',  '7', '0', '1', '1234', '2008-11-11', '2008-11-11 00:00:00', 'Category#', '', 'style#', '', 'size#', '', 'gender#', '');
 
 EXAMPLE	
 //first insert must be structured like this, includes a starting product ID
-INSERT INTO `inventory_updated`.`shirts` (`product_id`, `category`, `style`, `gender`, `size`, `picture`, `NuminInventory`, `disabled`, `inStock`, `barCode`, `dateAdded`, `lastModified`, `CATEGORY_category_id`, CATEGORY_category_type)
-VALUES ('1', '1', 'shirt', 'm', 'm', 'null', '7', '0', '3', '1234', '2008-11-11', '2008-11-11 00:00:00', '1', 'button up');
+INSERT INTO `inventory_updated`.`shirts` (`product_id`, `category_id`, `style_id`, `gender_id`, `size_id`, `picture`, `NuminInventory`, `disabled`, `inStock`, `barCode`, `dateAdded`, `lastModified`, `CATEGORY_category_id`, `CATEGORY_category_type`, `STYLE_style_id`, `STYLE_style_type`, `SIZe_size_id`, `SIZe_size_type`, `GENDER_gender_id`, `GENDER_gender_type`)
+VALUES ('1', '1', '1', '1', '1', 'NULL', '5', '0', '1', '564', '2008-11-11', '2008-11-11 00:00:00', '1', '', '1', '', '1', '', '1', '');
+
 
 //After first insert remove the product ID field and it will auto increment
-INSERT INTO `inventory_updated`.`shirts` (`category`, `style`, `gender`, `size`, `picture`, `NuminInventory`, `disabled`, `inStock`, `barCode`, `dateAdded`, `lastModified`, `CATEGORY_category_id`, `CATEGORY_category_type`)
-VALUES ('1', 'shirt', 'F', 'M', 'NULL', '9', '0', '4', '234', '2008-11-11', '2008-11-11 00:00:00', '1', 'Button Up');
+
+
+
+
+INSERT INTO `inventory_updated`.`shirts` (`product_id`, `category_id`, `style_id`, `gender_id`, `size_id`, `picture`, `NuminInventory`, `disabled`, `inStock`, `barCode`, `dateAdded`, `lastModified`, `CATEGORY_category_id`, `CATEGORY_category_type`, `STYLE_style_id`, `STYLE_style_type`, `SIZe_size_id`, `SIZe_size_type`, `GENDER_gender_id`, `GENDER_gender_type`) VALUES ('1', '1', '1', '1', '1', 'NULL', '5', '0', '1', '564', '2008-11-11', '2008-11-11 00:00:00', '1', '', '1', '', '1', '', '1', '');
