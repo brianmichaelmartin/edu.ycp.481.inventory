@@ -3,22 +3,40 @@ package edu.ycp.cs481.inventory;
 import java.io.* ;
 import java.sql.*;
 import java.util.*;
-
+import edu.ycp.cs481.inventory.DBtask;
 
 
 public class main {
 
 	int numInInventory;
 	String category, style, gender, size;
+	static DBtask task = new DBtask();
+	
 	
 
 	
 
 	public static void newEntry(String category, String style, String size, String gender, int numInInventory){
-	
+		try {
+			if (task.insert(category, style, size, gender, numInInventory)){
+				System.out.println("Insertion Successful!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Insertian Failed!");
+		}
 	}
 	public static void searchByCategory(String category){
-	
+		try {
+			ResultSet rs = task.search("Category", category);
+			String cat = rs.getString("Category");
+			String Style = rs.getString("Style");
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void searchBySize(String size){
@@ -45,6 +63,7 @@ public class main {
 					e.printStackTrace();
 				}
 		//}
+		task.getConnection();
 		if (choice == 1){
 			System.out.println("Would you like to search by: \n1.Category\n2.Size\n3.Gender\n4.Style?");
 			try {
