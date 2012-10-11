@@ -71,7 +71,8 @@ Insert into style values (7, 'Swing kids Retro Shirt');
 Insert into style values (8, 'Kids Rock n Roll 50s Shirt');
 Insert into style values (9, 'Kids Classic Retro 50s');
 
-
+INSERT INTO `inventory_updated`.`shirts` (`product_id`, `category_id`, `style_id`, `gender_id`, `size_id`, `picture`, `NuminInventory`, `disabled`, `inStock`, `barCode`, `dateAdded`, `lastModified`, `CATEGORY_category_id`, `CATEGORY_category_type`, `STYLE_style_id`, `STYLE_style_type`, `SIZe_size_id`, `SIZe_size_type`, `GENDER_gender_id`, `GENDER_gender_type`)
+VALUES ('1', '1', '1', '1', '1', 'NULL', '5', '0', '1', '564', '2008-11-11', '2008-11-11 00:00:00', '1', '', '1', '', '1', '', '1', '');
 
 
 
