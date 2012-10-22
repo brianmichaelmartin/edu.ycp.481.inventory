@@ -36,7 +36,7 @@ public class DBtask {
 			stmt = c.createStatement();
 			rs = stmt.executeQuery(query);
 		} catch (SQLException e) {
-			System.out.println("there was an issue searching");
+			System.out.println("there was an issue inserting");
 			return false;
 		}
 		
