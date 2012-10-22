@@ -10,11 +10,11 @@ example
 SELECT * FROM shirts
 WHERE size='M';
 
-SELECT * FROM shirts, style, size, gender, category
-where shirts.style_id = style.style_id
+SELECT Category_name, Style_name, Gender_name, Size_name FROM inventory, style, size, gender, category
+where inventory.style_id = style.style_id
 AND
-shirts.size_id = size.size_id
+inventory.size_id = size.size_id
 AND
-shirts.gender_id = gender.gender_id
+inventory.gender_id = gender.gender_id
 AND
-shirts.category_id = category.category_ID;
+inventory.category_id = category.category_ID;
