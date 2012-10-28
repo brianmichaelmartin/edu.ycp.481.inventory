@@ -10,8 +10,8 @@ public class Insert extends main{
 	{
 		ResultSet rs = null;
 		Statement stmt = null;
-		String query = "INSERT INTO shirts(category, style, gender, size, numInInventory)"+
-						"VALUES ("+category + "," + style + "," + size + "," + gender+ "," + numInInventory+")";
+		String query = "INSERT INTO inventory (Product_ID, Category_ID, Style_ID, Gender_ID, Size_ID, Num_in_inventory, Disabled, In_stock, Barcode, Date_added, Last_modified) "+
+						"VALUES ('2', '2', '2', '2', '3', '5', '0', '0', '1234', now(), now())";
 		try {
 			stmt = c.createStatement();
 			rs = stmt.executeQuery(query);
