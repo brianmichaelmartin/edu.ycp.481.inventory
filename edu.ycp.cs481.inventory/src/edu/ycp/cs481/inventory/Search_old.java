@@ -3,7 +3,7 @@ package edu.ycp.cs481.inventory;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Search extends main{
+public class Search_old extends main{
 	int numInInventory;
 	String category, style, gender, size;
 	static DBtask db = new DBtask();//create new database access object

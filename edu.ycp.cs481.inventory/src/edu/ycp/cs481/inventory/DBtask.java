@@ -74,7 +74,7 @@ public class DBtask {
 			
 		} catch (SQLException e) {
 
-			JDBCTutorialUtilities.printSQLException(e);
+			//JDBCTutorialUtilities.printSQLException(e);
 
 			System.out.println("there was an issue searching");
 		} finally{

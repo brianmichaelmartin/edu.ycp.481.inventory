@@ -10,7 +10,7 @@ import edu.ycp.cs481.inventory.*;
 
 public class main {
 
-
+/*
 	public static void newEntry(String category, String style, String size, String gender, int numInInventory){
 
 		try {
@@ -106,5 +106,5 @@ public class main {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
 }

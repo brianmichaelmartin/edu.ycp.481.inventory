@@ -2,7 +2,7 @@ package edu.ycp.cs481.inventory;
 
 import java.sql.ResultSet;
 
-public class Insert extends main{
+public class Insert_old extends main{
 	int numInInventory;
 	String category, style, gender, size;
 	static DBtask db = new DBtask();//create new database access object
