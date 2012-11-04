@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import edu.ycp.cs481.inventory.Insert;
 import edu.ycp.cs481.inventory.controller.InsertController;
 import edu.ycp.cs481.inventory.gui.InsertView;
+import edu.ycp.cs481.inventory.gui.SearchView;
 //import com.jgoodies.forms.layout.FormLayout;
 //import com.jgoodies.forms.layout.ColumnSpec;
 //import com.jgoodies.forms.layout.RowSpec;
@@ -26,11 +27,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 
+
 public class GuiMain extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel InsertView;
-	private Insert Insert;
 	private JPanel SearchView;
 
 
