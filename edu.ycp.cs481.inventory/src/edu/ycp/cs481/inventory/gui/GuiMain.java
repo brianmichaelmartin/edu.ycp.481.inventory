@@ -15,13 +15,24 @@ import javax.swing.border.EmptyBorder;
 import edu.ycp.cs481.inventory.Insert;
 import edu.ycp.cs481.inventory.controller.InsertController;
 import edu.ycp.cs481.inventory.gui.InsertView;
+//import com.jgoodies.forms.layout.FormLayout;
+//import com.jgoodies.forms.layout.ColumnSpec;
+//import com.jgoodies.forms.layout.RowSpec;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
 
 public class GuiMain extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel InsertView;
 	private Insert Insert;
-	private JComboBox ViewComboBox;
+	private JPanel SearchView;
+
 
 	/**
 	 * Launch the application.
@@ -47,28 +58,52 @@ public class GuiMain extends JFrame {
 		setBounds(300, 300, 700, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		/*ViewComboBox = new JComboBox();
-		ViewComboBox.addActionListener(new ActionListener() {
+		JLabel lblSelectOneOf = new JLabel("Select one of the following options:  ");
+		lblSelectOneOf.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblSelectOneOf.setBounds(30, 70, 442, 25);
+		contentPane.add(lblSelectOneOf);
+		
+		JButton btnInsert = new JButton("Insert");
+		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewChanged();
-			}}*/
+				CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+				cardLayout.next(InsertView);
+				//cardLayout.
+			
+			}
+		});
+		btnInsert.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnInsert.setBounds(54, 201, 153, 49);
+		contentPane.add(btnInsert);
+	
+		
+		
+		JButton btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+				cardLayout.next(SearchView);
+			}
+		});
+		btnSearch.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnSearch.setBounds(383, 201, 153, 49);
+		contentPane.add(btnSearch);
+		
+		JLabel lblInsertAnItem = new JLabel("Insert an Item");
+		lblInsertAnItem.setBounds(91, 271, 116, 14);
+		contentPane.add(lblInsertAnItem);
+		
+		JLabel lblSearchForAn = new JLabel("Search for\r\n an Item");
+		lblSearchForAn.setBounds(422, 271, 116, 14);
+		contentPane.add(lblSearchForAn);
+		
 	}
 	
-	public void createViews() {
-		this.Insert = new Insert();
-		this.InsertView = new InsertView();
-		//InsertView.setModel(Insert);
-		//InsertController InsertController = new InsertController();
-		//InsertView.setController(InsertController);
-		//InsertController.setModel(Insert);
-		//ViewContainerPanel.add(InsertView, SourceType.JOURNAL.toString());
-
-}
 	
-	protected void ViewChanged() {
+	//protected void ViewChanged() {
 		/*sourceType = (SourceType) sourceTypeComboBox.getSelectedItem();
 		CardLayout cardLayout = (CardLayout) sourceViewContainerPanel.getLayout();
 		cardLayout.show(sourceViewContainerPanel, sourceType.toString());
@@ -77,5 +112,5 @@ public class GuiMain extends JFrame {
 	
 		*/
 
-	}
+	//}
 }
