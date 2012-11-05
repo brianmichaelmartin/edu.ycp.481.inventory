@@ -12,7 +12,7 @@ import java.sql.Statement;
  * that said, there really shouldnt be a need to update any of those fields at any point
  */
 public class ChangeValue {
-	public boolean change(Connection c, String field, String newVal, String searchField, String searchVal)
+	public static boolean change(Connection c, String field, String newVal, String searchField, String searchVal)
 	throws SQLException
 	{
 		@SuppressWarnings("unused")
@@ -27,14 +27,17 @@ public class ChangeValue {
 		
 		try {
 			stmt = c.createStatement();
-			rs = stmt.executeQuery(query);
+			stmt.executeUpdate(query);
 			
 			
-		} catch (SQLException e) {
+		} catch (SQLException ex) {
 
 			//JDBCTutorialUtilities.printSQLException(e);
 
 			System.out.println("there was an issue updating the table");
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
 			return false;
 		} finally{
 			if (stmt != null) {

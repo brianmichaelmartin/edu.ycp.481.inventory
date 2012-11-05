@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Insert extends main{
+	/*Product_ID will be set to the first availible product_ID
+	 * 
+	 * 
+	 */
 	public static boolean insert(Connection c, String category, String style, String size, String gender, int numInInventory) throws SQLException/*Takes values that need to be inserted and inserts them into the table, returns true on success*/
 	{
 		ResultSet rs = null;

@@ -22,7 +22,7 @@ public class main {
 			System.out.println("Category_name =\t" + Category_name +"\nStyle_name =\t" + Style_name + "\nGender_name =\t" + Gender_name + "\nSize_name =\t"+Size_name);
 		}*/
 		//Delete.deleterow(c, "Product_ID", "4");
-		
+		//ChangeValue.change(c, "Num_in_inventory", "5", "Product_ID", "4");
 		
 	}
 /*

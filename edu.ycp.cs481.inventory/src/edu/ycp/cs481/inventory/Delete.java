@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Delete {
+	/*I suggest passing Product_ID as the field and the product_ID of the row you want to delete
+	 * 
+	 * 
+	 */
 	public static boolean deleterow(Connection c, String field, String val){
 		@SuppressWarnings("unused")
 		ResultSet rs = null;
