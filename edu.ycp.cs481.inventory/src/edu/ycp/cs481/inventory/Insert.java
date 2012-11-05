@@ -14,7 +14,7 @@ public class Insert extends main{
 	{
 		ResultSet rs = null;
 		Statement stmt = null;
-		int temp;
+		int temp, Product_ID;
 		String query = null, Size_ID = null, Gender_ID = null, Barcode = null, number = null, Style_ID = null, Category_ID = null, tempString = null;
 		
 		//find first availible product id
@@ -30,14 +30,8 @@ public class Insert extends main{
 			System.out.println("VendorError: " + ex.getErrorCode());
 			return false;
 		}
-		int Product_ID = 1;
-		while(rs.next()){
-			if((Product_ID) != rs.getInt("Product_ID")){
-				break;
-			}else{
-				Product_ID++;
-			}
-		}
+		rs.last();
+		Product_ID = rs.getInt("Product_ID");
 		
 		//find the style_ID associated with the requested style
 		query = "SELECT * FROM style";
