@@ -47,10 +47,10 @@ ENGINE = InnoDB;
 INSERT INTO SIZE Values(1, 'S');
 INSERT into SIZE Values (2, 'M');
 INSERT into SIZE values (3, 'L');
-INSERT into SIze values (4, 'XL');
-INSERT into SIze values (5, '2XL');
-INSERT into SIze values (6, '3XL');
-INSERT into SIze values (7, '4XL');
+INSERT into SIZE values (4, 'XL');
+INSERT into SIZE values (5, '2XL');
+INSERT into SIZE values (6, '3XL');
+INSERT into SIZE values (7, '4XL');
 
 INSERT into GENDER values (1, 'Men');
 INSERT into gender values (2, 'Women');
