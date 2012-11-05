@@ -14,7 +14,7 @@ public class Insert extends main{
 		String query = null, Size_ID = null, Gender_ID = null, Barcode = null, number = null, Style_ID = null, Category_ID = null, tempString = null;
 		
 		//find the style_ID associated with the requested style
-		query = "SELECT * FROM style";
+		/*query = "SELECT * FROM style";
 		try {
 			stmt = c.createStatement();
 			rs = stmt.executeQuery(query);
@@ -55,7 +55,7 @@ public class Insert extends main{
 		if(Category_ID == null){
 			System.out.println("the specified category was not found");
 			return false;
-		}
+		}*/
 		
 		switch (gender){//convert gender value to coresponding number
 			case "M":
@@ -105,11 +105,14 @@ public class Insert extends main{
 		Barcode = Integer.toString(temp);
 		
 		query = "INSERT INTO inventory (Product_ID, Category_ID, Style_ID, Gender_ID, Size_ID, Num_in_inventory, Disabled, In_stock, Barcode, Date_added, Last_modified) "+
-						"VALUES ('2', '" + Category_ID + "', '" + Style_ID +"', '" + Gender_ID + "', '" + Size_ID + "', '" + number + "', '0', '0', '" + Barcode + "', now(), now())";
+						"VALUES ('5', '" + /*Category_ID*/category + "', '" + /*Style_ID*/style +"', '" + Gender_ID + "', '" + Size_ID + "', '" + number + "', '0', '0', '" + Barcode + "', now(), now())";
 		try {
 			stmt = c.createStatement();
-			rs = stmt.executeQuery(query);
-		} catch (SQLException e) {
+			stmt.executeUpdate(query);
+		} catch (SQLException ex) {
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
 			System.out.println("there was an issue inserting");
 			return false;
 		}

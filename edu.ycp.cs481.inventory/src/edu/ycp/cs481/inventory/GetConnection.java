@@ -1,16 +1,18 @@
 package edu.ycp.cs481.inventory;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+
 
 public class GetConnection extends main{
 
 	public static Connection get(){
+		Connection c = null;
 		try{
-			Class.forName("com.mysql.jdbc.Driver").newInstance();//load the JDBC driver
-			
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_updated", "root", "mcoombs");//change to your username/password
+			System.out.println("test");
+			Class.forName("com.mysql.jdbc.Driver");//.newInstance();//load the JDBC driver
+			System.out.println("Creating databse");
+			c = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventory_database", "root", "jem9wit");//change to your username/password
+			System.out.println("Database created");
 			return c;
 		}catch(SQLException ex){
 			 System.out.println("SQLException: " + ex.getMessage());
@@ -21,6 +23,6 @@ public class GetConnection extends main{
 			ex.printStackTrace();
 		}
 		
-		return null;
+		return c;
 	}
 }
