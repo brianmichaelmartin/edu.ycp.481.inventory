@@ -27,6 +27,11 @@ public class Search extends main{
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 			return null;
+		} finally{
+			if (stmt != null) {
+				//stmt.close();
+			return rs;
+			}
 		}
 		
 		return null;

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Delete {
-	public boolean deleterow(Connection c, String field, String val){
+	public static boolean deleterow(Connection c, String field, String val){
 		@SuppressWarnings("unused")
 		ResultSet rs = null;
 		Statement stmt = null;
@@ -15,14 +15,17 @@ public class Delete {
 		
 		try {
 			stmt = c.createStatement();
-			rs = stmt.executeQuery(query);
+			stmt.executeUpdate(query);
 			
 			
-		} catch (SQLException e) {
+		} catch (SQLException ex) {
 
 			//JDBCTutorialUtilities.printSQLException(e);
 
 			System.out.println("there was an issue deleting");
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
 			return false;
 		}
 		return true;

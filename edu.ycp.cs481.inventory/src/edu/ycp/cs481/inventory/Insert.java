@@ -13,8 +13,30 @@ public class Insert extends main{
 		int temp;
 		String query = null, Size_ID = null, Gender_ID = null, Barcode = null, number = null, Style_ID = null, Category_ID = null, tempString = null;
 		
+		//find first availible product id
+		query = "SELECT Product_ID from inventory";
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery(query);
+		} catch (SQLException ex) {
+			
+			System.out.println("there was an issue finding an availible product_ID");
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+			return false;
+		}
+		int Product_ID = 1;
+		while(rs.next()){
+			if((Product_ID) != rs.getInt("Product_ID")){
+				break;
+			}else{
+				Product_ID++;
+			}
+		}
+		
 		//find the style_ID associated with the requested style
-		/*query = "SELECT * FROM style";
+		query = "SELECT * FROM style";
 		try {
 			stmt = c.createStatement();
 			rs = stmt.executeQuery(query);
@@ -24,7 +46,7 @@ public class Insert extends main{
 		}
 		while (rs.next()){
 			tempString = rs.getString("Style_name");
-			if(tempString == style){
+			if(tempString.equals(style)){
 				temp = rs.getInt("Style_ID");
 				Style_ID = Integer.toString(temp);
 				break;
@@ -46,7 +68,7 @@ public class Insert extends main{
 		}
 		while (rs.next()){
 			tempString = rs.getString("Category_name");
-			if(tempString == style){
+			if(tempString.equals(category)){
 				temp = rs.getInt("Category_ID");
 				Category_ID = Integer.toString(temp);
 				break;
@@ -55,7 +77,7 @@ public class Insert extends main{
 		if(Category_ID == null){
 			System.out.println("the specified category was not found");
 			return false;
-		}*/
+		}
 		
 		switch (gender){//convert gender value to coresponding number
 			case "M":
@@ -105,7 +127,7 @@ public class Insert extends main{
 		Barcode = Integer.toString(temp);
 		
 		query = "INSERT INTO inventory (Product_ID, Category_ID, Style_ID, Gender_ID, Size_ID, Num_in_inventory, Disabled, In_stock, Barcode, Date_added, Last_modified) "+
-						"VALUES ('5', '" + /*Category_ID*/category + "', '" + /*Style_ID*/style +"', '" + Gender_ID + "', '" + Size_ID + "', '" + number + "', '0', '0', '" + Barcode + "', now(), now())";
+						"VALUES ('" + Product_ID + "', '" + Category_ID + "', '" + Style_ID +"', '" + Gender_ID + "', '" + Size_ID + "', '" + number + "', '0', '0', '" + Barcode + "', now(), now())";
 		try {
 			stmt = c.createStatement();
 			stmt.executeUpdate(query);

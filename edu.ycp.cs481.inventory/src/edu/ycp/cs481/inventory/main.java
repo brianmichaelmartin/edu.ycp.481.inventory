@@ -11,15 +11,19 @@ import edu.ycp.cs481.inventory.*;
 public class main {
 	public static void main(String[] args) throws SQLException{
 		Connection c = GetConnection.get();
-		//Insert.insert(c, "3", "4", "L", "K", 7);
-		ResultSet rs = Search.searchFor(c, "Gender_ID", "1");
+		//Insert.insert(c, "Polo Bowling Shirts", "Swing kids Retro Shirt", "L", "M", 7);
+		/*ResultSet rs = Search.searchFor(c, "Gender_ID", "1");
+		System.out.println("");
 		while (rs.next()){
 			String Category_name = rs.getString("Category_name");
 			String Style_name = rs.getString("Style_name");
 			String Gender_name = rs.getString("Gender_name");
 			String Size_name = rs.getString("Size_name");
 			System.out.println("Category_name =\t" + Category_name +"\nStyle_name =\t" + Style_name + "\nGender_name =\t" + Gender_name + "\nSize_name =\t"+Size_name);
-		}
+		}*/
+		//Delete.deleterow(c, "Product_ID", "4");
+		
+		
 	}
 /*
 	public static void newEntry(String category, String style, String size, String gender, int numInInventory){
