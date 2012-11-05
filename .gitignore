@@ -31,3 +31,5 @@ edu.ycp.cs481.inventory/bin/edu/ycp/cs481/inventory/gui/GuiMain$2.class
 edu.ycp.cs481.inventory/bin/edu/ycp/cs481/inventory/gui/GuiMain.class
 
 edu.ycp.cs481.inventory/bin/edu/ycp/cs481/inventory/gui/InsertView.class
+
+*.class
