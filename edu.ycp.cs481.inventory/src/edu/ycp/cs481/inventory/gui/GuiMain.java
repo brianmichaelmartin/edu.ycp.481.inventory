@@ -33,6 +33,8 @@ public class GuiMain extends JFrame {
 	private JPanel contentPane;
 	private JPanel InsertView;
 	private JPanel SearchView;
+	private CardLayout cardLayout;
+	private JPanel operationViewPanel;
 
 
 	/**
@@ -62,22 +64,17 @@ public class GuiMain extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblSelectOneOf = new JLabel("Select one of the following options:  ");
-		lblSelectOneOf.setFont(new Font("Tahoma", Font.BOLD, 19));
-		lblSelectOneOf.setBounds(30, 70, 442, 25);
-		contentPane.add(lblSelectOneOf);
-		
 		JButton btnInsert = new JButton("Insert");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+				CardLayout cardLayout = (CardLayout) operationViewPanel.getLayout();
 				cardLayout.next(InsertView);
 				//cardLayout.
 			
 			}
 		});
 		btnInsert.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnInsert.setBounds(54, 201, 153, 49);
+		btnInsert.setBounds(26, 360, 153, 49);
 		contentPane.add(btnInsert);
 	
 		
@@ -85,33 +82,26 @@ public class GuiMain extends JFrame {
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+				CardLayout cardLayout = (CardLayout) operationViewPanel.getLayout();
 				cardLayout.next(SearchView);
 			}
 		});
 		btnSearch.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnSearch.setBounds(383, 201, 153, 49);
+		btnSearch.setBounds(389, 360, 153, 49);
 		contentPane.add(btnSearch);
 		
 		JLabel lblInsertAnItem = new JLabel("Insert an Item");
-		lblInsertAnItem.setBounds(91, 271, 116, 14);
+		lblInsertAnItem.setBounds(54, 436, 116, 14);
 		contentPane.add(lblInsertAnItem);
 		
 		JLabel lblSearchForAn = new JLabel("Search for\r\n an Item");
-		lblSearchForAn.setBounds(422, 271, 116, 14);
+		lblSearchForAn.setBounds(389, 436, 173, 14);
 		contentPane.add(lblSearchForAn);
 		
+		operationViewPanel = new JPanel();
+		operationViewPanel.setBounds(27, 34, 631, 267);
+		contentPane.add(operationViewPanel);
+		operationViewPanel.setLayout(new CardLayout(0, 0));
+		
 	}
-	
-	
-	//protected void ViewChanged() {
-		/*sourceType = (SourceType) sourceTypeComboBox.getSelectedItem();
-		CardLayout cardLayout = (CardLayout) sourceViewContainerPanel.getLayout();
-		cardLayout.show(sourceViewContainerPanel, sourceType.toString());
-		if ((SourceType) sourceTypeComboBox.getSelectedItem() == SourceType.BOOK){
-			citeController.setSource(book);
-	
-		*/
-
-	//}
 }
