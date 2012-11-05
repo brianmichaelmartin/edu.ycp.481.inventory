@@ -1,0 +1,13 @@
+{
+  "C:\\Program Files (x86)\\Java\\jre7\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\rt.jar",
+    "status": "RESOLVED",
+    "error": "No class path info available for \u0027C:\\Program Files (x86)\\Java\\jre7\\lib\\rt.jar\u0027. Skipped."
+  },
+  "C:\\Users\\admin\\Documents\\GitHub\\edu.ycp.481.inventory\\edu.ycp.cs481.inventory\\src": {
+    "location": "C:\\Users\\admin\\Documents\\GitHub\\edu.ycp.481.inventory\\edu.ycp.cs481.inventory\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\admin\\Documents\\GitHub\\edu.ycp.481.inventory\\edu.ycp.cs481.inventory\\src\u0027. Skipped."
+  }
+}

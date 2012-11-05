@@ -1,0 +1,6 @@
+package edu.ycp.cs481.inventory;
+
+public class main {
+	String s = new String("Hello World");
+	Database.Insert();
+}

@@ -1,0 +1,14 @@
+package edu.ycp.cs481.inventory;
+
+public class DBedit {
+	String s = new String();
+	public DBedit(String x)
+	{
+		s = x;
+	}
+	public void insert()
+	{
+		System.out.print(s);
+	}
+	
+}

@@ -1,6 +1,6 @@
 package edu.ycp.cs481.inventory;
 import java.sql.*;
-import java.util.Properties;
+
 
 
 public class DBtask {
@@ -36,7 +36,7 @@ public class DBtask {
 			stmt = c.createStatement();
 			rs = stmt.executeQuery(query);
 		} catch (SQLException e) {
-			System.out.println("there was an issue searching");
+			System.out.println("there was an issue inserting");
 			return false;
 		}
 		
@@ -53,6 +53,7 @@ public class DBtask {
 		Statement stmt = null;
 		String query = 	"SELECT * FROM shirts, style, size, gender, category" +//create sql search statement
 						"WHERE shirts.style = style.style_id" +
+
 						"AND" +
 						"shirts.size = size.size_id" +
 						"AND" +
@@ -60,7 +61,11 @@ public class DBtask {
 						"AND" +
 						"shirts.category = category.category_id" +
 						"AND" +
-						"WHERE " + field + value;
+						"where " + field + value;
+		
+
+						
+
 
 		try {
 			stmt = c.createStatement();
@@ -68,6 +73,9 @@ public class DBtask {
 			
 			
 		} catch (SQLException e) {
+
+			//JDBCTutorialUtilities.printSQLException(e);
+
 			System.out.println("there was an issue searching");
 		} finally{
 			if (stmt != null) {
@@ -75,6 +83,7 @@ public class DBtask {
 			return rs;
 			}
 		}
+
 		return null;
 		
 	}

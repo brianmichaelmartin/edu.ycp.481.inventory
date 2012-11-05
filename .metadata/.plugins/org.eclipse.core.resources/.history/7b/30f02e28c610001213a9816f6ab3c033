@@ -1,0 +1,26 @@
+package edu.ycp.cs481.inventory;
+import java.sql.*;
+
+
+public class DBtask {
+	Connection c;
+	public DBtask(Connection connection)
+	{
+		c = connection;
+	}
+	public boolean insert(/*values to insert*/)/*Takes values that need to be inserted and inserts them into the table, returns true on success*/
+	{
+		
+		return/*success/fail*/ true;
+	}
+	public boolean remove(/*row to remove*/)/*Takes a value for a row number to remove and removes that row, returns true if operation completed succesfully*/
+	{
+		
+		return/*success/fail*/ true;
+	}
+	public void search(/*value, field*/)/*takes a value, and a field to search for that value in and returns all results*/
+	{
+		
+		return/*results*/;
+	}
+}

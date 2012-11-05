@@ -1,0 +1,4 @@
+1. fix github
+2. jdbc
+3. remove extra rows from database (not essential but would be nice)
+4. finish programming everything

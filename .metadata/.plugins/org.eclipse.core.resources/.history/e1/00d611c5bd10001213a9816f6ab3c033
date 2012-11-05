@@ -1,0 +1,23 @@
+package edu.ycp.cs481.inventory;
+
+public class DBtask {
+	
+	public DBtask(/*pass referance to database?*/)
+	{
+		
+	}
+	public boolean insert(/*values to insert*/)
+	{
+		
+		return/*success/fail*/;
+	}
+	public void remove(/*row to remove*/)
+	{
+		
+	}
+	public void search(/*value, field*/)
+	{
+		
+		return/*results*/;
+	}
+}

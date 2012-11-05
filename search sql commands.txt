@@ -1,0 +1,31 @@
+
+search by catagory
+search by size
+search by gender
+
+SELECT * FROM shirts
+Where Field='value';
+
+example
+SELECT * FROM shirts
+WHERE size='M';
+
+SELECT Category_name, Style_name, Gender_name, Size_name FROM inventory, style, size, gender, category
+WHEREinventory.style_id = style.style_id
+AND
+inventory.size_id = size.size_id
+AND
+inventory.gender_id = gender.gender_id
+AND
+inventory.category_id = category.category_ID;
+
+
+
+SELECT Product_ID, Category_name, Style_name, Gender_name, Size_name, Num_in_inventory, Disabled, In_stock, Date_added, Last_modified FROM inventory, style, size, gender, category
+WHERE inventory.style_id = style.style_id
+AND
+inventory.size_id = size.size_id
+AND
+inventory.gender_id = gender.gender_id
+AND
+inventory.category_id = category.category_ID;

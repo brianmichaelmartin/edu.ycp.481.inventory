@@ -1,0 +1,7 @@
+package edu.ycp.cs481.inventory;
+
+import java.sql.Statement;
+
+public class main {
+	
+}

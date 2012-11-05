@@ -1,0 +1,13 @@
+package edu.ycp.cs481.inventory;
+
+public class main {
+	Public static void main(String[]args){
+		String s = new String("Hello World");
+		DBedit db = new DBedit(s);
+		db.insert();
+	}
+	
+	
+	
+	
+}
