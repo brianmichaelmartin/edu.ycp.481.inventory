@@ -1,7 +1,6 @@
 package edu.ycp.cs481.inventory;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -15,8 +14,6 @@ public class ChangeValue {
 	public static boolean change(Connection c, String field, String newVal, String searchField, String searchVal)
 	throws SQLException
 	{
-		@SuppressWarnings("unused")
-		ResultSet rs = null;
 		Statement stmt = null;
 		//check field for error
 		
@@ -31,9 +28,6 @@ public class ChangeValue {
 			
 			
 		} catch (SQLException ex) {
-
-			//JDBCTutorialUtilities.printSQLException(e);
-
 			System.out.println("there was an issue updating the table");
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());

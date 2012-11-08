@@ -10,56 +10,37 @@ public class Search extends main{
 	throws SQLException{
 		ResultSet rs = null;
 		Statement stmt = null;
-		if(field.equals("Gender")){
-			switch (value){//convert gender value to coresponding number
-			case "M":
-				value = "1";
+		int val = 0;
+		switch(field){
+			case "Gender":
+				field = "Gender_ID";
+				//find the Gender_ID associated with the requested gender
+				val = ConvertToID.findGenID(value);
 				break;
-			case "F":
-				value = "2";
+			case "Size":
+				field="Size_ID";
+				//find the Size_ID associated with the requested size
+				val = ConvertToID.findSizID(value);
 				break;
-			case "K":
-				value = "3";
+			case "Style":
+				field = "Style_ID";
+				//find the style_ID associated with the requested style
+				val = ConvertToID.findSizID(value);
 				break;
-			default:
-				System.out.println("Invalid gender option");
-				break;
-			}
-			field = "Gender_ID";
-		}
-		if(field.equals("Size")){
-			switch (value){//convert size value to coresponding number
-			case "S":
-				value = "1";
-				break;
-			case "M":
-				value = "2";
-				break;
-			case "L":
-				value = "3";
-				break;
-			case "XL":
-				value = "4";
-				break;
-			case "2XL":
-				value = "5";
-				break;
-			case "3XL":
-				value = "6";
-				break;
-			case "4XL":
-				value = "7";
+			case "Category":
+				field = "Category_ID";
+				//find the Category_ID associated with the requested category
+				val = ConvertToID.findSizID(value);
 				break;
 			default:
-				System.out.println("Invalid size option");
-				break;
-			}
-			field="Size_ID";
+				System.out.println("Unknown Field to search for");
+				return null;
 		}
+		
 		
 	
 		String query = 	"SELECT Product_ID, Category_name, Style_name, Gender_name, Size_name, Num_in_inventory, Disabled, In_stock, Date_added, Last_modified FROM inventory, style, size, gender, category " +//create sql search statement
-						"WHERE inventory.style_ID = style.style_ID AND inventory.size_ID = size.size_ID AND inventory.gender_ID = gender.gender_ID AND inventory.category_ID = category.category_ID AND inventory." + field + " = " + value;
+						"WHERE inventory.style_ID = style.style_ID AND inventory.size_ID = size.size_ID AND inventory.gender_ID = gender.gender_ID AND inventory.category_ID = category.category_ID AND inventory." + field + " = " + val;
 		
 		try {
 			stmt = c.createStatement();
