@@ -12,7 +12,6 @@ import java.sql.Statement;
  */
 public class ChangeValue {
 	public static boolean change(Connection c, String field, String newVal, String searchField, String searchVal)
-	throws SQLException
 	{
 		Statement stmt = null;
 		//check field for error
@@ -25,19 +24,13 @@ public class ChangeValue {
 		try {
 			stmt = c.createStatement();
 			stmt.executeUpdate(query);
-			
-			
+			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println("there was an issue updating the table");
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 			return false;
-		} finally{
-			if (stmt != null) {
-				stmt.close();
-			return true;
-			}
 		}
 		
 		return true;

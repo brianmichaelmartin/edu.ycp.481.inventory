@@ -27,10 +27,10 @@ public class main {
 	}
 }*/
 
-	public static void main(String[] args) throws SQLException{
+	public static void main(String[] args){
 		Connection c = GetConnection.get();
 		int choice = -1;
-		
+		String result;
 		BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
 		//while(choice < 0){
 		System.out.print("Please enter 1 to search, or 2 to add a new item, 3 to update, or 4 to delete: ");
@@ -49,55 +49,25 @@ public class main {
 				if (searchChoice == 1){
 					System.out.print("Please enter the category you'd like to search for: ");
 					String cat = br.readLine();
-					ResultSet rs = Search.searchFor(c, "Category_ID", cat);
-					System.out.println("");
-					while (rs.next()){
-						int product_id = rs.getInt("Product_ID");
-						String Category_name = rs.getString("Category_name");
-						String Style_name = rs.getString("Style_name");
-						String Gender_name = rs.getString("Gender_name");
-						String Size_name = rs.getString("Size_name");
-						System.out.println("Product_ID =\t" + product_id + "\nCategory_name =\t" + Category_name +"\nStyle_name =\t" + Style_name + "\nGender_name =\t" + Gender_name + "\nSize_name =\t"+Size_name);
-					};
+					result = Search.searchFor(c, "Category_ID", cat);
+					System.out.println(result);
 				}else if (searchChoice == 2){
 					System.out.print("Please enter the size you'd like to search for: ");
 					String siz = br.readLine();
-					ResultSet rs = Search.searchFor(c, "Size", siz);
-					System.out.println("");
-					while (rs.next()){
-						int product_id = rs.getInt("Product_ID");
-						String Category_name = rs.getString("Category_name");
-						String Style_name = rs.getString("Style_name");
-						String Gender_name = rs.getString("Gender_name");
-						String Size_name = rs.getString("Size_name");
-						System.out.println("Product_ID =\t" + product_id + "\nCategory_name =\t" + Category_name +"\nStyle_name =\t" + Style_name + "\nGender_name =\t" + Gender_name + "\nSize_name =\t"+Size_name);
-					}
+					result = Search.searchFor(c, "Size", siz);
+					System.out.println(result);
+					
 				}else if (searchChoice == 3){
 					System.out.print("Please enter the Gender you'd like to search for: ");
 					String gen = br.readLine();
-					ResultSet rs = Search.searchFor(c, "Gender", gen);
-					System.out.println("");
-					while (rs.next()){
-						int product_id = rs.getInt("Product_ID");
-						String Category_name = rs.getString("Category_name");
-						String Style_name = rs.getString("Style_name");
-						String Gender_name = rs.getString("Gender_name");
-						String Size_name = rs.getString("Size_name");
-						System.out.println("Product_ID =\t" + product_id + "\nCategory_name =\t" + Category_name +"\nStyle_name =\t" + Style_name + "\nGender_name =\t" + Gender_name + "\nSize_name =\t"+Size_name);
-					};
+					result = Search.searchFor(c, "Gender", gen);
+					System.out.println(result);
+					
 				}else if (searchChoice == 4){
 					System.out.print("Please enter the Style you'd like to search for: ");
 					String sty = br.readLine();
-					ResultSet rs = Search.searchFor(c, "Style_ID", sty);
-					System.out.println("");
-					while (rs.next()){
-						int product_id = rs.getInt("Product_ID");
-						String Category_name = rs.getString("Category_name");
-						String Style_name = rs.getString("Style_name");
-						String Gender_name = rs.getString("Gender_name");
-						String Size_name = rs.getString("Size_name");
-						System.out.println("Product_ID =\t" + product_id + "\nCategory_name =\t" + Category_name +"\nStyle_name =\t" + Style_name + "\nGender_name =\t" + Gender_name + "\nSize_name =\t"+Size_name);
-					};
+					result = Search.searchFor(c, "Style_ID", sty);
+					System.out.println(result);
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

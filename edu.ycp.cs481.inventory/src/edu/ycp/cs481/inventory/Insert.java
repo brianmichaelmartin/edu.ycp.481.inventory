@@ -10,7 +10,7 @@ public class Insert{
 	 * 
 	 */
 	
-	public static boolean insert(Connection c, String category, String style, String size, String gender, int numInInventory) throws SQLException/*Takes values that need to be inserted and inserts them into the table, returns true on success*/
+	public static boolean insert(Connection c, String category, String style, String size, String gender, int numInInventory)/*Takes values that need to be inserted and inserts them into the table, returns true on success*/
 	{
 		Statement stmt = null;
 		int temp, Product_ID, Category_ID, Style_ID, Gender_ID, Size_ID;
@@ -22,6 +22,7 @@ public class Insert{
 		//find the style_ID associated with the requested style
 		Style_ID = ConvertToID.findStyID(c, style);
 		if (Style_ID == 0){
+			
 			//add new entry
 		}
 		//find the Category_ID associated with the requested category
@@ -40,10 +41,12 @@ public class Insert{
 		
 		query = "INSERT INTO inventory (Product_ID, Category_ID, Style_ID, Gender_ID, Size_ID, Num_in_inventory, Disabled, In_stock, Barcode, Date_added, Last_modified) "+
 						"VALUES ('" + Product_ID + "', '" + Category_ID + "', '" + Style_ID +"', '" + Gender_ID + "', '" + Size_ID + "', '" + numInInventory + "', '0', '0', '" + Barcode + "', now(), now())";
-		stmt = c.createStatement();
+		
 		
 		try {
+			stmt = c.createStatement();
 			stmt.executeUpdate(query);
+			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());

@@ -17,8 +17,7 @@ public class Delete {
 		try {
 			stmt = c.createStatement();
 			stmt.executeUpdate(query);
-			
-			
+			stmt.close();
 		} catch (SQLException ex) {
 			System.out.println("there was an issue deleting");
 			System.out.println("SQLException: " + ex.getMessage());
