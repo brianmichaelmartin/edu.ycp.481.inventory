@@ -9,10 +9,10 @@ import edu.ycp.cs481.inventory.*;
 
 
 public class main {
-	public static void main(String[] args) throws SQLException{
+/*	public static void main(String[] args) throws SQLException{
 		Connection c = GetConnection.get();
 		//Insert.insert(c, "Polo Bowling Shirts", "Swing kids Retro Shirt", "L", "M", 7);
-		/*ResultSet rs = Search.searchFor(c, "Gender_ID", "1");
+		ResultSet rs = Search.searchFor(c, "Size", "L");
 		System.out.println("");
 		while (rs.next()){
 			String Category_name = rs.getString("Category_name");
@@ -20,56 +20,20 @@ public class main {
 			String Gender_name = rs.getString("Gender_name");
 			String Size_name = rs.getString("Size_name");
 			System.out.println("Category_name =\t" + Category_name +"\nStyle_name =\t" + Style_name + "\nGender_name =\t" + Gender_name + "\nSize_name =\t"+Size_name);
-		}*/
+		}
 		//Delete.deleterow(c, "Product_ID", "4");
 		//ChangeValue.change(c, "Num_in_inventory", "5", "Product_ID", "4");
 		
 	}
-/*
-	public static void newEntry(String category, String style, String size, String gender, int numInInventory){
+}*/
 
-		try {
-			if (task.insert(category, style, size, gender, numInInventory)){
-				System.out.println("Insertion Successful!");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("Insertian Failed!");
-		}
-	}
-	
-	public static void searchByCategory(String category){
-		try {
-			ResultSet rs = task.search("Category", category);
-			String cat = rs.getString("Category");
-			String Style = rs.getString("Style");
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	public static void searchBySize(String size){
-		
-	}
-	public static void searchByGender(String gender){
-		
-	}
-	public static void searchByStyle(String style){
-		
-	}
-
-	public static void main(String[] args) throws SQLException{
-
+	public static void main(String[] args){
+		Connection c = GetConnection.get();
 		int choice = -1;
-		DBtask db = new DBtask();//create new database access object
-		db.getConnection();//establish a connection
+		String result;
 		BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
 		//while(choice < 0){
-		System.out.print("Please enter 1 to search, or 2 to add a new item: ");
+		System.out.print("Please enter 1 to search, or 2 to add a new item, 3 to update, or 4 to delete: ");
 		try {
 			choice = Integer.parseInt(br.readLine());
 		} catch (IOException e) {
@@ -85,19 +49,25 @@ public class main {
 				if (searchChoice == 1){
 					System.out.print("Please enter the category you'd like to search for: ");
 					String cat = br.readLine();
-					Search.searchByCategory(cat);
+					result = Search.searchFor(c, "Category_ID", cat);
+					System.out.println(result);
 				}else if (searchChoice == 2){
 					System.out.print("Please enter the size you'd like to search for: ");
 					String siz = br.readLine();
-					Search.searchBySize(siz);
+					result = Search.searchFor(c, "Size", siz);
+					System.out.println(result);
+					
 				}else if (searchChoice == 3){
 					System.out.print("Please enter the Gender you'd like to search for: ");
 					String gen = br.readLine();
-					Search.searchByGender(gen);
+					result = Search.searchFor(c, "Gender", gen);
+					System.out.println(result);
+					
 				}else if (searchChoice == 4){
 					System.out.print("Please enter the Style you'd like to search for: ");
 					String sty = br.readLine();
-					Search.searchByStyle(sty);
+					result = Search.searchFor(c, "Style_ID", sty);
+					System.out.println(result);
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -116,10 +86,35 @@ public class main {
 				String gen = br.readLine();
 				System.out.println("\nNumber of items: ");
 				int num = Integer.parseInt(br.readLine());
-				Insert.newEntry(cat, sty, siz, gen, num);
+				Insert.insert(c, cat, sty, siz, gen, num);
 			} catch (IOException e){
 				e.printStackTrace();
 			}
+		}else if (choice == 3){
+			System.out.println("Please enter the information to be updated.");
+			try{
+			System.out.println("Field to change: ");
+			String field = br.readLine();
+			System.out.println("\nNew val: ");
+			String val = br.readLine();
+			System.out.print("\nWhere: ");
+			String where = br.readLine();
+			System.out.println("\nIs: ");
+			String thing = br.readLine();
+			ChangeValue.change(c, field, val, where, thing);
+			}catch (IOException e){
+				e.printStackTrace();
+			}
+		}else if (choice ==4){
+			
+			try{
+			System.out.println("Product_ID to delete: ");
+			String ID = br.readLine();
+			
+			Delete.deleterow(c, "Product_ID", ID);
+			}catch (IOException e){
+				e.printStackTrace();
+			}
 		}
-	}*/
+	}
 }
