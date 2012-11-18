@@ -1,6 +1,7 @@
 package edu.ycp.cs481.inventory;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,14 +11,16 @@ import java.sql.Statement;
  * finding a better format to return data from search...
  * 
  */
+import java.util.ArrayList;
 
 
 public class Search{
-	public static String searchFor(Connection c, String field, String value){
+	public static ArrayList<DatabaseEntry> searchFor(Connection c, String field, String value){
 		
 		ResultSet rs = null;
 		Statement stmt = null;
-		String result = "";
+		//create an ArrayList that will contain a series of DatabaseEntry objects that represent each entry in the table
+		ArrayList<DatabaseEntry> returnVal = new ArrayList<DatabaseEntry>();
 		int val = 0;
 		switch(field){
 			case "Gender":
@@ -46,7 +49,7 @@ public class Search{
 		}
 		
 		
-	
+		//create the sql query
 		String query = 	"SELECT Product_ID, Category_name, Style_name, Gender_name, Size_name, Num_in_inventory, Disabled, In_stock, Date_added, Last_modified FROM inventory, style, size, gender, category " +//create sql search statement
 						"WHERE inventory.style_ID = style.style_ID AND inventory.size_ID = size.size_ID AND inventory.gender_ID = gender.gender_ID AND inventory.category_ID = category.category_ID AND inventory." + field + " = " + val;
 		
@@ -54,15 +57,27 @@ public class Search{
 			stmt = c.createStatement();
 			rs = stmt.executeQuery(query);
 			while (rs.next()){
-				int product_id = rs.getInt("Product_ID");
-				String Category_name = rs.getString("Category_name");
-				String Style_name = rs.getString("Style_name");
-				String Gender_name = rs.getString("Gender_name");
-				String Size_name = rs.getString("Size_name");
-				result = result.concat("Product_ID =\t" + product_id + "\nCategory_name =\t" + Category_name +"\nStyle_name =\t" + Style_name + "\nGender_name =\t" + Gender_name + "\nSize_name =\t"+Size_name + "\n\n");
+				/*
+				 * Loops through the result set and creates a new DatabaseEntry object the the returnVal array list to return
+				 * to whoever called search
+				 */
+				returnVal.add(new DatabaseEntry(rs.getInt("Product_ID"),
+												rs.getString("Category_name"),
+												rs.getString("Style_name"),
+												rs.getString("Gender_name"),
+												rs.getString("Size_name"),
+												rs.getInt("Num_in_inventory"),
+												rs.getInt("Dsiabled"),
+												rs.getInt("In_stock"),
+												rs.getInt("Barcode"),
+												rs.getDate("Date_added"),
+												rs.getDate("Last_modified"),
+												rs.getString("Picture")));
 			}
+			//close the sql stmt
 			stmt.close();
 		} catch (SQLException ex) {
+			//catch exceptions
 			System.out.println("there was an issue searching");
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
@@ -70,6 +85,6 @@ public class Search{
 			return null;
 		}
 		
-		return result;
+		return returnVal;
 	}
 }

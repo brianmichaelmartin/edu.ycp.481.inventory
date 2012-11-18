@@ -12,9 +12,11 @@ public class Delete {
 	public static boolean deleterow(Connection c, String field, String val){
 		Statement stmt = null;
 		
+		//create sql Delete statement
 		String query = "DELETE FROM inventory WHERE " + field + " = " + val;
 		
 		try {
+			//create, execute and close the stmt
 			stmt = c.createStatement();
 			stmt.executeUpdate(query);
 			stmt.close();

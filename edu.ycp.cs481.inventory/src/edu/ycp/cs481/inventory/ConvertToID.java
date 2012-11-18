@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConvertToID {
-	public static int findProID(Connection c){//this needs tweaking
+	public static int findProID(Connection c){//TODO: this needs tweaking, maybe? more testing
 		String query = "SELECT Product_ID from inventory";
 		ResultSet rs = null;
 		Statement stmt = null;
@@ -77,8 +77,8 @@ public class ConvertToID {
 			return 0;
 		}
 		
-		//The category was not found so we shal make a new one
-		System.out.println("the specified category was not found, creatig new entry");
+		//The category was not found so we shall make a new one
+		System.out.println("The requested category was not found, creatig new entry");
 		return ExpandTable.Category(c, cat);
 	}
 	
@@ -93,7 +93,9 @@ public class ConvertToID {
 			rs = stmt.executeQuery(query);
 			stmt.close();
 			while (rs.next()){
+				//check to see if current Style_name is equal to the style we are attempting to find
 				if(((rs.getString("Style_name")).toLowerCase()).equals(style)){
+					//if it is, then return
 					return rs.getInt("Style_ID");
 				}
 			}
@@ -105,8 +107,8 @@ public class ConvertToID {
 			return 0;
 		}
 		
-		
-		System.out.println("the specified style was not found, creating new entry");
+		//The style was not found so we shall make a new one
+		System.out.println("the Requested style was not found, creating new entry");
 		return ExpandTable.Style(c, sty);
 	}
 	

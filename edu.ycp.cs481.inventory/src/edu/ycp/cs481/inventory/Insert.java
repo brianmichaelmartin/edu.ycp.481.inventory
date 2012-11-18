@@ -10,7 +10,7 @@ public class Insert{
 	 * 
 	 */
 	
-	public static boolean insert(Connection c, String category, String style, String size, String gender, int numInInventory)/*Takes values that need to be inserted and inserts them into the table, returns true on success*/
+	public static boolean insert(Connection c, String category, String style, String size, String gender, int numInInventory, String Picture)/*Takes values that need to be inserted and inserts them into the table, returns true on success*/
 	{
 		Statement stmt = null;
 		int temp, Product_ID, Category_ID, Style_ID, Gender_ID, Size_ID;
@@ -39,8 +39,8 @@ public class Insert{
 		temp = 1234;
 		Barcode = Integer.toString(temp);
 		
-		query = "INSERT INTO inventory (Product_ID, Category_ID, Style_ID, Gender_ID, Size_ID, Num_in_inventory, Disabled, In_stock, Barcode, Date_added, Last_modified) "+
-						"VALUES ('" + Product_ID + "', '" + Category_ID + "', '" + Style_ID +"', '" + Gender_ID + "', '" + Size_ID + "', '" + numInInventory + "', '0', '0', '" + Barcode + "', now(), now())";
+		query = "INSERT INTO inventory (Product_ID, Category_ID, Style_ID, Gender_ID, Size_ID, Num_in_inventory, Disabled, In_stock, Barcode, Date_added, Last_modified, Picture) "+
+						"VALUES ('" + Product_ID + "', '" + Category_ID + "', '" + Style_ID +"', '" + Gender_ID + "', '" + Size_ID + "', '" + numInInventory + "', '0', '0', '" + Barcode + "', now(), now(), " + Picture + ")";
 		
 		
 		try {

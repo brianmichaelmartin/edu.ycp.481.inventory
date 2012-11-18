@@ -22,6 +22,7 @@ public class ChangeValue {
 						"WHERE " + searchField + "=" + searchVal;
 		
 		try {
+			//create, execute and close the stmt
 			stmt = c.createStatement();
 			stmt.executeUpdate(query);
 			stmt.close();
