@@ -14,6 +14,7 @@ import java.sql.Statement;
 
 public class Search{
 	public static String searchFor(Connection c, String field, String value){
+		
 		ResultSet rs = null;
 		Statement stmt = null;
 		String result = "";
