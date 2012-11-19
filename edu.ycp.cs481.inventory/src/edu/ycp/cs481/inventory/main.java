@@ -9,6 +9,9 @@ import edu.ycp.cs481.inventory.*;
 
 
 public class main {
+	public static void main(String[] args){
+		
+	}
 /*	public static void main(String[] args) throws SQLException{
 		Connection c = GetConnection.get();
 		//Insert.insert(c, "Polo Bowling Shirts", "Swing kids Retro Shirt", "L", "M", 7);
@@ -26,7 +29,7 @@ public class main {
 		
 	}
 }*/
-
+/*
 	public static void main(String[] args){
 		Connection c = GetConnection.get();
 		int choice = -1;
@@ -116,5 +119,5 @@ public class main {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
 }
