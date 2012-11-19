@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.Connection;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
@@ -36,7 +37,7 @@ public class InsertView extends JPanel {
 	public InsertView() {
 		setLayout(null);
 
-		GetConnection.get(); //get connection established
+		Connection c = GetConnection.get(); //get connection established
 
 		JLabel lblInsertAnItem = new JLabel("Insert an Item:");
 		lblInsertAnItem.setFont(new Font("Tahoma", Font.BOLD, 21));
@@ -135,7 +136,7 @@ public class InsertView extends JPanel {
 		String StyleName = textField_1.getText(); //stores input in String StyleName
 		System.out.println("style name ==== " + StyleName);
 	}
-
+	
 	// SIZE TYPE SELECTED
 	protected void sizeTypeChange(){
 		String SelectedSizeType;
@@ -170,13 +171,13 @@ public class InsertView extends JPanel {
 	protected void genderTypeChange(){
 		String SelectedGenderType;
 		if((genderType) genderTypeComboBox.getSelectedItem() == genderType.F){
-			SelectedGenderType = "S";
+			SelectedGenderType = "F";
 		}
 		else if((genderType) genderTypeComboBox.getSelectedItem() == genderType.M){
 			SelectedGenderType = "M";
 		}
 		else {
-			SelectedGenderType = "L";
+			SelectedGenderType = "K";
 		}
 		System.out.println("Gender  string ===  " + SelectedGenderType);
 
