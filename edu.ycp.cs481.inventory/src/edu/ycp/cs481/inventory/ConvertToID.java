@@ -1,0 +1,166 @@
+package edu.ycp.cs481.inventory;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ConvertToID {
+	public static int findProID(Connection c){//TODO: this needs tweaking, maybe? more testing
+		String query = "SELECT Product_ID from inventory";
+		ResultSet rs = null;
+		Statement stmt = null;
+		int result;
+		
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery(query);
+			rs.last();
+			result = rs.getInt("Product_ID")+1;
+			stmt.close();
+		} catch (SQLException ex) {
+			System.out.println("there was an issue finding an availible product_ID");
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+			return 0;
+		}
+		return result;
+	}
+	
+	public static int findID(Connection c, String table){//as does this
+		String query = "SELECT " + table + "_ID from " + table;
+		ResultSet rs = null;
+		Statement stmt = null;
+		int result;
+		
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery(query);
+			rs.last();
+			result = rs.getInt(table+"_ID")+1;
+			stmt.close();
+		} catch (SQLException ex) {
+			System.out.println("there was an issue finding an availible product_ID");
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+			return 0;
+		}
+		return result;
+	}
+	
+	public static int findCatID(Connection c, String cat){//This function finds the category ID for a category
+		String query = "SELECT * FROM category";
+		ResultSet rs = null;
+		Statement stmt = null;
+		
+		//convert category to lower case
+		String category = cat.toLowerCase();
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while (rs.next()){//loop through result set
+				//check to see if current Category_name is equal to the category we are attempting to find
+				if(((rs.getString("Category_name")).toLowerCase()).equals(category)){
+					//if it is, then return
+					return rs.getInt("Category_ID");
+				}
+			}
+			stmt.close();
+		} catch (SQLException ex) {
+			System.out.println("there was an issue crossreferencing category");
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+			return 0;
+		}
+		
+		//The category was not found so we shall make a new one
+		System.out.println("The requested category was not found, creatig new entry");
+		return ExpandTable.Category(c, cat);
+	}
+	
+	public static int findStyID(Connection c, String sty){//This function finds the style ID for a style
+		String query = "SELECT * FROM style";
+		ResultSet rs = null;
+		Statement stmt = null;
+		//convert style to lower case
+		String style = sty.toLowerCase();
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery(query);
+			stmt.close();
+			while (rs.next()){
+				//check to see if current Style_name is equal to the style we are attempting to find
+				if(((rs.getString("Style_name")).toLowerCase()).equals(style)){
+					//if it is, then return
+					return rs.getInt("Style_ID");
+				}
+			}
+		} catch (SQLException ex) {
+			System.out.println("there was an issue crossreferencing style");
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+			return 0;
+		}
+		
+		//The style was not found so we shall make a new one
+		System.out.println("the Requested style was not found, creating new entry");
+		return ExpandTable.Style(c, sty);
+	}
+	
+	public static int findGenID(String gen){//This function finds the gender ID for a gender
+		int result;
+		String gender = gen.toLowerCase();
+		switch (gender){//convert gender value to coresponding number
+			case "m":
+				result = 1;
+				break;
+			case "f":
+				result = 2;
+				break;
+			case "k":
+				result = 3;
+				break;
+			default:
+				System.out.println("Invalid gender option");
+				return 0;
+		}
+		return result;
+	}
+	
+	public static int findSizID(String siz){
+		int result = 0;
+		switch (siz){//convert size value to coresponding number
+			case "S":
+				result = 1;
+				break;
+			case "M":
+				result = 2;
+				break;
+			case "L":
+				result = 3;
+				break;
+			case "XL":
+				result = 4;
+				break;
+			case "2XL":
+				result = 5;
+				break;
+			case "3XL":
+				result = 6;
+				break;
+			case "4XL":
+				result = 7;
+				break;
+			default:
+				System.out.println("Invalid size option");
+				break;
+			}
+		return result;
+	}
+	
+}
