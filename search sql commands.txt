@@ -21,7 +21,7 @@ inventory.category_id = category.category_ID;
 
 
 
-SELECT Product_ID, Category_name, Style_name, Gender_name, Size_name, Num_in_inventory, Disabled, In_stock, Date_added, Last_modified FROM inventory, style, size, gender, category
+SELECT Product_ID, Catagory_name, Style_name, Gender_name, Size_name, Num_in_inventory, Disabled, In_stock, Date_added, Last_modified FROM inventory, style, size, gender, category
 WHERE inventory.style_id = style.style_id
 AND
 inventory.size_id = size.size_id
