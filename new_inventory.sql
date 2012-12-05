@@ -10,7 +10,7 @@ USE `Inventory_database` ;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `Inventory_database`.`Inventory` (
   `Product_ID` INT NOT NULL ,
-  `Catagory_ID` MEDIUMINT NULL ,
+  `Category_ID` MEDIUMINT NULL ,
   `Style_ID` MEDIUMINT NULL ,
   `Gender_ID` SMALLINT NULL ,
   `Size_ID` SMALLINT NULL ,
@@ -28,10 +28,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `Inventory_database`.`Catagory`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `Inventory_database`.`Catagory` (
-  `Catagory_ID` INT NOT NULL ,
-  `Catagory_name` VARCHAR(45) NULL ,
-  PRIMARY KEY (`Catagory_ID`) )
+CREATE  TABLE IF NOT EXISTS `Inventory_database`.`Category` (
+  `Category_ID` INT NOT NULL ,
+  `Category_name` VARCHAR(45) NULL ,
+  PRIMARY KEY (`Category_ID`) )
 ENGINE = InnoDB;
 
 
@@ -83,10 +83,10 @@ INSERT into GENDER values (1, 'Men');
 INSERT into gender values (2, 'Women');
 Insert into gender values (3, 'Kid');
 
-INSERT into catagory values (1, 'Retro Button Up Shirts');
-Insert into catagory values (2, 'Polo Sports Shirts');
-Insert into catagory values (3, 'T-Shirts');
-Insert into catagory values (4, 'Polo Bowling Shirts');
+INSERT into category values (1, 'Retro Button Up Shirts');
+Insert into category values (2, 'Polo Sports Shirts');
+Insert into category values (3, 'T-Shirts');
+Insert into category values (4, 'Polo Bowling Shirts');
 
 Insert into style values (1, 'LASER : Dry-Excel Elite');
 Insert into style values (2, 'Big Dom : 50s Bowling Shirt');
