@@ -30,6 +30,8 @@ import javax.swing.JButton;
 public class InsertView extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
+	//private JComboBox<sizeType> sizeTypeComboBox;
+	//private JComboBox<genderType> genderTypeComboBox;
 	String genderValue, sizeValue, StyleName, CategoryName;
 	Connection c = GetConnection.get(); //get connection established
 

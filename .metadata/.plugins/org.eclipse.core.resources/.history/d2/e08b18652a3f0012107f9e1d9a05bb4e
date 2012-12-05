@@ -23,6 +23,8 @@ import javax.swing.JComboBox;
 
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
+import edu.ycp.cs481.inventory.genderType;
+import edu.ycp.cs481.inventory.sizeType;
 import edu.ycp.cs481.inventory.controller.InsertController;
 import javax.swing.JButton;
 
@@ -30,6 +32,8 @@ import javax.swing.JButton;
 public class InsertView extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
+	private JComboBox<sizeType> sizeTypeComboBox;
+	private JComboBox<genderType> genderTypeComboBox;
 	String genderValue, sizeValue, StyleName, CategoryName;
 	Connection c = GetConnection.get(); //get connection established
 

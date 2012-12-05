@@ -4,16 +4,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 /*
  * README
- * Search takes 7 variables as input. A connection object,  four strings for Category, Style, Size, and Gender
- * AND two boolean flags for whether or not you want to return disabled or out of stock items
+ * Search takes 5 variables as input. A connection object, and four strings for Category, Style, Size, and Gender
  * It searches for any items that match all of the strings. Enter any for a string to have it ignore that field
  * It will return an arraylist of DatabaseEntry objects
  * 
  */
-
+import java.util.ArrayList;
 
 
 public class Search{

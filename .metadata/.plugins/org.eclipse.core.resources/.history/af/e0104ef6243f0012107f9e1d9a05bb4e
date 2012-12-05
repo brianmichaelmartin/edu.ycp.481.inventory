@@ -16,7 +16,7 @@ import javax.swing.JComboBox;
 
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
-import edu.ycp.cs481.inventory.Search_old;
+import edu.ycp.cs481.inventory.Search;
 import edu.ycp.cs481.inventory.controller.InsertController;
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;

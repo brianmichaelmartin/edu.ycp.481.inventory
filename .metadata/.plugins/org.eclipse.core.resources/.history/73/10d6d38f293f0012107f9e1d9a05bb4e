@@ -4,53 +4,39 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 /*
- * README
- * Search takes 7 variables as input. A connection object,  four strings for Category, Style, Size, and Gender
- * AND two boolean flags for whether or not you want to return disabled or out of stock items
- * It searches for any items that match all of the strings. Enter any for a string to have it ignore that field
- * It will return an arraylist of DatabaseEntry objects
+ * as of right now search only return Product_ID, Category_name, Style_name, gender_name, and size_name, in a pretty bad format...
+ * i realized i should be closing the sql statement which also closes the result set so i cant return that right now. im going to work on
+ * finding a better format to return data from search...
  * 
  */
-
+import java.util.ArrayList;
 
 
 public class Search{
-	public static ArrayList<DatabaseEntry> searchFor(Connection c, String Category, String Style, String Size, String Gender, Boolean returnDisabled, Boolean returnOutOfStock){
+	public static ArrayList<DatabaseEntry> searchFor(Connection c, String Category, String Style, String Size, String Gender){
 		
 		ResultSet rs = null;
 		Statement stmt = null;
 		//create an ArrayList that will contain a series of DatabaseEntry objects that represent each entry in the table
 		ArrayList<DatabaseEntry> returnVal = new ArrayList<DatabaseEntry>();
+		int val = 0;
 		
 		
 		//create the sql query
 		String query = 	"SELECT Product_ID, Category_name, Style_name, Gender_name, Size_name, Num_in_inventory, Disabled, In_stock, Date_added, Last_modified FROM inventory, style, size, gender, category " +//create sql search statement
 						"WHERE inventory.style_ID = style.style_ID AND inventory.size_ID = size.size_ID AND inventory.gender_ID = gender.gender_ID AND inventory.category_ID = category.category_ID";
-		//if category doesnt equal any then narrow the field using the designated item
 		if(Category != "any"){
 			 query.concat(" AND inventory.category_ID = " + ConvertToID.findCatID(c, Category));
 		}
-		//if style doesnt equal any then narrow the field using the designated item
 		if(Style != "any"){
 			 query.concat(" AND inventory.Style_ID = " + ConvertToID.findStyID(c, Style));
 		}
-		//if gender doesnt equal any then narrow the field using the designated item
 		if(Gender != "any"){
 			 query.concat(" AND inventory.Gender_ID = " + ConvertToID.findGenID(Gender));
 		}
-		//if size doesnt equal any then narrow the field using the designated item
 		if(Size != "any"){
 			 query.concat(" AND inventory.category_ID = " + ConvertToID.findSizID(Size));
-		}
-		//if you are not returning disabled then narrow to items with Disabled set to 0
-		if(!returnDisabled){
-			query.concat(" AND inventory.Disabled = 0");
-		}
-		//if you are not returning out of stock items then narrow to items with In_stock set to 1
-		if(!returnOutOfStock){
-			query.concat(" AND inventory.In_stock = 1");
 		}
 		try {
 			stmt = c.createStatement();

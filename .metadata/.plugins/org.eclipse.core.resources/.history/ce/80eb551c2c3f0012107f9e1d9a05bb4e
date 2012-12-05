@@ -4,16 +4,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 /*
  * README
- * Search takes 7 variables as input. A connection object,  four strings for Category, Style, Size, and Gender
- * AND two boolean flags for whether or not you want to return disabled or out of stock items
+ * Search takes 5 variables as input. A connection object, and four strings for Category, Style, Size, and Gender
  * It searches for any items that match all of the strings. Enter any for a string to have it ignore that field
  * It will return an arraylist of DatabaseEntry objects
  * 
  */
-
+import java.util.ArrayList;
 
 
 public class Search{
@@ -48,9 +46,9 @@ public class Search{
 		if(!returnDisabled){
 			query.concat(" AND inventory.Disabled = 0");
 		}
-		//if you are not returning out of stock items then narrow to items with In_stock set to 1
+		//if you are not returning disabled then narrow to items with In_stock set to 0
 		if(!returnOutOfStock){
-			query.concat(" AND inventory.In_stock = 1");
+			query.concat(" AND inventory.In_stock = 0");
 		}
 		try {
 			stmt = c.createStatement();

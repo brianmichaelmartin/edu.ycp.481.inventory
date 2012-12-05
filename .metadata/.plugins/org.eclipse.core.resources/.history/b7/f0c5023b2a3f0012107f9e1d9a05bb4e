@@ -4,25 +4,24 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 /*
  * README
- * Search takes 7 variables as input. A connection object,  four strings for Category, Style, Size, and Gender
- * AND two boolean flags for whether or not you want to return disabled or out of stock items
+ * Search takes 5 variables as input. A connection object, and four strings for Category, Style, Size, and Gender
  * It searches for any items that match all of the strings. Enter any for a string to have it ignore that field
  * It will return an arraylist of DatabaseEntry objects
  * 
  */
-
+import java.util.ArrayList;
 
 
 public class Search{
-	public static ArrayList<DatabaseEntry> searchFor(Connection c, String Category, String Style, String Size, String Gender, Boolean returnDisabled, Boolean returnOutOfStock){
+	public static ArrayList<DatabaseEntry> searchFor(Connection c, String Category, String Style, String Size, String Gender){
 		
 		ResultSet rs = null;
 		Statement stmt = null;
 		//create an ArrayList that will contain a series of DatabaseEntry objects that represent each entry in the table
 		ArrayList<DatabaseEntry> returnVal = new ArrayList<DatabaseEntry>();
+		int val = 0;
 		
 		
 		//create the sql query
@@ -43,14 +42,6 @@ public class Search{
 		//if size doesnt equal any then narrow the field using the designated item
 		if(Size != "any"){
 			 query.concat(" AND inventory.category_ID = " + ConvertToID.findSizID(Size));
-		}
-		//if you are not returning disabled then narrow to items with Disabled set to 0
-		if(!returnDisabled){
-			query.concat(" AND inventory.Disabled = 0");
-		}
-		//if you are not returning out of stock items then narrow to items with In_stock set to 1
-		if(!returnOutOfStock){
-			query.concat(" AND inventory.In_stock = 1");
 		}
 		try {
 			stmt = c.createStatement();

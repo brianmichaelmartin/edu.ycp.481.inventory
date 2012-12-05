@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 /*
  * README
  * Search takes 7 variables as input. A connection object,  four strings for Category, Style, Size, and Gender
@@ -13,7 +12,7 @@ import java.util.ArrayList;
  * It will return an arraylist of DatabaseEntry objects
  * 
  */
-
+import java.util.ArrayList;
 
 
 public class Search{
