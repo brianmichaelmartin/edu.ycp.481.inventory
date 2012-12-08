@@ -90,14 +90,7 @@ public class InsertView extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		sizeCombo.addActionListener(new ActionListener(){
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				handleSizeChange();
-				
-			}
-		});
+
 
 
 
@@ -188,8 +181,7 @@ public class InsertView extends JPanel {
 		System.out.println("gender = "+ genderValue);
 	}
 	protected void handleSizeChange(){
-		sizeValue = (String)sizeCombo.getSelectedItem();
-		System.out.println("Size = " + sizeValue);
+		
 	}
 	
 	

@@ -32,8 +32,7 @@ public class InsertView extends JPanel {
 	private JTextField textField_1;
 	String genderValue, sizeValue, StyleName, CategoryName;
 	Connection c = GetConnection.get(); //get connection established
-	JComboBox genderCombo = new JComboBox();
-	JComboBox sizeCombo = new JComboBox();
+
 
 
 	/**
@@ -71,6 +70,7 @@ public class InsertView extends JPanel {
 
 
 		//GENERATE SIZE FROM SQL IN COMBOBOX
+		JComboBox sizeCombo = new JComboBox();
 		sizeCombo.setBounds(148, 156, 60, 20);
 		add(sizeCombo);
 
@@ -90,19 +90,12 @@ public class InsertView extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		sizeCombo.addActionListener(new ActionListener(){
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				handleSizeChange();
-				
-			}
-		});
+
 
 
 
 		//GENDER COMBO, AUTOMATICALLY GENERATES gender ( VIA SQL)
-
+		JComboBox genderCombo = new JComboBox();
 		genderCombo.setBounds(148, 189, 60, 20);
 		add(genderCombo);
 
@@ -118,14 +111,8 @@ public class InsertView extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		genderCombo.addActionListener(new ActionListener(){
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				handleGenderChange();
-				
-			}
-		});
+
+
 		//CATEGORY TEXT FIELD
 		textField = new JTextField();
 		textField.addFocusListener(new FocusAdapter(){
@@ -184,12 +171,10 @@ public class InsertView extends JPanel {
 		System.out.println("style name ==== " + StyleName);
 	}
 	protected void handleGenderChange(){
-		genderValue = (String)genderCombo.getSelectedItem();
-		System.out.println("gender = "+ genderValue);
+		sizeValue = comboBox_1
 	}
 	protected void handleSizeChange(){
-		sizeValue = (String)sizeCombo.getSelectedItem();
-		System.out.println("Size = " + sizeValue);
+		
 	}
 	
 	

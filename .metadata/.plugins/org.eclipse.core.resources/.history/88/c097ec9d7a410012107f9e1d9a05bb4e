@@ -188,8 +188,7 @@ public class InsertView extends JPanel {
 		System.out.println("gender = "+ genderValue);
 	}
 	protected void handleSizeChange(){
-		sizeValue = (String)sizeCombo.getSelectedItem();
-		System.out.println("Size = " + sizeValue);
+		
 	}
 	
 	

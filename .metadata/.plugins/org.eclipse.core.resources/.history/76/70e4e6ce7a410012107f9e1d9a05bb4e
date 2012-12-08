@@ -40,7 +40,7 @@ public class Insert{
 		Barcode = Integer.toString(temp);
 		
 		query = "INSERT INTO inventory (Product_ID, Category_ID, Style_ID, Gender_ID, Size_ID, Num_in_inventory, Disabled, In_stock, Barcode, Date_added, Last_modified, Picture) "+
-						"VALUES ('" + Product_ID + "', '" + Category_ID + "', '" + Style_ID +"', '" + Gender_ID + "', '" + Size_ID + "', '" + numInInventory + "', '0', '1', '" + Barcode + "', now(), now(), '" + Picture + "')";
+						"VALUES ('" + Product_ID + "', '" + Category_ID + "', '" + Style_ID +"', '" + Gender_ID + "', '" + Size_ID + "', '" + numInInventory + "', '0', '1', '" + Barcode + "', now(), now(), " + Picture + ")";
 		
 		
 		try {

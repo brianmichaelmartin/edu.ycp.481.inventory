@@ -32,8 +32,7 @@ public class InsertView extends JPanel {
 	private JTextField textField_1;
 	String genderValue, sizeValue, StyleName, CategoryName;
 	Connection c = GetConnection.get(); //get connection established
-	JComboBox genderCombo = new JComboBox();
-	JComboBox sizeCombo = new JComboBox();
+
 
 
 	/**
@@ -71,8 +70,9 @@ public class InsertView extends JPanel {
 
 
 		//GENERATE SIZE FROM SQL IN COMBOBOX
-		sizeCombo.setBounds(148, 156, 60, 20);
-		add(sizeCombo);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(148, 156, 60, 20);
+		add(comboBox);
 
 
 
@@ -81,8 +81,8 @@ public class InsertView extends JPanel {
 			ResultSet rs = stmt.executeQuery("SELECT Size_name FROM Size");
 			while (rs.next()){
 
-				sizeCombo.addItem(rs.getString("Size_name"));
-				sizeValue = (String) sizeCombo.getSelectedItem();
+				comboBox.addItem(rs.getString("Size_name"));
+				sizeValue = (String) comboBox.getSelectedItem();
 
 			}
 			rs.close();
@@ -90,42 +90,29 @@ public class InsertView extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		sizeCombo.addActionListener(new ActionListener(){
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				handleSizeChange();
-				
-			}
-		});
+
 
 
 
 		//GENDER COMBO, AUTOMATICALLY GENERATES gender ( VIA SQL)
-
-		genderCombo.setBounds(148, 189, 60, 20);
-		add(genderCombo);
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(148, 189, 60, 20);
+		add(comboBox_1);
 
 		try {
 			Statement st = c.createStatement();
 			ResultSet rs = st.executeQuery("SELECT Gender_name FROM Gender");
 			while   (rs.next()){
-				genderCombo.addItem(rs.getString("Gender_name"));
-				genderValue = (String) genderCombo.getSelectedItem();
+				comboBox_1.addItem(rs.getString("Gender_name"));
+				genderValue = (String) comboBox_1.getSelectedItem();
 			}
 			rs.close();
 			st.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		genderCombo.addActionListener(new ActionListener(){
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				handleGenderChange();
-				
-			}
-		});
+
+
 		//CATEGORY TEXT FIELD
 		textField = new JTextField();
 		textField.addFocusListener(new FocusAdapter(){
@@ -157,12 +144,7 @@ public class InsertView extends JPanel {
 		JButton btnClickToInsert = new JButton("Click to Insert!");
 		btnClickToInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if((CategoryName != null) && (StyleName != null)){
-					Insert.insert(c, CategoryName, StyleName, sizeValue, genderValue, 1, "");
-				}else{
-					System.out.println("Style or category empty");
-				}
-				
+				Insert.insert(c, CategoryName, StyleName, sizeValue, genderValue, 1, "");
 			
 			}
 		});
@@ -183,14 +165,7 @@ public class InsertView extends JPanel {
 		StyleName = textField_1.getText(); //stores input in String StyleName
 		System.out.println("style name ==== " + StyleName);
 	}
-	protected void handleGenderChange(){
-		genderValue = (String)genderCombo.getSelectedItem();
-		System.out.println("gender = "+ genderValue);
-	}
-	protected void handleSizeChange(){
-		sizeValue = (String)sizeCombo.getSelectedItem();
-		System.out.println("Size = " + sizeValue);
-	}
+	
 	
 	
 	

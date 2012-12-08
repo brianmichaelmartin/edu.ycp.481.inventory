@@ -122,13 +122,13 @@ public class ConvertToID {
 		int result;
 		String gender = gen.toLowerCase();
 		switch (gender){//convert gender value to coresponding number
-			case "men":
+			case "Men":
 				result = 1;
 				break;
-			case "women":
+			case "Woemn":
 				result = 2;
 				break;
-			case "kid":
+			case "Kid":
 				result = 3;
 				break;
 			default:
