@@ -60,7 +60,6 @@ public class Search{
 				 * Loops through the result set and creates a new DatabaseEntry object the the returnVal array list to return
 				 * to whoever called search
 				 */
-				//for whatever reason it doesnt like finding barcode and picture so i just returned placeholder results for the moment, will look into later
 				returnVal.add(new DatabaseEntry(rs.getInt("Product_ID"),
 												rs.getString("Category_name"),
 												rs.getString("Style_name"),
