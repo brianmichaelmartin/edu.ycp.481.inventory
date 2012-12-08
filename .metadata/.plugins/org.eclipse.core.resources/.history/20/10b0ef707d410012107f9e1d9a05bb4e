@@ -16,7 +16,6 @@ import javax.swing.JComboBox;
 
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
-import edu.ycp.cs481.inventory.Search;
 import edu.ycp.cs481.inventory.Search_old;
 import edu.ycp.cs481.inventory.controller.InsertController;
 import javax.swing.JTextArea;
@@ -192,7 +191,10 @@ public class SearchView extends JPanel {
 		});
 
 
-		
+		JLabel lblNumberOfItem = new JLabel("Number of item: ");
+		lblNumberOfItem.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNumberOfItem.setBounds(33, 277, 143, 29);
+		add(lblNumberOfItem);
 		
 		/**
 		 * TODO:
@@ -208,7 +210,7 @@ public class SearchView extends JPanel {
 		JButton btnClickToSearch = new JButton("Click to Search!");
 		btnClickToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, true, false);
+				//Search.searchFor(c,);
 			
 			}
 		});
@@ -217,19 +219,19 @@ public class SearchView extends JPanel {
 
 	}
 	protected void handleCatChange(){
-		categoryValue= (String)CategoryComboBox.getSelectedItem();
-		System.out.println("category = " + categoryValue);
+		sizeValue = (String)CategoryComboBox.getSelectedItem();
+		System.out.println("Size = " + sizeValue);
 	}
 	protected void handleStyChange(){
-		styleValue = (String)StyleComboBox.getSelectedItem();
-		System.out.println("style = " + styleValue);
+		sizeValue = (String)sizeCombo.getSelectedItem();
+		System.out.println("Size = " + sizeValue);
 	}
 	protected void handleGenChange(){
-		genderValue = (String)GenderComboBox.getSelectedItem();
-		System.out.println("gender = " + genderValue);
+		sizeValue = (String)sizeCombo.getSelectedItem();
+		System.out.println("Size = " + sizeValue);
 	}
 	protected void handleSizChange(){
-		sizeValue = (String)SizeComboBox.getSelectedItem();
+		sizeValue = (String)sizeCombo.getSelectedItem();
 		System.out.println("Size = " + sizeValue);
 	}
 	

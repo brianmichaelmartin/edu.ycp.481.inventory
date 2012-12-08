@@ -68,7 +68,7 @@ public class Search{
 												rs.getInt("Num_in_inventory"),
 												rs.getInt("Disabled"),
 												rs.getInt("In_stock"),
-												1234,//rs.getInt("Barcode"),
+												5,//rs.getInt("Barcode"),
 												rs.getDate("Date_added"),
 												rs.getDate("Last_modified"),
 												null));//rs.getString("Picture")));

@@ -66,12 +66,12 @@ public class Search{
 												rs.getString("Gender_name"),
 												rs.getString("Size_name"),
 												rs.getInt("Num_in_inventory"),
-												rs.getInt("Disabled"),
+												rs.getInt("Dsiabled"),
 												rs.getInt("In_stock"),
-												1234,//rs.getInt("Barcode"),
+												rs.getInt("Barcode"),
 												rs.getDate("Date_added"),
 												rs.getDate("Last_modified"),
-												null));//rs.getString("Picture")));
+												rs.getString("Picture")));
 			}
 			//close the sql stmt
 			stmt.close();
