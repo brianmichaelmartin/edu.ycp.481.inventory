@@ -212,7 +212,7 @@ public class SearchView extends JPanel {
 			
 			}
 		});
-		btnClickToSearch.setBounds(118, 285, 135, 23);
+		btnClickToSearch.setBounds(118, 285, 120, 23);
 		add(btnClickToSearch);
 
 	}
