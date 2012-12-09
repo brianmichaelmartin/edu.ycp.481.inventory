@@ -17,18 +17,16 @@ import javax.swing.JComboBox;
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
 import edu.ycp.cs481.inventory.Search;
+import edu.ycp.cs481.inventory.Search_old;
 import edu.ycp.cs481.inventory.controller.InsertController;
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import javax.swing.JList;
 import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 
-public class SearchView extends JPanel implements ActionListener {
+public class SearchView extends JPanel {
 
-	String genderValue, sizeValue, categoryValue, styleValue, disabledValue, stockValue;
-	boolean disabled, stock;
+	String genderValue, sizeValue, categoryValue, styleValue, Disabled, Stock;
 	Connection c = GetConnection.get(); //get connection established
 	
 	JComboBox CategoryComboBox = new JComboBox();
@@ -37,50 +35,16 @@ public class SearchView extends JPanel implements ActionListener {
 	JComboBox GenderComboBox = new JComboBox();
 	JComboBox InStockComboBox = new JComboBox();
 	JComboBox DisabledComboBox = new JComboBox();
-	private JTable table;
 	/**
 	 * Create the panel.
 	 */
+	/**
+	 * TODO:
+	 * Radial buttons for returning disabled true/false
+	 * radial buttons for returning out of stock true/false
+	 * 
+	 */
 	
-	public void actionPerformed(ActionEvent e){
-		switch (e.getActionCommand()){
-			case "CategoryComboBox":
-				categoryValue = (String)CategoryComboBox.getSelectedItem();
-				System.out.println("category = " + categoryValue);
-				break;
-			case "StyleComboBox":
-				styleValue = (String)StyleComboBox.getSelectedItem();
-				System.out.println("style = " + styleValue);
-				break;
-			case "SizeComboBox":
-				sizeValue = (String)SizeComboBox.getSelectedItem();
-				System.out.println("Size = " + sizeValue);
-				break;
-			case "GenderComboBox":
-				genderValue = (String)GenderComboBox.getSelectedItem();
-				System.out.println("gender = " + genderValue);
-				break;
-			case "InStockComboBox":
-				if("Yes".equals((String)DisabledComboBox.getSelectedItem())){
-					disabled = true;
-				}
-				else{
-					disabled = false;
-				}
-				break;
-			case "DisabledComboBox":
-				if("Yes".equals((String)InStockComboBox.getSelectedItem())){
-					stock = true;
-				}
-				else{
-					stock = false;
-				}
-				break;
-			default:
-				break;
-		}
-			
-	}
 	@SuppressWarnings("unchecked")
 	public SearchView() {
 		setLayout(null);
@@ -144,8 +108,14 @@ public class SearchView extends JPanel implements ActionListener {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		CategoryComboBox.setActionCommand("CategoryComboBox");
-		CategoryComboBox.addActionListener(this);
+		CategoryComboBox.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				handleCatChange();
+				
+			}
+		});
 		
 		//Style Combobox
 		
@@ -165,8 +135,14 @@ public class SearchView extends JPanel implements ActionListener {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		StyleComboBox.setActionCommand("StyleComboBox");
-		StyleComboBox.addActionListener(this);
+		StyleComboBox.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				handleStyChange();
+				
+			}
+		});
 		
 		
 		//Size combo box
@@ -187,9 +163,14 @@ public class SearchView extends JPanel implements ActionListener {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		SizeComboBox.setActionCommand("SizeComboBox");
-		SizeComboBox.addActionListener(this);
-		
+		SizeComboBox.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				handleSizChange();
+				
+			}
+		});
 		
 		//Gender ComboBox
 		
@@ -209,81 +190,71 @@ public class SearchView extends JPanel implements ActionListener {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		GenderComboBox.setActionCommand("GenderComboBox");
-		GenderComboBox.addActionListener(this);
+		GenderComboBox.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				handleGenChange();
+				
+			}
+		});
 
 		//Disabled ComboBox
 		DisabledComboBox.setBounds(164, 210, 129, 20);
 		add(DisabledComboBox);
 		DisabledComboBox.addItem("Yes");
 		DisabledComboBox.addItem("No");
-		if("Yes".equals((String)DisabledComboBox.getSelectedItem())){
-			disabled = true;
-		}
-		else{
-			disabled = false;
-		}
-		DisabledComboBox.setActionCommand("DisabledComboBox");
-		DisabledComboBox.addActionListener(this);
 		
+				
 				
 		//InStock ComboBox
 		InStockComboBox.setBounds(164, 241, 129, 20);
 		add(InStockComboBox);
-		InStockComboBox.addItem("No");
-		InStockComboBox.addItem("Yes");
-		if("Yes".equals((String)InStockComboBox.getSelectedItem())){
-			stock = true;
-		}
-		else{
-			stock = false;
-		}
-		InStockComboBox.setActionCommand("InStockComboBox");
-		InStockComboBox.addActionListener(this);
+		
+		
+		/**
+		 * TODO:
+		 * Radial buttons for returning disabled true/false
+		 * radial buttons for returning out of stock true/false
+		 * 
+		 */
+		
+		JList list = new JList();
+		list.setBounds(328, 59, 169, 241);
+		add(list);
+		
 		
 		
 		
 		JButton btnClickToSearch = new JButton("Click to Search!");
 		btnClickToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
+				Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, true, false);
 			
 			}
 		});
 		btnClickToSearch.setBounds(118, 285, 135, 23);
 		add(btnClickToSearch);
 		
-		table = new JTable();
-		table.setBounds(326, 268, 345, -188);
-		add(table);
 		
-	}
-	class MyTableModel extends AbstractTableModel{
-		private String[] columnNames = {"Product ID",
-										"Style",
-										"Category",
-										"Gender",
-										"Size",
-										"Number in Inventory",
-										"Disabled",
-										"In Stock",
-										"Date Added",
-										"Last Modified"};
-		private Object[][] data;
-		@Override
-		public int getColumnCount() {
-			return columnNames.length;
-		}
+		
+		
 
-		@Override
-		public int getRowCount() {
-			return columnNames.length;
-		}
-
-		@Override
-		public Object getValueAt(int row, int col){
-			return data[row][col];
-		}
 	}
-	
+	protected void handleCatChange(){
+		categoryValue= (String)CategoryComboBox.getSelectedItem();
+		System.out.println("category = " + categoryValue);
+	}
+	protected void handleStyChange(){
+		styleValue = (String)StyleComboBox.getSelectedItem();
+		System.out.println("style = " + styleValue);
+	}
+	protected void handleGenChange(){
+		genderValue = (String)GenderComboBox.getSelectedItem();
+		System.out.println("gender = " + genderValue);
+	}
+	protected void handleSizChange(){
+		sizeValue = (String)SizeComboBox.getSelectedItem();
+		System.out.println("Size = " + sizeValue);
+	}
 }

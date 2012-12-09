@@ -1,0 +1,236 @@
+package edu.ycp.cs481.inventory.gui;
+
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JComboBox;
+
+import edu.ycp.cs481.inventory.GetConnection;
+import edu.ycp.cs481.inventory.Insert;
+import edu.ycp.cs481.inventory.Search;
+import edu.ycp.cs481.inventory.Search_old;
+import edu.ycp.cs481.inventory.controller.InsertController;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
+import javax.swing.JList;
+import javax.swing.JButton;
+
+public class SearchView extends JPanel {
+
+	String genderValue, sizeValue, categoryValue, styleValue;
+	Connection c = GetConnection.get(); //get connection established
+	
+	JComboBox CategoryComboBox = new JComboBox();
+	JComboBox StyleComboBox = new JComboBox();
+	JComboBox SizeComboBox = new JComboBox();
+	JComboBox GenderComboBox = new JComboBox();
+	
+	/**
+	 * Create the panel.
+	 */
+	/**
+	 * TODO:
+	 * Radial buttons for returning disabled true/false
+	 * radial buttons for returning out of stock true/false
+	 * 
+	 */
+	
+	@SuppressWarnings("unchecked")
+	public SearchView() {
+		setLayout(null);
+		//Statement stmt = null;
+		//ResultSet rs = null;
+		
+
+		
+		
+		JLabel lblFindAnItem = new JLabel("Search for an Item:");
+		lblFindAnItem.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblFindAnItem.setBounds(20, 29, 244, 29);
+		add(lblFindAnItem);
+		
+		JLabel lblCategory = new JLabel("Category: ");
+		lblCategory.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblCategory.setBounds(33, 113, 105, 29);
+		add(lblCategory);
+		
+		JLabel lblStyle = new JLabel("Style: ");
+		lblStyle.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblStyle.setBounds(33, 157, 105, 29);
+		add(lblStyle);
+		
+		JLabel lblSize = new JLabel("Size: ");
+		lblSize.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblSize.setBounds(33, 197, 105, 29);
+		add(lblSize);
+		
+		JLabel lblGender = new JLabel("Gender: ");
+		lblGender.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblGender.setBounds(33, 237, 105, 29);
+		add(lblGender);
+	
+
+			
+		
+		//Category combobox
+		
+		CategoryComboBox.setBounds(164, 119, 129, 20);
+		add(CategoryComboBox);
+
+		CategoryComboBox.addItem("any");
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Category_name FROM Category");
+			while   (rs.next()){
+				CategoryComboBox.addItem(rs.getString("Category_name"));
+				categoryValue = (String) CategoryComboBox.getSelectedItem();
+
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		CategoryComboBox.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				handleCatChange();
+				
+			}
+		});
+		
+		//Style Combobox
+		
+		StyleComboBox.setBounds(164, 163, 129, 20);
+		add(StyleComboBox);
+		StyleComboBox.addItem("any");
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Style_name FROM Style");
+			while   (rs.next()){
+				StyleComboBox.addItem(rs.getString("Style_name"));
+				styleValue = (String) StyleComboBox.getSelectedItem();
+
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		StyleComboBox.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				handleStyChange();
+				
+			}
+		});
+		
+		
+		//Size combo box
+		
+		SizeComboBox.setBounds(164, 203, 129, 20);
+		add(SizeComboBox);
+		
+		SizeComboBox.addItem("any");
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Size_name FROM Size");
+			while   (rs.next()){
+				SizeComboBox.addItem(rs.getString("Size_name"));
+				sizeValue = (String) SizeComboBox.getSelectedItem();
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		SizeComboBox.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				handleSizChange();
+				
+			}
+		});
+		
+		//Gender ComboBox
+		
+		GenderComboBox.setBounds(164, 243, 129, 20);
+		add(GenderComboBox);
+		
+		GenderComboBox.addItem("any");
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Gender_Name FROM gender");
+			while   (rs.next()){
+				GenderComboBox.addItem(rs.getString("Gender_name"));
+				genderValue = (String) GenderComboBox.getSelectedItem();
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		GenderComboBox.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				handleGenChange();
+				
+			}
+		});
+
+
+		
+		
+		/**
+		 * TODO:
+		 * Radial buttons for returning disabled true/false
+		 * radial buttons for returning out of stock true/false
+		 * 
+		 */
+		
+		JList list = new JList();
+		list.setBounds(328, 59, 169, 241);
+		add(list);
+		
+		JButton btnClickToSearch = new JButton("Click to Search!");
+		btnClickToSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, true, false);
+			
+			}
+		});
+		btnClickToSearch.setBounds(118, 285, 135, 23);
+		add(btnClickToSearch);
+
+	}
+	protected void handleCatChange(){
+		categoryValue= (String)CategoryComboBox.getSelectedItem();
+		System.out.println("category = " + categoryValue);
+	}
+	protected void handleStyChange(){
+		styleValue = (String)StyleComboBox.getSelectedItem();
+		System.out.println("style = " + styleValue);
+	}
+	protected void handleGenChange(){
+		genderValue = (String)GenderComboBox.getSelectedItem();
+		System.out.println("gender = " + genderValue);
+	}
+	protected void handleSizChange(){
+		sizeValue = (String)SizeComboBox.getSelectedItem();
+		System.out.println("Size = " + sizeValue);
+	}
+	
+}

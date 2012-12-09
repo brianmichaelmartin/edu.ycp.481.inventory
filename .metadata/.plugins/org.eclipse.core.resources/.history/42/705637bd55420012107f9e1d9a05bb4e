@@ -38,12 +38,10 @@ public class InsertView extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e){
 		switch (e.getActionCommand()){
 			case "genderCombo":
-				genderValue = (String)genderCombo.getSelectedItem();
-				System.out.println("gender = "+ genderValue);
+				handleGenderChange();
 				break;
 			case "sizeCombo":
-				sizeValue = (String)sizeCombo.getSelectedItem();
-				System.out.println("Size = " + sizeValue);
+				handleSizeChange();
 				break;
 			default:
 				break;
@@ -186,7 +184,16 @@ public class InsertView extends JPanel implements ActionListener {
 		StyleName = textField_1.getText(); //stores input in String StyleName
 		System.out.println("style name ==== " + StyleName);
 	}
-	
+	//handle gender input
+	protected void handleGenderChange(){
+		genderValue = (String)genderCombo.getSelectedItem();
+		System.out.println("gender = "+ genderValue);
+	}
+	//handle size input
+	protected void handleSizeChange(){
+		sizeValue = (String)sizeCombo.getSelectedItem();
+		System.out.println("Size = " + sizeValue);
+	}
 	
 	
 	

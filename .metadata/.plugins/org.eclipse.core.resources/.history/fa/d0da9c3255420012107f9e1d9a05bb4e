@@ -38,12 +38,7 @@ public class InsertView extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e){
 		switch (e.getActionCommand()){
 			case "genderCombo":
-				genderValue = (String)genderCombo.getSelectedItem();
-				System.out.println("gender = "+ genderValue);
-				break;
-			case "sizeCombo":
-				sizeValue = (String)sizeCombo.getSelectedItem();
-				System.out.println("Size = " + sizeValue);
+				handleGenderChange();
 				break;
 			default:
 				break;
@@ -104,8 +99,14 @@ public class InsertView extends JPanel implements ActionListener {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		sizeCombo.setActionCommand("sizeCombo");
-		sizeCombo.addActionListener(this);
+		sizeCombo.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				handleSizeChange();
+				
+			}
+		});
 
 
 
@@ -126,9 +127,14 @@ public class InsertView extends JPanel implements ActionListener {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		genderCombo.setActionCommand("genderCombo");
-		genderCombo.addActionListener(this);
-		
+		genderCombo.addActionListener(this);/*new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				handleGenderChange();
+				
+			}
+		});*/
 		//CATEGORY TEXT FIELD
 		textField = new JTextField();
 		textField.addFocusListener(new FocusAdapter(){
@@ -186,7 +192,16 @@ public class InsertView extends JPanel implements ActionListener {
 		StyleName = textField_1.getText(); //stores input in String StyleName
 		System.out.println("style name ==== " + StyleName);
 	}
-	
+	//handle gender input
+	protected void handleGenderChange(){
+		genderValue = (String)genderCombo.getSelectedItem();
+		System.out.println("gender = "+ genderValue);
+	}
+	//handle size input
+	protected void handleSizeChange(){
+		sizeValue = (String)sizeCombo.getSelectedItem();
+		System.out.println("Size = " + sizeValue);
+	}
 	
 	
 	
