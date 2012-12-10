@@ -45,13 +45,13 @@ public class Search{
 			 query = query + " AND inventory.category_ID = " + ConvertToID.findSizID(Size);
 		}
 		//if you are not returning disabled then narrow to items with Disabled set to 0
-		if(!returnDisabled){
+		/*if(!returnDisabled){
 			query = query + " AND inventory.Disabled = 0";
 		}
 		//if you are not returning out of stock items then narrow to items with In_stock set to 1
 		if(!returnOutOfStock){
 			query = query + " AND inventory.In_stock = 1";
-		}
+		}*/
 		System.out.println("SQL query" + query);
 		try {
 			stmt = c.createStatement();
