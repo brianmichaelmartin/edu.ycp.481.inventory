@@ -75,10 +75,10 @@ public class SearchView extends JPanel implements ActionListener {
 				break;
 			case "InStockComboBox":
 				if("Yes".equals((String)InStockComboBox.getSelectedItem())){
-					stock = false;
+					stock = true;
 				}
 				else{
-					stock = true;
+					stock = false;
 				}
 				break;
 			default:
@@ -238,10 +238,10 @@ public class SearchView extends JPanel implements ActionListener {
 		InStockComboBox.addItem("No");
 		InStockComboBox.addItem("Yes");
 		if("Yes".equals((String)InStockComboBox.getSelectedItem())){
-			stock = false;
+			stock = true;
 		}
 		else{
-			stock = true;
+			stock = false;
 		}
 		InStockComboBox.setActionCommand("InStockComboBox");
 		InStockComboBox.addActionListener(this);
@@ -303,7 +303,7 @@ public class SearchView extends JPanel implements ActionListener {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> results = new ArrayList<Object>();
-				for (int i = 0; i < 10;i++){
+				for (int i = 0; i < table_3.getColumnCount();i++){
 					int row = table_3.getSelectedRow();
 					results.add(table_3.getModel().getValueAt(row, i));
 				}

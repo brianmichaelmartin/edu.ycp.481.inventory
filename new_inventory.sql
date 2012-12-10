@@ -11,7 +11,7 @@ USE `Inventory_database` ;
 CREATE  TABLE IF NOT EXISTS `Inventory_database`.`Inventory` (
   `Product_ID` INT NOT NULL ,
   `Category_ID` MEDIUMINT NULL ,
-  `Style_ID` MEDIUMINT NULL ,
+  `Style_ID` MEDIUMINT NULL ,categorycategory
   `Gender_ID` SMALLINT NULL ,
   `Size_ID` SMALLINT NULL ,
   `Num_in_inventory` INT NULL ,
