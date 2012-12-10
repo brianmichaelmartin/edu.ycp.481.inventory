@@ -13,7 +13,7 @@ public class DatabaseEntry {
 	
 	
 	public DatabaseEntry(int pro, String cat, String sty, String gen, String siz, int num, int dis, int in, int bar, Date dat, Date las,  String pic){
-		//constructer
+		//constructor
 		Product_ID = pro;
 		Category_name = cat;
 		Style_name = sty;
@@ -32,7 +32,7 @@ public class DatabaseEntry {
 	}
 	
 	/*
-	 * set_val functions for use with alt constructer, otherwise not really needed
+	 * set_val functions for use with alt constructor, otherwise not really needed
 	 */
 	public void set_val(String val, String Field){
 		switch (Field){

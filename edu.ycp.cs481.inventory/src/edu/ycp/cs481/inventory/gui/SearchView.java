@@ -14,9 +14,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 
+import edu.ycp.cs481.inventory.DatabaseEntry;
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
 import edu.ycp.cs481.inventory.Search;
@@ -48,6 +50,7 @@ public class SearchView extends JPanel implements ActionListener {
 	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
+	private ArrayList<DatabaseEntry> returnVal;
 	/**
 	 * Create the panel.
 	 */
@@ -253,34 +256,12 @@ public class SearchView extends JPanel implements ActionListener {
 		
 		
 		
-		JButton btnClickToSearch = new JButton("Search\n");
-		btnClickToSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
-			
-			}
-		});
-		btnClickToSearch.setBounds(18, 285, 135, 23);
 
-		add(btnClickToSearch);
-		
-		
-		
-		
-		
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnUpdate.setBounds(164, 282, 117, 29);
-		add(btnUpdate);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(329, 75, 379, 269);
+		scrollPane.setBounds(329, 75, 486, 269);
 		add(scrollPane);
 		
 		
@@ -294,22 +275,86 @@ public class SearchView extends JPanel implements ActionListener {
 				"In Stock",
 				"Date Added",
 				"Last Modified"};
-		Object[][] data = {{"test","test","test","test","test","test","test","test","test","test"},{"test","test","test","test","test","test","test","test","test","test"}};
 		
-		JTable table_3 = new JTable(data, columnNames){
+		final JTable table_3 = new JTable(new MyTableModel());
 		
-		public Class getColumnClass(int column){
-			for (int row = 0; row < getRowCount(); row++){
-				Object o = getValueAt(row, column);
 		
-				if (o != null)
-					return o.getClass();
-			}
-		return null;
-			}
-		};
+		
 		table_3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		scrollPane.setViewportView(table_3);
 	
+		JButton btnClickToSearch = new JButton("Search");
+		btnClickToSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				returnVal = Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
+				for (int i = 0; i < returnVal.size(); i++){
+					DatabaseEntry current = returnVal.get(i);
+					table_3.setValueAt(current.get_Product_ID(), i, 0);
+					table_3.setValueAt(current.get_Style(), i, 1);
+					table_3.setValueAt(current.get_Category(), i, 2);
+					table_3.setValueAt(current.get_Gender(), i, 3);
+					table_3.setValueAt(current.get_Size(), i, 4);
+					table_3.setValueAt(current.get_Num_in_inventory(), i, 5);
+					table_3.setValueAt(current.get_disabled(), i, 6);
+					table_3.setValueAt(current.get_in_stock(), i, 7);
+					table_3.setValueAt(current.get_Date_added(), i, 8);
+					table_3.setValueAt(current.get_last_Modified(), i, 9);
+					
+					//table_3.
+				}
+				
+			}
+		});
+		btnClickToSearch.setBounds(20, 293, 135, 23);
+
+		add(btnClickToSearch);
+	
+	
+	
+	}
+	
+	class MyTableModel extends AbstractTableModel{
+		private String[] columnNames = {"Product ID",
+										"Style",
+										"Category",
+										"Gender",
+										"Size",
+										"Number in Inventory",
+										"Disabled",
+										"In Stock",
+										"Date Added",
+										"Last Modified"};
+		private Object[][] data = new Object[100][10];
+		@Override
+		public int getColumnCount() {
+			return columnNames.length;
+		}
+
+		@Override
+		public int getRowCount() {
+			return columnNames.length;
+		}
+
+		@Override
+		public Object getValueAt(int row, int col){
+			return data[row][col];
+		}
+		public void setValueAt(Object value, int row, int col) {
+            
+            System.out.println("Setting value at " + row + "," + col
+                                   + " to " + value
+                                   + " (an instance of "
+                                   + value.getClass() + ")");
+            
+ 
+            data[row][col] = value;
+            fireTableCellUpdated(row, col);
+            
+        }
+		@Override
+		public String getColumnName(int column) {
+		    return columnNames[column];
+		}
+
 	}
 }
