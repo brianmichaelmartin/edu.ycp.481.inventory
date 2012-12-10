@@ -57,7 +57,7 @@ public class GuiMain extends JFrame{
 	 */
 	public GuiMain() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 300, 700, 500);
+		setBounds(300, 300, 829, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -107,7 +107,7 @@ public class GuiMain extends JFrame{
 		contentPane.add(btnInsert);
 		
 		operationViewPanel = new JPanel();
-		operationViewPanel.setBounds(27, 6, 631, 342);
+		operationViewPanel.setBounds(27, 6, 779, 342);
 		contentPane.add(operationViewPanel);
 		operationViewPanel.setLayout(new CardLayout(0, 0));
 		operationViewPanel.add(InsertView);

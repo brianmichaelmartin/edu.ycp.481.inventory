@@ -80,7 +80,7 @@ public class UpdateView extends JPanel implements ActionListener {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if((CategoryName != null) && (StyleName != null)){
-					ChangeValue.change(c, CategoryName, StyleName, sizeValue, genderValue);
+					//ChangeValue.change(c, CategoryName, StyleName, sizeValue, genderValue, CategoryName, flags, autoscrolls, autoscrolls);
 				}else{
 					System.out.println("Style or category empty");
 				}

@@ -5,6 +5,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,7 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.ScrollPaneConstants;
 
 public class SearchView extends JPanel implements ActionListener {
 
@@ -44,6 +46,8 @@ public class SearchView extends JPanel implements ActionListener {
 	JComboBox DisabledComboBox = new JComboBox();
 	private JTable table;
 	private JTable table_1;
+	private JTable table_2;
+	private JTable table_3;
 	/**
 	 * Create the panel.
 	 */
@@ -270,82 +274,42 @@ public class SearchView extends JPanel implements ActionListener {
 				
 			}
 		});
-		btnUpdate.setBounds(237, 283, 117, 29);
+		btnUpdate.setBounds(164, 282, 117, 29);
 		add(btnUpdate);
 		
-	}
-	
-	
-	
-	/*
-	class MyTableModel extends AbstractTableModel{
-		private String[] columnNames = {"Product ID",
-										"Style",
-										"Category",
-										"Gender",
-										"Size",
-										"Number in Inventory",
-										"Disabled",
-										"In Stock",
-										"Date Added",
-										"Last Modified"};
-		private Object[][] data = {{"test","test","test","test","test","test","test","test","test","test"},{"test","test","test","test","test","test","test","test","test","test"}};
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(329, 75, 379, 269);
+		add(scrollPane);
 		
-		JTable table = new JTable(data, columnNames){
-			public Class getColumnClass(int column){
-				for (int row = 0; row < getRowCount(); row++){
-					Object o = getValueAt(row, column);
-
-                    if (o != null)
-                        return o.getClass();
-				}
-				return null;
+		
+		final String[] columnNames = {"Product ID",
+				"Style",
+				"Category",
+				"Gender",
+				"Size",
+				"Number in Inventory",
+				"Disabled",
+				"In Stock",
+				"Date Added",
+				"Last Modified"};
+		Object[][] data = {{"test","test","test","test","test","test","test","test","test","test"},{"test","test","test","test","test","test","test","test","test","test"}};
+		
+		JTable table_3 = new JTable(data, columnNames){
+		
+		public Class getColumnClass(int column){
+			for (int row = 0; row < getRowCount(); row++){
+				Object o = getValueAt(row, column);
+		
+				if (o != null)
+					return o.getClass();
+			}
+		return null;
 			}
 		};
-		@Override
-		public int getColumnCount() {
-			return columnNames.length;
-		}
-
-		@Override
-		public int getRowCount() {
-			return columnNames.length;
-		}
-
-		@Override
-		public Object getValueAt(int row, int col){
-			return 0;//data[row][col];
-		}
-		public void setValueAt(Object value, int row, int col) {
-            if (true) {
-                System.out.println("Setting value at " + row + "," + col
-                                   + " to " + value
-                                   + " (an instance of "
-                                   + value.getClass() + ")");
-            }
- 
-            data[row][col] = value;
-            fireTableCellUpdated(row, col);
- 
-            if (true) {
-                System.out.println("New value of data:");
-                printDebugData();
-            }
-            
-        }
-		private void printDebugData() {
-            int numRows = getRowCount();
-            int numCols = getColumnCount();
- 
-            for (int i=0; i < numRows; i++) {
-                System.out.print("    row " + i + ":");
-                for (int j=0; j < numCols; j++) {
-                    System.out.print("  " + data[i][j]);
-                }
-                System.out.println();
-            }
-            System.out.println("--------------------------");
-        }
-	}*/
+		table_3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		scrollPane.setViewportView(table_3);
 	
+	}
 }
