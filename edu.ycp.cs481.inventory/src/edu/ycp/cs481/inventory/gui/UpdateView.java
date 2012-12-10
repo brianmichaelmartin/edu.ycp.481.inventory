@@ -128,7 +128,7 @@ public class UpdateView extends JPanel implements ActionListener {
 	JButton btnDeleteEntry = new JButton("Delete Entry");
 	btnDeleteEntry.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			Delete.deleterow(c, productID, val)
+			//Delete.deleterow(c, productID, val)
 		}
 	});
 	btnDeleteEntry.setBounds(217, 237, 117, 29);

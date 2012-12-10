@@ -20,7 +20,7 @@ import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
 import edu.ycp.cs481.inventory.Search;
 
-import edu.ycp.cs481.inventory.controller.InsertController;
+
 
 import javax.swing.JScrollPane;
 
@@ -45,6 +45,7 @@ public class SearchView extends JPanel implements ActionListener {
 	JComboBox DisabledComboBox = new JComboBox();
 	private JTable table;
 	private JTable table_1;
+	private JTable table_2;
 	/**
 	 * Create the panel.
 	 */
@@ -261,6 +262,10 @@ public class SearchView extends JPanel implements ActionListener {
 
 		add(btnClickToSearch);
 		
+		table_2 = new JTable();
+		table_2.setBounds(345, 285, 238, -197);
+		add(table_2);
+		
 		
 		
 		
@@ -269,7 +274,7 @@ public class SearchView extends JPanel implements ActionListener {
 	
 	
 	
-	/*
+	
 	class MyTableModel extends AbstractTableModel{
 		private String[] columnNames = {"Product ID",
 										"Style",
@@ -338,6 +343,5 @@ public class SearchView extends JPanel implements ActionListener {
             }
             System.out.println("--------------------------");
         }
-	}*/
-	
+	}
 }
