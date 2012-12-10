@@ -11,32 +11,15 @@ import java.sql.Statement;
  * that said, there really shouldnt be a need to update any of those fields at any point
  */
 public class ChangeValue {
-	public static boolean change(Connection c, String product_ID, String category, String style, String size, String gender, int num, boolean disabled, boolean in_stock)
+	public static boolean change(Connection c, String field, String newVal, String searchField, String searchVal)
 	{
 		Statement stmt = null;
 		//check field for error
-				
-		int dis, sto;
-		if(disabled){
-			dis = 1;
-		}else{
-			dis = 0;
-		}
 		
-		if(in_stock){
-			sto = 0;
-		}else{
-			sto = 1;
-		}
+		
 		String query = 	"UPDATE inventory " +//create sql update statement
-						"SET Category_ID = " + ConvertToID.findCatID(c, category) +
-						", Style_ID =" + ConvertToID.findStyID(c, style) +
-						", Size_ID = " + ConvertToID.findSizID(size) +
-						", Gender_ID = " + ConvertToID.findGenID(gender) + 
-						", Num_in_inventory = " + num +
-						", Disabled = " + dis +
-						", inStock = " + sto +
-						",Last_modified=now() WHERE Product_ID = " + product_ID;
+						"SET " + field + "=" + newVal + ", Last_modified=now() " +
+						"WHERE " + searchField + "=" + searchVal;
 		
 		try {
 			//create, execute and close the stmt

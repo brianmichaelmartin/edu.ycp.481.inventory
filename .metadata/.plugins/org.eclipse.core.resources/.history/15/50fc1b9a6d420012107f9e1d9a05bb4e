@@ -36,7 +36,8 @@ public class ChangeValue {
 						", Num_in_inventory = " + num +
 						", Disabled = " + dis +
 						", inStock = " + sto +
-						",Last_modified=now() WHERE Product_ID = " + product_ID;
+						",Last_modified=now() " +
+						"WHERE Product_ID =" + product_ID;
 		
 		try {
 			//create, execute and close the stmt

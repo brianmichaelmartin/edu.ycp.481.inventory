@@ -15,28 +15,18 @@ public class ChangeValue {
 	{
 		Statement stmt = null;
 		//check field for error
-				
-		int dis, sto;
-		if(disabled){
-			dis = 1;
-		}else{
-			dis = 0;
-		}
 		
-		if(in_stock){
-			sto = 0;
-		}else{
-			sto = 1;
-		}
+		
 		String query = 	"UPDATE inventory " +//create sql update statement
-						"SET Category_ID = " + ConvertToID.findCatID(c, category) +
-						", Style_ID =" + ConvertToID.findStyID(c, style) +
-						", Size_ID = " + ConvertToID.findSizID(size) +
-						", Gender_ID = " + ConvertToID.findGenID(gender) + 
+						"SET Category_ID = " + category +
+						", Style_ID =" + style +
+						", Size_ID = " + size +
+						", Gender_ID = " + gender + 
 						", Num_in_inventory = " + num +
-						", Disabled = " + dis +
-						", inStock = " + sto +
-						",Last_modified=now() WHERE Product_ID = " + product_ID;
+						", Disabled = " +
+						", inStock = " +
+						",Last_modified=now() " +
+						"WHERE Product_ID =" + product_ID;
 		
 		try {
 			//create, execute and close the stmt

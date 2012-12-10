@@ -20,6 +20,7 @@ import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
 import edu.ycp.cs481.inventory.Search;
 
+import edu.ycp.cs481.inventory.controller.InsertController;
 
 import javax.swing.JScrollPane;
 
@@ -32,7 +33,6 @@ import javax.swing.table.AbstractTableModel;
 
 public class SearchView extends JPanel implements ActionListener {
 
-	
 	String genderValue, sizeValue, categoryValue, styleValue, disabledValue, stockValue;
 	boolean disabled, stock;
 	Connection c = GetConnection.get(); //get connection established
@@ -273,8 +273,6 @@ public class SearchView extends JPanel implements ActionListener {
 		});
 		btnUpdate.setBounds(237, 283, 117, 29);
 		add(btnUpdate);
-		
-		
 		
 	}
 	
