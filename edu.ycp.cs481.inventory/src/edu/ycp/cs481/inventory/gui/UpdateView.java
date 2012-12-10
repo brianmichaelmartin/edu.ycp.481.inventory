@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 import edu.ycp.cs481.inventory.ChangeValue;
+import edu.ycp.cs481.inventory.Delete;
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
 
@@ -125,6 +126,11 @@ public class UpdateView extends JPanel implements ActionListener {
 	genderComboBox.addActionListener(this);
 	
 	JButton btnDeleteEntry = new JButton("Delete Entry");
+	btnDeleteEntry.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			Delete.deleterow(c, productID, val)
+		}
+	});
 	btnDeleteEntry.setBounds(217, 237, 117, 29);
 	add(btnDeleteEntry);
 	}
