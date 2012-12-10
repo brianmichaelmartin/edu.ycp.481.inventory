@@ -65,7 +65,7 @@ public class SearchView extends JPanel implements ActionListener {
 				genderValue = (String)GenderComboBox.getSelectedItem();
 				System.out.println("gender = " + genderValue);
 				break;
-			case "DisabledComboBox":
+			case "InStockComboBox":
 				if("Yes".equals((String)DisabledComboBox.getSelectedItem())){
 					disabled = true;
 				}
@@ -73,12 +73,12 @@ public class SearchView extends JPanel implements ActionListener {
 					disabled = false;
 				}
 				break;
-			case "InStockComboBox":
+			case "DisabledComboBox":
 				if("Yes".equals((String)InStockComboBox.getSelectedItem())){
-					stock = false;
+					stock = true;
 				}
 				else{
-					stock = true;
+					stock = false;
 				}
 				break;
 			default:
@@ -238,10 +238,10 @@ public class SearchView extends JPanel implements ActionListener {
 		InStockComboBox.addItem("No");
 		InStockComboBox.addItem("Yes");
 		if("Yes".equals((String)InStockComboBox.getSelectedItem())){
-			stock = false;
+			stock = true;
 		}
 		else{
-			stock = true;
+			stock = false;
 		}
 		InStockComboBox.setActionCommand("InStockComboBox");
 		InStockComboBox.addActionListener(this);

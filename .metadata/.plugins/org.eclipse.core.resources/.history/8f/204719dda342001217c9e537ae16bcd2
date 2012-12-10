@@ -179,9 +179,9 @@ public class UpdateView extends JPanel implements ActionListener {
 		@Override
 		public void focusLost(FocusEvent e) {
 			if(comboBox.getSelectedItem().equals("Yes"))
-				res[dis] = true;
-			else
 				res[dis] = false;
+			else
+				res[dis] = true;
 		}
 	});
 	comboBox.setModel(new DefaultComboBoxModel(new String[] {"No", "Yes"}));
