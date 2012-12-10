@@ -233,7 +233,7 @@ public class SearchView extends JPanel implements ActionListener {
 		
 				
 		//InStock ComboBox
-		InStockComboBox.setBounds(164, 241, 129, 20);
+		InStockComboBox.setBounds(168, 251, 129, 20);
 		add(InStockComboBox);
 		InStockComboBox.addItem("No");
 		InStockComboBox.addItem("Yes");
@@ -311,7 +311,9 @@ public class SearchView extends JPanel implements ActionListener {
 				up.addWindowListener(new WindowAdapter() {
 			         @Override
 			         public void windowClosed(WindowEvent e) {
-			            tab.fireTableDataChanged();
+			            System.out.println("DEBUG");
+			        	 tab.fireTableDataChanged();
+			            
 			         }
 				});
 				up.main(results);

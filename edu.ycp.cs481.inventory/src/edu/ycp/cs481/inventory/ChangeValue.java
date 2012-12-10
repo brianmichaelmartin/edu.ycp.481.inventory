@@ -35,7 +35,7 @@ public class ChangeValue {
 						", Gender_ID = " + ConvertToID.findGenID(gender) + 
 						", Num_in_inventory = " + num +
 						", Disabled = " + dis +
-						", inStock = " + sto +
+						", In_Stock = " + sto +
 						",Last_modified=now() WHERE Product_ID = " + product_ID;
 
 		try {

@@ -233,7 +233,7 @@ public class UpdateView extends JPanel implements ActionListener {
 		}
 	}
 	public void updateEntry(Object[] res){
-		ChangeValue.change(c,Integer.parseInt((String)res[ID]), (String)res[cat], (String)res[style], (String)res[size], (String)res[gender], Integer.parseInt((String)res[num]), (boolean)res[dis], (boolean)res[stock]);
+		ChangeValue.change(c,(Integer)res[ID], (String)res[cat], (String)res[style], (String)res[size], (String)res[gender], (Integer)res[num], (boolean)res[dis], (boolean)res[stock]);
 		
 		}
 	}
