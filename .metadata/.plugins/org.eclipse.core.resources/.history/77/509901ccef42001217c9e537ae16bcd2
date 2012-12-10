@@ -23,10 +23,7 @@ public class Search{
 		Statement stmt = null;
 		//create an ArrayList that will contain a series of DatabaseEntry objects that represent each entry in the table
 		ArrayList<DatabaseEntry> returnVal = new ArrayList<DatabaseEntry>();
-		/*
-		 SELECT Product_ID, Category_name, Style_name, Gender_name, Size_name, Num_in_inventory FROM inventory, style, size, gender, category  
-		 WHERE inventory.style_ID = style.style_ID AND inventory.size_ID = size.size_ID AND inventory.gender_ID = gender.gender_ID AND inventory.category_ID = category.category_ID;
-		 */
+		
 		
 		//create the sql query
 		String query = 	"SELECT Product_ID, Category_name, Style_name, Gender_name, Size_name, Num_in_inventory, Disabled, In_stock, Date_added, Last_modified FROM inventory, style, size, gender, category " +//create sql search statement
