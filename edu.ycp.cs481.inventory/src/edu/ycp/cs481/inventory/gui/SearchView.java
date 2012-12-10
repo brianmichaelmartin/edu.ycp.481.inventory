@@ -287,6 +287,7 @@ public class SearchView extends JPanel implements ActionListener {
 		btnClickToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				returnVal = Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
+				
 				for (int i = 0; i < returnVal.size(); i++){
 					DatabaseEntry current = returnVal.get(i);
 					
