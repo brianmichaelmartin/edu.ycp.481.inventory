@@ -32,7 +32,6 @@ import javax.swing.table.AbstractTableModel;
 
 public class SearchView extends JPanel implements ActionListener {
 
-	
 	String genderValue, sizeValue, categoryValue, styleValue, disabledValue, stockValue;
 	boolean disabled, stock;
 	Connection c = GetConnection.get(); //get connection established
@@ -274,6 +273,11 @@ public class SearchView extends JPanel implements ActionListener {
 		btnUpdate.setBounds(237, 283, 117, 29);
 		add(btnUpdate);
 		
+		JTable table = new JTable();
+		JScrollPane spTable = new JScrollPane(table);
+		JPanel panel = new JPanel();
+
+		panel.add(spTable);
 		
 		
 	}
