@@ -287,20 +287,23 @@ public class SearchView extends JPanel implements ActionListener {
 		btnClickToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				returnVal = Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
+				
 				for (int i = 0; i < returnVal.size(); i++){
 					DatabaseEntry current = returnVal.get(i);
-					table_3.setValueAt(current.get_Product_ID(), i, 0);
-					table_3.setValueAt(current.get_Style(), i, 1);
-					table_3.setValueAt(current.get_Category(), i, 2);
-					table_3.setValueAt(current.get_Gender(), i, 3);
-					table_3.setValueAt(current.get_Size(), i, 4);
-					table_3.setValueAt(current.get_Num_in_inventory(), i, 5);
-					table_3.setValueAt(current.get_disabled(), i, 6);
-					table_3.setValueAt(current.get_in_stock(), i, 7);
-					table_3.setValueAt(current.get_Date_added(), i, 8);
-					table_3.setValueAt(current.get_last_Modified(), i, 9);
 					
+						table_3.setValueAt(current.get_Product_ID(), i, 0);
+						table_3.setValueAt(current.get_Style(), i, 1);
+						table_3.setValueAt(current.get_Category(), i, 2);
+						table_3.setValueAt(current.get_Gender(), i, 3);
+						table_3.setValueAt(current.get_Size(), i, 4);
+						table_3.setValueAt(current.get_Num_in_inventory(), i, 5);
+						table_3.setValueAt(current.get_disabled(), i, 6);
+						table_3.setValueAt(current.get_in_stock(), i, 7);
+						table_3.setValueAt(current.get_Date_added(), i, 8);
+						table_3.setValueAt(current.get_last_Modified(), i, 9);
+						
 					//table_3.
+					
 				}
 				
 			}
