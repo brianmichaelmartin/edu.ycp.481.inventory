@@ -26,7 +26,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-public class UpdateView extends JPanel implements ActionListener {
+public class UpdateView extends JPanel {
 	/**
 	 * 
 	 */
@@ -107,22 +107,15 @@ public class UpdateView extends JPanel implements ActionListener {
 		textField_1.setText((String) results.get(style));
 		
 		
-		JComboBox<String> sizeComboBox = new JComboBox<String>();
-		sizeComboBox.setBounds(113, 141, 134, 27);
-		add(sizeComboBox);
-		
-		
-		final JComboBox<String> genderComboBox = new JComboBox<String>();
-		genderComboBox.addFocusListener(new FocusAdapter() {
+		final JComboBox<String> sizeComboBox = new JComboBox<String>();
+		sizeComboBox.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				res[gender] = genderComboBox.getSelectedItem();
+				res[size] = sizeComboBox.getSelectedItem();
 			}
 		});
-		genderComboBox.setBounds(113, 169, 134, 27);
-		add(genderComboBox);
-
-	
+		sizeComboBox.setBounds(113, 141, 134, 27);
+		
 
 	try {
 		Statement stmt = c.createStatement();
@@ -138,11 +131,23 @@ public class UpdateView extends JPanel implements ActionListener {
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
-	sizeComboBox.setActionCommand("sizeComboBox");
-	sizeComboBox.addActionListener((ActionListener) this);
+	add(sizeComboBox);
+	
 	sizeComboBox.setSelectedItem((String)results.get(size));
 	
+	
+	
+	final JComboBox<String> genderComboBox = new JComboBox<String>();
+	genderComboBox.addFocusListener(new FocusAdapter() {
+		@Override
+		public void focusLost(FocusEvent e) {
+			res[gender] = genderComboBox.getSelectedItem();
+		}
+	});
+	genderComboBox.setBounds(113, 169, 134, 27);
 	add(genderComboBox);
+
+
 
 	try {
 		Statement st = c.createStatement();
@@ -156,8 +161,6 @@ public class UpdateView extends JPanel implements ActionListener {
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
-	genderComboBox.setActionCommand("genderComboBox");
-	genderComboBox.addActionListener(this);
 	genderComboBox.setSelectedItem((String)results.get(gender));
 	
 	JLabel lblNumberInInventory = new JLabel("Number in \ninventory:");
@@ -224,31 +227,13 @@ public class UpdateView extends JPanel implements ActionListener {
 		
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()){
-		case "genderComboBox":
-			genderValue = (String)genderComboBox.getSelectedItem();
-			res[gender] = genderValue;
-			System.out.println("gender = "+ genderValue);
-			break;
-		case "sizeComboBox":
-			res[size] = sizeComboBox.getSelectedItem();
-			System.out.println("Size = " + (String)res[size]);
-			 
-			break;
-		default:
-			break;
-		}
-	}
+	
 	public void updateEntry(Object[] res){
 		if ((Integer)res[num]== 0){
 			res[stock] = false;
 		}else
 			res[stock] = true;
-		for (int i = 0; i < 10; i++){
-			System.out.println(res[i]);
-		}
+		
 		ChangeValue.change(c,(Integer)res[ID], (String)res[cat], (String)res[style], (String)res[size], (String)res[gender], (Integer)res[num], (boolean)res[dis], (boolean)res[stock]);
 		
 		}
