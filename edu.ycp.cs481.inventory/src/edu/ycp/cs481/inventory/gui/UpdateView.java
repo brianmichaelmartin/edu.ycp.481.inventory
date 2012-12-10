@@ -17,13 +17,17 @@ import javax.swing.JButton;
 import edu.ycp.cs481.inventory.GetConnection;
 
 public class UpdateView extends JPanel implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
 
 	String genderValue, sizeValue, StyleName, CategoryName;
 	Connection c = GetConnection.get(); //get connection established
-	JComboBox genderComboBox = new JComboBox();
-	JComboBox sizeComboBox = new JComboBox();
+	JComboBox<String> genderComboBox = new JComboBox<String>();
+	JComboBox<Object> sizeComboBox = new JComboBox<Object>();
 	/**
 	 * Create the panel.
 	 */
@@ -44,11 +48,11 @@ public class UpdateView extends JPanel implements ActionListener {
 		add(lblStyle);
 		
 		JLabel lblSize = new JLabel("Size:");
-		lblSize.setBounds(37, 158, 35, 16);
+		lblSize.setBounds(37, 145, 35, 16);
 		add(lblSize);
 		
 		JLabel lblGender = new JLabel("Gender:");
-		lblGender.setBounds(37, 202, 64, 16);
+		lblGender.setBounds(37, 190, 64, 16);
 		add(lblGender);
 		
 		textField = new JTextField();
@@ -61,16 +65,16 @@ public class UpdateView extends JPanel implements ActionListener {
 		add(textField_1);
 		textField_1.setColumns(10);
 		
-		JComboBox sizeComboBox = new JComboBox();
-		sizeComboBox.setBounds(113, 154, 52, 27);
+		JComboBox<String> sizeComboBox = new JComboBox<String>();
+		sizeComboBox.setBounds(113, 147, 64, 27);
 		add(sizeComboBox);
 		
-		JComboBox GenderComboBox = new JComboBox();
-		GenderComboBox.setBounds(113, 198, 52, 27);
-		add(GenderComboBox);
+		JComboBox<String> genderComboBox = new JComboBox<String>();
+		genderComboBox.setBounds(113, 186, 96, 27);
+		add(genderComboBox);
 		
 		JButton btnUpdate = new JButton("Update");
-		btnUpdate.setBounds(254, 197, 117, 29);
+		btnUpdate.setBounds(60, 237, 117, 29);
 		add(btnUpdate);
 
 	
@@ -91,10 +95,41 @@ public class UpdateView extends JPanel implements ActionListener {
 	}
 	sizeComboBox.setActionCommand("sizeComboBox");
 	sizeComboBox.addActionListener((ActionListener) this);
+	
+	add(genderComboBox);
+
+	try {
+		Statement st = c.createStatement();
+		ResultSet rs = st.executeQuery("SELECT Gender_name FROM Gender");
+		while   (rs.next()){
+			genderComboBox.addItem(rs.getString("Gender_name"));
+			genderValue = (String) genderComboBox.getSelectedItem();
+		}
+		rs.close();
+		st.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	genderComboBox.setActionCommand("genderComboBox");
+	genderComboBox.addActionListener(this);
+	
+	JButton btnDeleteEntry = new JButton("Delete Entry");
+	btnDeleteEntry.setBounds(217, 237, 117, 29);
+	add(btnDeleteEntry);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		switch (e.getActionCommand()){
+		case "genderComboBox":
+			genderValue = (String)genderComboBox.getSelectedItem();
+			System.out.println("gender = "+ genderValue);
+			break;
+		case "sizeCombo":
+			sizeValue = (String)sizeComboBox.getSelectedItem();
+			System.out.println("Size = " + sizeValue);
+			break;
+		default:
+			break;
+	}
 	}
 }

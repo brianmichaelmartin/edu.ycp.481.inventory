@@ -18,16 +18,13 @@ import edu.ycp.cs481.inventory.gui.SearchView;
 //import com.jgoodies.forms.layout.FormLayout;
 //import com.jgoodies.forms.layout.ColumnSpec;
 //import com.jgoodies.forms.layout.RowSpec;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 
 
-public class GuiMain extends JFrame implements ActionListener{
+public class GuiMain extends JFrame{
 
 	private JPanel contentPane;
 	private JPanel InsertView = new InsertView();
@@ -118,9 +115,5 @@ public class GuiMain extends JFrame implements ActionListener{
 		operationViewPanel.add(UpdateView);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

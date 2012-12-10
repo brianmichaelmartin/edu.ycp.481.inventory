@@ -256,15 +256,6 @@ public class SearchView extends JPanel implements ActionListener {
 		table.setBounds(326, 268, 345, -188);
 		add(table);
 		
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnUpdate.setBounds(237, 283, 117, 29);
-		add(btnUpdate);
-		
 	}
 	class MyTableModel extends AbstractTableModel{
 		private String[] columnNames = {"Product ID",

@@ -111,7 +111,7 @@ public class InsertView extends JPanel implements ActionListener {
 
 		//GENDER COMBO, AUTOMATICALLY GENERATES gender ( VIA SQL)
 
-		genderCombo.setBounds(148, 189, 60, 20);
+		genderCombo.setBounds(148, 189, 88, 20);
 		add(genderCombo);
 
 		try {
