@@ -18,16 +18,13 @@ import edu.ycp.cs481.inventory.gui.SearchView;
 //import com.jgoodies.forms.layout.FormLayout;
 //import com.jgoodies.forms.layout.ColumnSpec;
 //import com.jgoodies.forms.layout.RowSpec;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 
 
-public class GuiMain extends JFrame implements ActionListener{
+public class GuiMain extends JFrame{
 
 	private JPanel contentPane;
 	private JPanel InsertView = new InsertView();
@@ -60,7 +57,7 @@ public class GuiMain extends JFrame implements ActionListener{
 	 */
 	public GuiMain() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 300, 700, 500);
+		setBounds(300, 300, 829, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -110,7 +107,7 @@ public class GuiMain extends JFrame implements ActionListener{
 		contentPane.add(btnInsert);
 		
 		operationViewPanel = new JPanel();
-		operationViewPanel.setBounds(27, 6, 631, 342);
+		operationViewPanel.setBounds(27, 6, 779, 342);
 		contentPane.add(operationViewPanel);
 		operationViewPanel.setLayout(new CardLayout(0, 0));
 		operationViewPanel.add(InsertView);
@@ -118,9 +115,5 @@ public class GuiMain extends JFrame implements ActionListener{
 		operationViewPanel.add(UpdateView);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

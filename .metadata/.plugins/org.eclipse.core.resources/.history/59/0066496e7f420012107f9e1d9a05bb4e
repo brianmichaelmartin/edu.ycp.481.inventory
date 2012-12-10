@@ -31,7 +31,6 @@ public class InsertView extends JPanel implements ActionListener {
 	private JTextField textField;
 	private JTextField textField_1;
 	String genderValue, sizeValue, StyleName, CategoryName;
-	int num;
 	Connection c = GetConnection.get(); //get connection established
 	JComboBox genderCombo = new JComboBox();
 	JComboBox sizeCombo = new JComboBox();
@@ -168,7 +167,7 @@ public class InsertView extends JPanel implements ActionListener {
 		btnClickToInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if((CategoryName != null) && (StyleName != null)){
-					Insert.insert(c, CategoryName, StyleName, sizeValue, genderValue,  num, "");
+					Insert.insert(c, CategoryName, StyleName, sizeValue, genderValue, 1, "");
 				}else{
 					System.out.println("Style or category empty");
 				}
@@ -181,12 +180,6 @@ public class InsertView extends JPanel implements ActionListener {
 		
 		
 		textField_num = new JTextField();
-		textField_num.addFocusListener(new FocusAdapter(){
-			@Override
-			public void focusLost(FocusEvent e){
-				handleNumChange();
-			}
-		});
 		textField_num.setBounds(207, 228, 129, 20);
 		add(textField_num);
 		textField_num.setColumns(10);
@@ -204,9 +197,5 @@ public class InsertView extends JPanel implements ActionListener {
 	protected void handleStyleChange(){
 		StyleName = textField_1.getText(); //stores input in String StyleName
 		System.out.println("style name ==== " + StyleName);
-	}
-	protected void handleNumChange(){
-		num = Integer.parseInt(textField_num.getText()); //
-		System.out.println("Number ==== " + num);
 	}
 }

@@ -15,14 +15,14 @@ public class ChangeValue {
 	{
 		Statement stmt = null;
 		//check field for error
-				
+
 		int dis, sto;
 		if(disabled){
 			dis = 1;
 		}else{
 			dis = 0;
 		}
-		
+
 		if(in_stock){
 			sto = 0;
 		}else{
@@ -37,7 +37,7 @@ public class ChangeValue {
 						", Disabled = " + dis +
 						", inStock = " + sto +
 						",Last_modified=now() WHERE Product_ID = " + product_ID;
-		
+
 		try {
 			//create, execute and close the stmt
 			stmt = c.createStatement();
@@ -50,10 +50,10 @@ public class ChangeValue {
 			System.out.println("VendorError: " + ex.getErrorCode());
 			return false;
 		}
-		
+
 		return true;
-		
+
 	}
-	
-	
+
+
 }
