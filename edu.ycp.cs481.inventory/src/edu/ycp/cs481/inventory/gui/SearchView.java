@@ -19,9 +19,11 @@ import javax.swing.JComboBox;
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
 import edu.ycp.cs481.inventory.Search;
+
 import edu.ycp.cs481.inventory.controller.InsertController;
 
 import javax.swing.JScrollPane;
+
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import javax.swing.JList;
@@ -248,7 +250,7 @@ public class SearchView extends JPanel implements ActionListener {
 		
 		
 		
-		JButton btnClickToSearch = new JButton("Click to Search!");
+		JButton btnClickToSearch = new JButton("Search\n");
 		btnClickToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
@@ -256,11 +258,21 @@ public class SearchView extends JPanel implements ActionListener {
 			}
 		});
 		btnClickToSearch.setBounds(18, 285, 135, 23);
+
 		add(btnClickToSearch);
 		
 		
 		
 		
+		
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnUpdate.setBounds(237, 283, 117, 29);
+		add(btnUpdate);
 		
 	}
 	
