@@ -163,6 +163,7 @@ public class UpdateView extends JPanel implements ActionListener {
 		@Override
 		public void focusLost(FocusEvent e) {
 			res[num] = textField_2.getText();
+			
 		}
 	});
 	textField_2.setBounds(193, 195, 54, 28);
@@ -233,6 +234,10 @@ public class UpdateView extends JPanel implements ActionListener {
 		}
 	}
 	public void updateEntry(Object[] res){
+		if ((Integer)res[num]== 0){
+			res[stock] = false;
+		}else
+			res[stock] = true;
 		ChangeValue.change(c,(Integer)res[ID], (String)res[cat], (String)res[style], (String)res[size], (String)res[gender], (Integer)res[num], (boolean)res[dis], (boolean)res[stock]);
 		
 		}

@@ -303,7 +303,7 @@ public class SearchView extends JPanel implements ActionListener {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> results = new ArrayList<Object>();
-				for (int i = 0; i < table_3.getColumnCount();i++){
+				for (int i = 0; i < 10;i++){
 					int row = table_3.getSelectedRow();
 					results.add(table_3.getModel().getValueAt(row, i));
 				}
