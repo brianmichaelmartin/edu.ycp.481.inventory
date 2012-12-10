@@ -22,6 +22,11 @@ import edu.ycp.cs481.inventory.gui.SearchView;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 
 public class GuiMain extends JFrame{
@@ -32,8 +37,6 @@ public class GuiMain extends JFrame{
 	private JPanel SearchView = new SearchView();
 	private CardLayout cardLayout;
 	private JPanel operationViewPanel;
-	private final JButton btnInsert_1 = new JButton("Insert");
-	private final JButton btnUpdate = new JButton("Update");
 
 
 	/**
@@ -59,13 +62,31 @@ public class GuiMain extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 300, 829, 500);
 		contentPane = new JPanel();
+		contentPane.setBackground(UIManager.getColor("Button.background"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
 		
-		JButton btnInsert = new JButton("Search");
-		btnInsert.addActionListener(new ActionListener() {
+		operationViewPanel = new JPanel();
+		operationViewPanel.setBounds(27, 33, 779, 389);
+		contentPane.add(operationViewPanel);
+		operationViewPanel.setLayout(new CardLayout(0, 0));
+		operationViewPanel.add(InsertView);
+		operationViewPanel.add(SearchView);
+		operationViewPanel.add(UpdateView);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(Color.LIGHT_GRAY);
+		menuBar.setBounds(0, -1, 823, 22);
+		contentPane.add(menuBar);
+		
+		JMenu mnView = new JMenu("View");
+		mnView.setBackground(UIManager.getColor("Button.background"));
+		menuBar.add(mnView);
+		
+		JMenuItem mntmSearch = new JMenuItem("Search");
+		mntmSearch.setBackground(UIManager.getColor("Button.background"));
+		mntmSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout = (CardLayout) operationViewPanel.getLayout();
 				if (cardLayout.equals(InsertView)){
@@ -75,45 +96,28 @@ public class GuiMain extends JFrame{
 					cardLayout.next(operationViewPanel);
 				}
 			}
+			
 		});
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardLayout = (CardLayout) operationViewPanel.getLayout();
-				cardLayout.last(operationViewPanel);
-			}
-		});
+		mnView.add(mntmSearch);
 		
-		btnUpdate.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnUpdate.setBounds(464, 360, 138, 49);
-		
-		/*cardLayout = (CardLayout) operationViewPanel.getLayout();
-		if (cardLayout.equals(SearchView)){
-			btnUpdate.setVisible(true);
-		}else
-			btnUpdate.setVisible(false);*/
-		contentPane.add(btnUpdate);
-		btnInsert_1.addActionListener(new ActionListener() {
+		JMenuItem mntmInsert = new JMenuItem("Insert");
+		mntmInsert.setBackground(UIManager.getColor("Button.background"));
+		mntmInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cardLayout = (CardLayout) operationViewPanel.getLayout();
 				cardLayout.first(operationViewPanel);
 			}
 		});
-		btnInsert_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnInsert_1.setBounds(244, 360, 153, 49);
+		mnView.add(mntmInsert);
 		
-		contentPane.add(btnInsert_1);
-		btnInsert.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnInsert.setBounds(26, 360, 153, 49);
-		contentPane.add(btnInsert);
-		
-		operationViewPanel = new JPanel();
-		operationViewPanel.setBounds(27, 6, 779, 342);
-		contentPane.add(operationViewPanel);
-		operationViewPanel.setLayout(new CardLayout(0, 0));
-		operationViewPanel.add(InsertView);
-		operationViewPanel.add(SearchView);
-		operationViewPanel.add(UpdateView);
+		JMenuItem mntmUpdate = new JMenuItem("Update");
+		mntmUpdate.setBackground(UIManager.getColor("Button.background"));
+		mntmUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout = (CardLayout) operationViewPanel.getLayout();
+				cardLayout.last(operationViewPanel);
+			}
+		});
+		mnView.add(mntmUpdate);
 	}
-
-
 }

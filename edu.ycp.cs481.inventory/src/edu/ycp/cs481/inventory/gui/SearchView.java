@@ -274,7 +274,7 @@ public class SearchView extends JPanel implements ActionListener {
 				"In Stock",
 				"Date Added",
 				"Last Modified"};
-		MyTableModel tab = new MyTableModel();
+		final MyTableModel tab = new MyTableModel();
 		final JTable table_3 = new JTable();
 		
 		table_3.setModel(tab);
@@ -285,25 +285,21 @@ public class SearchView extends JPanel implements ActionListener {
 		btnClickToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				returnVal = Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
-				
+				tab.resetArray();
 				for (int i = 0; i < returnVal.size(); i++){
 					DatabaseEntry current = returnVal.get(i);
 						
-						table_3.setValueAt(current.get_Product_ID(), i, 0);
-						table_3.setValueAt(current.get_Style(), i, 1);
-						table_3.setValueAt(current.get_Category(), i, 2);
-						table_3.setValueAt(current.get_Gender(), i, 3);
-						table_3.setValueAt(current.get_Size(), i, 4);
-						table_3.setValueAt(current.get_Num_in_inventory(), i, 5);
-						table_3.setValueAt(current.get_disabled(), i, 6);
-						table_3.setValueAt(current.get_in_stock(), i, 7);
-						table_3.setValueAt(current.get_Date_added(), i, 8);
-						table_3.setValueAt(current.get_last_Modified(), i, 9);
-						
-					//table_3.
-					
+					tab.setValueAt(current.get_Product_ID(), i, 0);
+					tab.setValueAt(current.get_Style(), i, 1);
+					tab.setValueAt(current.get_Category(), i, 2);
+					tab.setValueAt(current.get_Gender(), i, 3);
+					tab.setValueAt(current.get_Size(), i, 4);
+					tab.setValueAt(current.get_Num_in_inventory(), i, 5);
+					tab.setValueAt(current.get_disabled(), i, 6);
+					tab.setValueAt(current.get_in_stock(), i, 7);
+					tab.setValueAt(current.get_Date_added(), i, 8);
+					tab.setValueAt(current.get_last_Modified(), i, 9);
 				}
-				
 			}
 		});
 		btnClickToSearch.setBounds(20, 293, 135, 23);
@@ -313,8 +309,8 @@ public class SearchView extends JPanel implements ActionListener {
 	
 	
 	}
-	
-	class MyTableModel extends AbstractTableModel{
+
+	public class MyTableModel extends AbstractTableModel{
 		private String[] columnNames = {"Product ID",
 										"Style",
 										"Category",
@@ -341,7 +337,7 @@ public class SearchView extends JPanel implements ActionListener {
 			return data[row][col];
 		}
 		public void setValueAt(Object value, int row, int col) {
-            fireTableRowsDeleted(row, row);
+			
             System.out.println("Setting value at " + row + "," + col
                                    + " to " + value
                                    + " (an instance of "
@@ -354,6 +350,7 @@ public class SearchView extends JPanel implements ActionListener {
         }
 		public void resetArray(){
 			data = new Object[100][10];
+			fireTableDataChanged();
 		}
 		@Override
 		public String getColumnName(int column) {
