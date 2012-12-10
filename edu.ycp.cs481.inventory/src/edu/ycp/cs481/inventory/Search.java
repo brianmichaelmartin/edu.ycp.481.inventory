@@ -47,11 +47,13 @@ public class Search{
 		//if you are not returning disabled then narrow to items with Disabled set to 0
 		if(!returnDisabled){
 			query = query + " AND inventory.Disabled = 0";
-		}
+		}else
+			query = query + " AND inventory.Disabled = 1";
 		//if you are not returning out of stock items then narrow to items with In_stock set to 1
 		if(!returnOutOfStock){
 			query = query + " AND inventory.In_stock = 1";
-		}
+		}else
+			query = query + " AND inventory.In_stock = 0";
 		System.out.println("SQL query" + query);
 		try {
 			stmt = c.createStatement();

@@ -24,9 +24,9 @@ public class ChangeValue {
 		}
 
 		if(in_stock){
-			sto = 0;
-		}else{
 			sto = 1;
+		}else{
+			sto = 0;
 		}
 		String query = 	"UPDATE inventory " +//create sql update statement
 						"SET Category_ID = " + ConvertToID.findCatID(c, category) +

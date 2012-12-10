@@ -123,7 +123,7 @@ public class UpdateView extends JPanel {
 		while (rs.next()){
 
 			sizeComboBox.addItem(rs.getString("Size_name"));
-			//sizeValue = (String) sizeComboBox.getSelectedItem();
+
 
 		}
 		rs.close();
@@ -154,7 +154,7 @@ public class UpdateView extends JPanel {
 		ResultSet rs = st.executeQuery("SELECT Gender_name FROM Gender");
 		while   (rs.next()){
 			genderComboBox.addItem(rs.getString("Gender_name"));
-			genderValue = (String) genderComboBox.getSelectedItem();
+			
 		}
 		rs.close();
 		st.close();
@@ -172,7 +172,12 @@ public class UpdateView extends JPanel {
 		@Override
 		public void focusLost(FocusEvent e) {
 			res[num] = Integer.parseInt(textField_2.getText());
-			
+			if ((Integer)res[num]== 0){
+				res[stock] = false;
+			}else
+				res[stock] = true;
+			System.out.println(res[num]);
+			System.out.println(res[stock]);
 		}
 	});
 	textField_2.setBounds(193, 195, 54, 28);
@@ -229,10 +234,7 @@ public class UpdateView extends JPanel {
 
 	
 	public void updateEntry(Object[] res){
-		if ((Integer)res[num]== 0){
-			res[stock] = false;
-		}else
-			res[stock] = true;
+
 		
 		ChangeValue.change(c,(Integer)res[ID], (String)res[cat], (String)res[style], (String)res[size], (String)res[gender], (Integer)res[num], (boolean)res[dis], (boolean)res[stock]);
 		
