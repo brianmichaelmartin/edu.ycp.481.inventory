@@ -33,7 +33,7 @@ public class GuiMain extends JFrame{
 
 	private JPanel contentPane;
 	private JPanel InsertView = new InsertView();
-	private JPanel UpdateView = new UpdateView();
+
 	private JPanel SearchView = new SearchView();
 	private CardLayout cardLayout;
 	private JPanel operationViewPanel;
@@ -73,7 +73,7 @@ public class GuiMain extends JFrame{
 		operationViewPanel.setLayout(new CardLayout(0, 0));
 		operationViewPanel.add(InsertView);
 		operationViewPanel.add(SearchView);
-		operationViewPanel.add(UpdateView);
+
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.LIGHT_GRAY);

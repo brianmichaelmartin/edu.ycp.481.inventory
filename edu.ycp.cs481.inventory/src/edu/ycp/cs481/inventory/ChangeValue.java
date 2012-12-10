@@ -11,7 +11,7 @@ import java.sql.Statement;
  * that said, there really shouldnt be a need to update any of those fields at any point
  */
 public class ChangeValue {
-	public static boolean change(Connection c, String product_ID, String category, String style, String size, String gender, int num, boolean disabled, boolean in_stock)
+	public static boolean change(Connection c, int product_ID, String category, String style, String size, String gender, int num, boolean disabled, boolean in_stock)
 	{
 		Statement stmt = null;
 		//check field for error

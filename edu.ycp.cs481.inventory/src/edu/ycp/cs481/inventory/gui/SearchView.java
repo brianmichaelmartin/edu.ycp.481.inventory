@@ -1,43 +1,36 @@
 package edu.ycp.cs481.inventory.gui;
 
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import edu.ycp.cs481.inventory.gui.UpdateView;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 
 import edu.ycp.cs481.inventory.DatabaseEntry;
 import edu.ycp.cs481.inventory.GetConnection;
-import edu.ycp.cs481.inventory.Insert;
+import edu.ycp.cs481.inventory.MyTableModel;
 import edu.ycp.cs481.inventory.Search;
-
-
-import javax.swing.JScrollPane;
-
-import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
-import javax.swing.JList;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.DefaultComboBoxModel;
 
 public class SearchView extends JPanel implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String genderValue, sizeValue, categoryValue, styleValue, disabledValue, stockValue;
 	boolean disabled, stock;
 	Connection c = GetConnection.get(); //get connection established
@@ -305,57 +298,30 @@ public class SearchView extends JPanel implements ActionListener {
 		btnClickToSearch.setBounds(20, 293, 135, 23);
 
 		add(btnClickToSearch);
+		
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Object> results = new ArrayList<Object>();
+				for (int i = 0; i < table_3.getColumnCount();i++){
+					int row = table_3.getSelectedRow();
+					results.add(table_3.getModel().getValueAt(row, i));
+				}
+				UpdateDialog up = new UpdateDialog(results);
+				up.addWindowListener(new WindowAdapter() {
+			         @Override
+			         public void windowClosed(WindowEvent e) {
+			            tab.fireTableDataChanged();
+			         }
+				});
+				up.main(results);
+			}
+		});
+	
+		btnUpdate.setBounds(164, 290, 117, 29);
+		add(btnUpdate);
 	
 	
 	
-	}
-
-	public class MyTableModel extends AbstractTableModel{
-		private String[] columnNames = {"Product ID",
-										"Style",
-										"Category",
-										"Gender",
-										"Size",
-										"Number in Inventory",
-										"Disabled",
-										"In Stock",
-										"Date Added",
-										"Last Modified"};
-		private Object[][] data = new Object[100][10];
-		@Override
-		public int getColumnCount() {
-			return columnNames.length;
-		}
-
-		@Override
-		public int getRowCount() {
-			return columnNames.length;
-		}
-
-		@Override
-		public Object getValueAt(int row, int col){
-			return data[row][col];
-		}
-		public void setValueAt(Object value, int row, int col) {
-			
-            System.out.println("Setting value at " + row + "," + col
-                                   + " to " + value
-                                   + " (an instance of "
-                                   + value.getClass() + ")");
-            
- 
-            data[row][col] = value;
-            fireTableCellUpdated(row, col);
-            
-        }
-		public void resetArray(){
-			data = new Object[100][10];
-			fireTableDataChanged();
-		}
-		@Override
-		public String getColumnName(int column) {
-		    return columnNames[column];
-		}
-
 	}
 }
