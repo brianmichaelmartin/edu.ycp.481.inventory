@@ -1,0 +1,242 @@
+package edu.ycp.cs481.inventory.gui;
+
+
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+
+import edu.ycp.cs481.inventory.Delete;
+import edu.ycp.cs481.inventory.ChangeValue;
+import edu.ycp.cs481.inventory.Delete;
+import edu.ycp.cs481.inventory.GetConnection;
+import edu.ycp.cs481.inventory.Insert;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+
+public class UpdateView extends JPanel implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField textField;
+	private JTextField textField_1;
+	final static int ID = 0;
+	final static int style = 1;
+	final static int cat = 2;
+	final static int gender = 3;
+	final static int size = 4;
+	final static int num = 5;
+	final static int dis = 6;
+	final static int stock = 7;
+	final static int dateAdd = 8;
+	final static int dateMod = 9;
+	
+	String genderValue, sizeValue, StyleName, CategoryName;
+	Connection c = GetConnection.get(); //get connection established
+	JComboBox<String> genderComboBox = new JComboBox<String>();
+	JComboBox<Object> sizeComboBox = new JComboBox<Object>();
+	private JTextField textField_2;
+	private Object[] res;
+
+	/**
+	 * Create the panel.
+	 */
+	public UpdateView(final ArrayList<Object> results) {
+		setLayout(null);
+		res = new Object[10];
+		for(int i = 0; i < results.size();i++){
+			res[i] = results.get(i);
+		}
+		JLabel lblNewLabel = new JLabel("Update:");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 27));
+		lblNewLabel.setBounds(37, 6, 102, 52);
+		add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Category:\n");
+		lblNewLabel_1.setBounds(37, 83, 64, 16);
+		add(lblNewLabel_1);
+		
+		
+		JLabel lblStyle = new JLabel("Style:");
+		lblStyle.setBounds(37, 117, 61, 16);
+		add(lblStyle);
+		
+		JLabel lblSize = new JLabel("Size:");
+		lblSize.setBounds(37, 145, 35, 16);
+		add(lblSize);
+		
+		JLabel lblGender = new JLabel("Gender:");
+		lblGender.setBounds(37, 173, 64, 16);
+		add(lblGender);
+		
+		textField = new JTextField();
+		textField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				res[cat] = textField.getText();
+			}
+		});
+		textField.setBounds(113, 77, 134, 28);
+		add(textField);
+		textField.setColumns(10);
+		textField.setText((String) results.get(cat));
+		
+		textField_1 = new JTextField();
+		textField_1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				res[style] = textField_1.getText();
+			}
+		});
+		textField_1.setBounds(113, 111, 134, 28);
+		add(textField_1);
+		textField_1.setColumns(10);
+		textField_1.setText((String) results.get(style));
+		
+		
+		JComboBox<String> sizeComboBox = new JComboBox<String>();
+		sizeComboBox.setBounds(113, 141, 134, 27);
+		add(sizeComboBox);
+		
+		
+		JComboBox<String> genderComboBox = new JComboBox<String>();
+		genderComboBox.setBounds(113, 169, 134, 27);
+		add(genderComboBox);
+
+	
+
+	try {
+		Statement stmt = c.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT Size_name FROM Size");
+		while (rs.next()){
+
+			sizeComboBox.addItem(rs.getString("Size_name"));
+			sizeValue = (String) sizeComboBox.getSelectedItem();
+
+		}
+		rs.close();
+		stmt.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	sizeComboBox.setActionCommand("sizeComboBox");
+	sizeComboBox.addActionListener((ActionListener) this);
+	sizeComboBox.setSelectedItem((String)results.get(size));
+	
+	add(genderComboBox);
+
+	try {
+		Statement st = c.createStatement();
+		ResultSet rs = st.executeQuery("SELECT Gender_name FROM Gender");
+		while   (rs.next()){
+			genderComboBox.addItem(rs.getString("Gender_name"));
+			genderValue = (String) genderComboBox.getSelectedItem();
+		}
+		rs.close();
+		st.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	genderComboBox.setActionCommand("genderComboBox");
+	genderComboBox.addActionListener(this);
+	genderComboBox.setSelectedItem((String)results.get(gender));
+	
+	JLabel lblNumberInInventory = new JLabel("Number in \ninventory:");
+	lblNumberInInventory.setBounds(37, 201, 142, 16);
+	add(lblNumberInInventory);
+	
+	textField_2 = new JTextField();
+	textField_2.addFocusListener(new FocusAdapter() {
+		@Override
+		public void focusLost(FocusEvent e) {
+			res[num] = textField_2.getText();
+			System.out.println("Num in inventory = " +res[num]);
+		}
+	});
+	textField_2.setBounds(193, 195, 54, 28);
+	add(textField_2);
+	textField_2.setColumns(10);
+	textField_2.setText(Integer.toString((int) results.get(num)));
+	
+	JLabel lblDisabled = new JLabel("Disabled:");
+	lblDisabled.setBounds(37, 226, 61, 16);
+	add(lblDisabled);
+	
+	final JComboBox comboBox = new JComboBox();
+	comboBox.addFocusListener(new FocusAdapter() {
+		@Override
+		public void focusLost(FocusEvent e) {
+			if(comboBox.getSelectedItem().equals("Yes"))
+				res[dis] = true;
+			else
+				res[dis] = false;
+		}
+	});
+	comboBox.setModel(new DefaultComboBoxModel(new String[] {"No", "Yes"}));
+	comboBox.setBounds(113, 222, 134, 27);
+	add(comboBox);
+	
+	JButton btnUpdate = new JButton("Update");
+	btnUpdate.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			updateEntry(res);
+			
+		}
+	});
+	btnUpdate.setBounds(37, 254, 117, 29);
+	add(btnUpdate);
+	
+	JButton btnDelete = new JButton("Delete");
+	btnDelete.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			deleteEntry(results);
+		}
+	});
+	btnDelete.setBounds(166, 254, 117, 29);
+	add(btnDelete);
+	if ((boolean) results.get(dis)){
+		comboBox.setSelectedItem("Yes");
+	}else
+		comboBox.setSelectedItem("No");
+	}
+	
+	protected void deleteEntry(ArrayList<Object> results) {
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()){
+		case "genderComboBox":
+			genderValue = (String)genderComboBox.getSelectedItem();
+			System.out.println("gender = "+ genderValue);
+			break;
+		case "sizeCombo":
+			sizeValue = (String)sizeComboBox.getSelectedItem();
+			System.out.println("Size = " + sizeValue);
+			break;
+		default:
+			break;
+		}
+	}
+	public void updateEntry(Object[] res){
+		ChangeValue.change(c,(Integer)res[ID], (String)res[cat], (String)res[style], (String)res[size], (String)res[gender], Integer.getInteger((String)res[num]), (boolean)res[dis], (boolean)res[stock]);
+		
+		}
+	}
+
+
