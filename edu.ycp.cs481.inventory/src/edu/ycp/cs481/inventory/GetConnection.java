@@ -3,7 +3,7 @@ package edu.ycp.cs481.inventory;
 import java.sql.*;
 
 
-public class GetConnection extends main{
+public class GetConnection{
 
 	public static Connection get(){
 		Connection c = null;
