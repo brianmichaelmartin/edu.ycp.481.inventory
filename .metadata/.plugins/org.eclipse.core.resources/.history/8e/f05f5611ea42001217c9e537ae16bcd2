@@ -232,6 +232,8 @@ public class UpdateView extends JPanel {
 		
 	}
 
+<<<<<<< HEAD
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()){
 		case "genderComboBox":
@@ -249,6 +251,9 @@ public class UpdateView extends JPanel {
 			break;
 		}
 	}
+=======
+	
+>>>>>>> mike/master
 	public void updateEntry(Object[] res){
 
 		

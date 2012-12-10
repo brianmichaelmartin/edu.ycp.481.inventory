@@ -232,6 +232,7 @@ public class UpdateView extends JPanel {
 		
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()){
 		case "genderComboBox":
