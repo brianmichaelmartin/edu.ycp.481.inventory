@@ -168,7 +168,7 @@ public class InsertView extends JPanel implements ActionListener {
 		btnClickToInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if((CategoryName != null) && (StyleName != null)){
-					Insert.insert(c, CategoryName, StyleName, sizeValue, genderValue,  num, "");
+					Insert.insert(c, CategoryName, StyleName, sizeValue, genderValue, 1, "");
 				}else{
 					System.out.println("Style or category empty");
 				}
@@ -181,7 +181,7 @@ public class InsertView extends JPanel implements ActionListener {
 		
 		
 		textField_num = new JTextField();
-		textField_num.addFocusListener(new FocusAdapter(){
+		textField_1.addFocusListener(new FocusAdapter(){
 			@Override
 			public void focusLost(FocusEvent e){
 				handleNumChange();

@@ -31,11 +31,9 @@ public class InsertView extends JPanel implements ActionListener {
 	private JTextField textField;
 	private JTextField textField_1;
 	String genderValue, sizeValue, StyleName, CategoryName;
-	int num;
 	Connection c = GetConnection.get(); //get connection established
 	JComboBox genderCombo = new JComboBox();
 	JComboBox sizeCombo = new JComboBox();
-	private JTextField textField_num;
 
 	public void actionPerformed(ActionEvent e){
 		switch (e.getActionCommand()){
@@ -84,12 +82,7 @@ public class InsertView extends JPanel implements ActionListener {
 		lblSize.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblSize.setBounds(47, 155, 81, 21);
 		add(lblSize);
-		
 
-		JLabel lblNumInInventory = new JLabel("Number In Inventory:");
-		lblNumInInventory.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNumInInventory.setBounds(47, 220, 161, 34);
-		add(lblNumInInventory);
 
 		//GENERATE SIZE FROM SQL IN COMBOBOX
 		sizeCombo.setBounds(148, 156, 60, 20);
@@ -168,7 +161,7 @@ public class InsertView extends JPanel implements ActionListener {
 		btnClickToInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if((CategoryName != null) && (StyleName != null)){
-					Insert.insert(c, CategoryName, StyleName, sizeValue, genderValue,  num, "");
+					Insert.insert(c, CategoryName, StyleName, sizeValue, genderValue, 1, "");
 				}else{
 					System.out.println("Style or category empty");
 				}
@@ -176,20 +169,8 @@ public class InsertView extends JPanel implements ActionListener {
 			
 			}
 		});
-		btnClickToInsert.setBounds(47, 265, 120, 23);
+		btnClickToInsert.setBounds(274, 231, 120, 23);
 		add(btnClickToInsert);
-		
-		
-		textField_num = new JTextField();
-		textField_num.addFocusListener(new FocusAdapter(){
-			@Override
-			public void focusLost(FocusEvent e){
-				handleNumChange();
-			}
-		});
-		textField_num.setBounds(207, 228, 129, 20);
-		add(textField_num);
-		textField_num.setColumns(10);
 
 	}
 
@@ -205,8 +186,11 @@ public class InsertView extends JPanel implements ActionListener {
 		StyleName = textField_1.getText(); //stores input in String StyleName
 		System.out.println("style name ==== " + StyleName);
 	}
-	protected void handleNumChange(){
-		num = Integer.parseInt(textField_num.getText()); //
-		System.out.println("Number ==== " + num);
-	}
+	
+	
+	
+	
+	
+
+	
 }
