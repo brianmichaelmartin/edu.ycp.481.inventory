@@ -17,7 +17,6 @@ import javax.swing.JComboBox;
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
 import edu.ycp.cs481.inventory.Search;
-import edu.ycp.cs481.inventory.controller.InsertController;
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import javax.swing.JList;
@@ -243,19 +242,28 @@ public class SearchView extends JPanel implements ActionListener {
 		
 		
 		
-		JButton btnClickToSearch = new JButton("Click to Search!");
+		JButton btnClickToSearch = new JButton("Search\n");
 		btnClickToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
 			
 			}
 		});
-		btnClickToSearch.setBounds(118, 285, 135, 23);
+		btnClickToSearch.setBounds(66, 286, 135, 23);
 		add(btnClickToSearch);
 		
 		table = new JTable();
 		table.setBounds(326, 268, 345, -188);
 		add(table);
+		
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnUpdate.setBounds(237, 283, 117, 29);
+		add(btnUpdate);
 		
 	}
 	class MyTableModel extends AbstractTableModel{

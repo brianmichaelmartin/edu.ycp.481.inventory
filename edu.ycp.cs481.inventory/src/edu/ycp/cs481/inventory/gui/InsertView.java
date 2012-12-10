@@ -23,7 +23,7 @@ import javax.swing.JComboBox;
 
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
-import edu.ycp.cs481.inventory.controller.InsertController;
+
 import javax.swing.JButton;
 
 
