@@ -19,11 +19,9 @@ import javax.swing.JComboBox;
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
 import edu.ycp.cs481.inventory.Search;
-
 import edu.ycp.cs481.inventory.controller.InsertController;
 
 import javax.swing.JScrollPane;
-
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import javax.swing.JList;
@@ -44,7 +42,6 @@ public class SearchView extends JPanel implements ActionListener {
 	JComboBox InStockComboBox = new JComboBox();
 	JComboBox DisabledComboBox = new JComboBox();
 	private JTable table;
-	private JTable table_1;
 	/**
 	 * Create the panel.
 	 */
@@ -250,26 +247,29 @@ public class SearchView extends JPanel implements ActionListener {
 		
 		
 		
-		JButton btnClickToSearch = new JButton("Search\n");
+		JButton btnClickToSearch = new JButton("Click to Search!");
 		btnClickToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
 			
 			}
 		});
-		btnClickToSearch.setBounds(18, 285, 135, 23);
-
+		btnClickToSearch.setBounds(118, 285, 135, 23);
 		add(btnClickToSearch);
 		
-		
-		
-		
+		table = new JTable(new MyTableModel());
+		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        table.setFillsViewportHeight(true);
+ 
+        //Create the scroll pane and add the table to it.
+        JScrollPane scrollPane = new JScrollPane(table);
+        
+		scrollPane.setBounds(326, 268, 345, -188);
+        //Add the scroll pane to this panel.
+        add(scrollPane);
 		
 	}
 	
-	
-	
-	/*
 	class MyTableModel extends AbstractTableModel{
 		private String[] columnNames = {"Product ID",
 										"Style",
@@ -281,19 +281,7 @@ public class SearchView extends JPanel implements ActionListener {
 										"In Stock",
 										"Date Added",
 										"Last Modified"};
-		private Object[][] data = {{"test","test","test","test","test","test","test","test","test","test"},{"test","test","test","test","test","test","test","test","test","test"}};
-		
-		JTable table = new JTable(data, columnNames){
-			public Class getColumnClass(int column){
-				for (int row = 0; row < getRowCount(); row++){
-					Object o = getValueAt(row, column);
-
-                    if (o != null)
-                        return o.getClass();
-				}
-				return null;
-			}
-		};
+		private Object[][] data;
 		@Override
 		public int getColumnCount() {
 			return columnNames.length;
@@ -306,38 +294,8 @@ public class SearchView extends JPanel implements ActionListener {
 
 		@Override
 		public Object getValueAt(int row, int col){
-			return 0;//data[row][col];
+			return data[row][col];
 		}
-		public void setValueAt(Object value, int row, int col) {
-            if (true) {
-                System.out.println("Setting value at " + row + "," + col
-                                   + " to " + value
-                                   + " (an instance of "
-                                   + value.getClass() + ")");
-            }
- 
-            data[row][col] = value;
-            fireTableCellUpdated(row, col);
- 
-            if (true) {
-                System.out.println("New value of data:");
-                printDebugData();
-            }
-            
-        }
-		private void printDebugData() {
-            int numRows = getRowCount();
-            int numCols = getColumnCount();
- 
-            for (int i=0; i < numRows; i++) {
-                System.out.print("    row " + i + ":");
-                for (int j=0; j < numCols; j++) {
-                    System.out.print("  " + data[i][j]);
-                }
-                System.out.println();
-            }
-            System.out.println("--------------------------");
-        }
-	}*/
+	}
 	
 }

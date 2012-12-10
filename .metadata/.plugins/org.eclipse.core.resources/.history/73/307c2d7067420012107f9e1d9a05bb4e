@@ -19,11 +19,9 @@ import javax.swing.JComboBox;
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.Insert;
 import edu.ycp.cs481.inventory.Search;
-
 import edu.ycp.cs481.inventory.controller.InsertController;
 
 import javax.swing.JScrollPane;
-
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import javax.swing.JList;
@@ -44,7 +42,6 @@ public class SearchView extends JPanel implements ActionListener {
 	JComboBox InStockComboBox = new JComboBox();
 	JComboBox DisabledComboBox = new JComboBox();
 	private JTable table;
-	private JTable table_1;
 	/**
 	 * Create the panel.
 	 */
@@ -250,7 +247,7 @@ public class SearchView extends JPanel implements ActionListener {
 		
 		
 		
-		JButton btnClickToSearch = new JButton("Search\n");
+		JButton btnClickToSearch = new JButton("Click to Search!");
 		btnClickToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
@@ -258,12 +255,22 @@ public class SearchView extends JPanel implements ActionListener {
 			}
 		});
 		btnClickToSearch.setBounds(18, 285, 135, 23);
-
 		add(btnClickToSearch);
 		
+		String[] columnNames = {"Product ID",
+				"Style",
+				"Category",
+				"Gender",
+				"Size",
+				"Number in Inventory",
+				"Disabled",
+				"In Stock",
+				"Date Added",
+				"Last Modified"};
+		Object[][] data = null;
 		
-		
-		
+		JTable table = new JTable(data, columnNames);
+		table.add();
 		
 	}
 	

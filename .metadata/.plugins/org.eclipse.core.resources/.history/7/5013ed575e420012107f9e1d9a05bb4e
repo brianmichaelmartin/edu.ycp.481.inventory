@@ -140,27 +140,26 @@ public class ConvertToID {
 	
 	public static int findSizID(String siz){
 		int result = 0;
-		String size = siz.toLowerCase();
-		switch (size){//convert size value to coresponding number
-			case "s":
+		switch (siz){//convert size value to coresponding number
+			case "S":
 				result = 1;
 				break;
-			case "m":
+			case "M":
 				result = 2;
 				break;
-			case "l":
+			case "L":
 				result = 3;
 				break;
-			case "xl":
+			case "XL":
 				result = 4;
 				break;
-			case "2xl":
+			case "2XL":
 				result = 5;
 				break;
-			case "3xl":
+			case "3XL":
 				result = 6;
 				break;
-			case "4xl":
+			case "4XL":
 				result = 7;
 				break;
 			default:
