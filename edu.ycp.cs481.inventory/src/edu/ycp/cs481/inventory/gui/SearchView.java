@@ -32,7 +32,9 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.DefaultComboBoxModel;
 
 public class SearchView extends JPanel implements ActionListener {
 
@@ -46,9 +48,6 @@ public class SearchView extends JPanel implements ActionListener {
 	JComboBox GenderComboBox = new JComboBox();
 	JComboBox InStockComboBox = new JComboBox();
 	JComboBox DisabledComboBox = new JComboBox();
-	private JTable table;
-	private JTable table_1;
-	private JTable table_2;
 	private JTable table_3;
 	private ArrayList<DatabaseEntry> returnVal;
 	/**
@@ -224,12 +223,12 @@ public class SearchView extends JPanel implements ActionListener {
 		}
 		GenderComboBox.setActionCommand("GenderComboBox");
 		GenderComboBox.addActionListener(this);
+		DisabledComboBox.setModel(new DefaultComboBoxModel(new String[] {"No", "Yes"}));
 
 		//Disabled ComboBox
 		DisabledComboBox.setBounds(164, 210, 129, 20);
 		add(DisabledComboBox);
-		DisabledComboBox.addItem("Yes");
-		DisabledComboBox.addItem("No");
+
 		if("Yes".equals((String)DisabledComboBox.getSelectedItem())){
 			disabled = true;
 		}
@@ -275,11 +274,10 @@ public class SearchView extends JPanel implements ActionListener {
 				"In Stock",
 				"Date Added",
 				"Last Modified"};
+		MyTableModel tab = new MyTableModel();
+		final JTable table_3 = new JTable();
 		
-		final JTable table_3 = new JTable(new MyTableModel());
-		
-		
-		
+		table_3.setModel(tab);
 		table_3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		scrollPane.setViewportView(table_3);
 	
@@ -290,7 +288,7 @@ public class SearchView extends JPanel implements ActionListener {
 				
 				for (int i = 0; i < returnVal.size(); i++){
 					DatabaseEntry current = returnVal.get(i);
-					
+						
 						table_3.setValueAt(current.get_Product_ID(), i, 0);
 						table_3.setValueAt(current.get_Style(), i, 1);
 						table_3.setValueAt(current.get_Category(), i, 2);
@@ -343,7 +341,7 @@ public class SearchView extends JPanel implements ActionListener {
 			return data[row][col];
 		}
 		public void setValueAt(Object value, int row, int col) {
-            
+            fireTableRowsDeleted(row, row);
             System.out.println("Setting value at " + row + "," + col
                                    + " to " + value
                                    + " (an instance of "
@@ -354,6 +352,9 @@ public class SearchView extends JPanel implements ActionListener {
             fireTableCellUpdated(row, col);
             
         }
+		public void resetArray(){
+			data = new Object[100][10];
+		}
 		@Override
 		public String getColumnName(int column) {
 		    return columnNames[column];
