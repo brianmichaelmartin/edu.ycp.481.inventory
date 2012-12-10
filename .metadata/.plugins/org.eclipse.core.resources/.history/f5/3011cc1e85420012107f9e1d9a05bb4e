@@ -38,19 +38,19 @@ public class Search{
 		}
 		//if gender doesnt equal any then narrow the field using the designated item
 		if(Gender != "any"){
-			 query = query + " AND inventory.Gender_ID = " + ConvertToID.findGenID(Gender);
+			 query = " AND inventory.Gender_ID = " + ConvertToID.findGenID(Gender);
 		}
 		//if size doesnt equal any then narrow the field using the designated item
 		if(Size != "any"){
-			 query = query + " AND inventory.category_ID = " + ConvertToID.findSizID(Size);
+			 query = " AND inventory.category_ID = " + ConvertToID.findSizID(Size);
 		}
 		//if you are not returning disabled then narrow to items with Disabled set to 0
 		if(!returnDisabled){
-			query = query + " AND inventory.Disabled = 0";
+			query = " AND inventory.Disabled = 0";
 		}
 		//if you are not returning out of stock items then narrow to items with In_stock set to 1
 		if(!returnOutOfStock){
-			query = query + " AND inventory.In_stock = 1";
+			query = " AND inventory.In_stock = 1";
 		}
 		System.out.println("SQL query" + query);
 		try {
