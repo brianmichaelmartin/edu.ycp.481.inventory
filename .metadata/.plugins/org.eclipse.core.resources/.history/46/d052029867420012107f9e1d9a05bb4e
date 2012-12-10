@@ -260,6 +260,20 @@ public class SearchView extends JPanel implements ActionListener {
 		
 		
 		
+		String[] columnNames = {"Product ID",
+				"Style",
+				"Category",
+				"Gender",
+				"Size",
+				"Number in Inventory",
+				"Disabled",
+				"In Stock",
+				"Date Added",
+				"Last Modified"};
+		Object[][] data = null;
+		table = new JTable(data, columnNames);
+		table.setBounds(350, 41, 338, 233);
+		add(table_1);
 		
 		
 	}

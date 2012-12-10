@@ -42,7 +42,6 @@ public class SearchView extends JPanel implements ActionListener {
 	JComboBox InStockComboBox = new JComboBox();
 	JComboBox DisabledComboBox = new JComboBox();
 	private JTable table;
-	private JTable table_1;
 	/**
 	 * Create the panel.
 	 */
@@ -258,9 +257,19 @@ public class SearchView extends JPanel implements ActionListener {
 		btnClickToSearch.setBounds(18, 285, 135, 23);
 		add(btnClickToSearch);
 		
+		String[] columnNames = {"Product ID",
+				"Style",
+				"Category",
+				"Gender",
+				"Size",
+				"Number in Inventory",
+				"Disabled",
+				"In Stock",
+				"Date Added",
+				"Last Modified"};
+		Object[][] data = null;
 		
-		
-		
+		JTable table = new JTable(data, columnNames);
 		
 	}
 	

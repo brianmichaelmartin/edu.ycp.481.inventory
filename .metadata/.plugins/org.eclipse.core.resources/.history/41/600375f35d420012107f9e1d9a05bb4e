@@ -42,7 +42,6 @@ public class SearchView extends JPanel implements ActionListener {
 	JComboBox InStockComboBox = new JComboBox();
 	JComboBox DisabledComboBox = new JComboBox();
 	private JTable table;
-	private JTable table_1;
 	/**
 	 * Create the panel.
 	 */
@@ -258,15 +257,19 @@ public class SearchView extends JPanel implements ActionListener {
 		btnClickToSearch.setBounds(18, 285, 135, 23);
 		add(btnClickToSearch);
 		
-		
-		
-		
+		table = new JTable(new MyTableModel());
+		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        table.setFillsViewportHeight(true);
+ 
+        //Create the scroll pane and add the table to it.
+        JScrollPane scrollPane = new JScrollPane(table);
+        
+		scrollPane.setBounds(25, 268, 345, 188);
+        //Add the scroll pane to this panel.
+        add(scrollPane);
 		
 	}
 	
-	
-	
-	/*
 	class MyTableModel extends AbstractTableModel{
 		private String[] columnNames = {"Product ID",
 										"Style",
@@ -279,18 +282,6 @@ public class SearchView extends JPanel implements ActionListener {
 										"Date Added",
 										"Last Modified"};
 		private Object[][] data = {{"test","test","test","test","test","test","test","test","test","test"},{"test","test","test","test","test","test","test","test","test","test"}};
-		
-		JTable table = new JTable(data, columnNames){
-			public Class getColumnClass(int column){
-				for (int row = 0; row < getRowCount(); row++){
-					Object o = getValueAt(row, column);
-
-                    if (o != null)
-                        return o.getClass();
-				}
-				return null;
-			}
-		};
 		@Override
 		public int getColumnCount() {
 			return columnNames.length;
@@ -305,36 +296,6 @@ public class SearchView extends JPanel implements ActionListener {
 		public Object getValueAt(int row, int col){
 			return 0;//data[row][col];
 		}
-		public void setValueAt(Object value, int row, int col) {
-            if (true) {
-                System.out.println("Setting value at " + row + "," + col
-                                   + " to " + value
-                                   + " (an instance of "
-                                   + value.getClass() + ")");
-            }
- 
-            data[row][col] = value;
-            fireTableCellUpdated(row, col);
- 
-            if (true) {
-                System.out.println("New value of data:");
-                printDebugData();
-            }
-            
-        }
-		private void printDebugData() {
-            int numRows = getRowCount();
-            int numCols = getColumnCount();
- 
-            for (int i=0; i < numRows; i++) {
-                System.out.print("    row " + i + ":");
-                for (int j=0; j < numCols; j++) {
-                    System.out.print("  " + data[i][j]);
-                }
-                System.out.println();
-            }
-            System.out.println("--------------------------");
-        }
-	}*/
+	}
 	
 }
