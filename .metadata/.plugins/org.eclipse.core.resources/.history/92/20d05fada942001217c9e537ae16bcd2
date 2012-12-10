@@ -107,7 +107,7 @@ public class UpdateView extends JPanel implements ActionListener {
 		textField_1.setText((String) results.get(style));
 		
 		
-		JComboBox<String> sizeComboBox = new JComboBox<String>();
+		JComboBox sizeComboBox = new JComboBox();
 		sizeComboBox.setBounds(113, 141, 134, 27);
 		add(sizeComboBox);
 		
@@ -233,7 +233,6 @@ public class UpdateView extends JPanel implements ActionListener {
 			System.out.println("gender = "+ genderValue);
 			break;
 		case "sizeComboBox":
-			System.out.println("debug" + sizeComboBox.getSelectedItem());
 			res[size] = sizeComboBox.getSelectedItem();
 			System.out.println("Size = " + (String)res[size]);
 			 

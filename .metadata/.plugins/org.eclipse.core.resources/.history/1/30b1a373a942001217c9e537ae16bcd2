@@ -233,7 +233,6 @@ public class UpdateView extends JPanel implements ActionListener {
 			System.out.println("gender = "+ genderValue);
 			break;
 		case "sizeComboBox":
-			System.out.println("debug" + sizeComboBox.getSelectedItem());
 			res[size] = sizeComboBox.getSelectedItem();
 			System.out.println("Size = " + (String)res[size]);
 			 
