@@ -14,7 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
+import edu.ycp.cs481.inventory.ChangeValue;
 import edu.ycp.cs481.inventory.GetConnection;
+import edu.ycp.cs481.inventory.Insert;
 
 public class UpdateView extends JPanel implements ActionListener {
 	/**
@@ -74,6 +76,15 @@ public class UpdateView extends JPanel implements ActionListener {
 		add(genderComboBox);
 		
 		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if((CategoryName != null) && (StyleName != null)){
+					ChangeValue.change(c, CategoryName, StyleName, sizeValue, genderValue);
+				}else{
+					System.out.println("Style or category empty");
+				}
+			}
+		});
 		btnUpdate.setBounds(60, 237, 117, 29);
 		add(btnUpdate);
 

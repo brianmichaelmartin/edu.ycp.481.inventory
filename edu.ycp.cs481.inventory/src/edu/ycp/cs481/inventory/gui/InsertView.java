@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 //import com.jgoodies.forms.layout.ColumnSpec;
 //import com.jgoodies.forms.layout.RowSpec;
 import java.awt.CardLayout;
-import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.DefaultComboBoxModel;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
