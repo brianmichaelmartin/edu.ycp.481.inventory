@@ -109,15 +109,5 @@ public class GuiMain extends JFrame{
 			}
 		});
 		mnView.add(mntmInsert);
-		
-		JMenuItem mntmUpdate = new JMenuItem("Update");
-		mntmUpdate.setBackground(UIManager.getColor("Button.background"));
-		mntmUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cardLayout = (CardLayout) operationViewPanel.getLayout();
-				cardLayout.last(operationViewPanel);
-			}
-		});
-		mnView.add(mntmUpdate);
 	}
 }

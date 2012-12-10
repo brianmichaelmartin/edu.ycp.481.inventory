@@ -46,8 +46,8 @@ public class UpdateView extends JPanel implements ActionListener {
 	
 	String genderValue, sizeValue, StyleName, CategoryName;
 	Connection c = GetConnection.get(); //get connection established
-	JComboBox<String> genderComboBox = new JComboBox<String>();
-	JComboBox<Object> sizeComboBox = new JComboBox<Object>();
+	JComboBox genderComboBox = new JComboBox();
+	JComboBox sizeComboBox = new JComboBox();
 	private JTextField textField_2;
 	private Object[] res;
 
@@ -112,7 +112,13 @@ public class UpdateView extends JPanel implements ActionListener {
 		add(sizeComboBox);
 		
 		
-		JComboBox<String> genderComboBox = new JComboBox<String>();
+		final JComboBox<String> genderComboBox = new JComboBox<String>();
+		genderComboBox.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				res[gender] = genderComboBox.getSelectedItem();
+			}
+		});
 		genderComboBox.setBounds(113, 169, 134, 27);
 		add(genderComboBox);
 
@@ -124,7 +130,7 @@ public class UpdateView extends JPanel implements ActionListener {
 		while (rs.next()){
 
 			sizeComboBox.addItem(rs.getString("Size_name"));
-			sizeValue = (String) sizeComboBox.getSelectedItem();
+			//sizeValue = (String) sizeComboBox.getSelectedItem();
 
 		}
 		rs.close();
@@ -162,7 +168,7 @@ public class UpdateView extends JPanel implements ActionListener {
 	textField_2.addFocusListener(new FocusAdapter() {
 		@Override
 		public void focusLost(FocusEvent e) {
-			res[num] = textField_2.getText();
+			res[num] = Integer.parseInt(textField_2.getText());
 			
 		}
 	});
@@ -214,7 +220,7 @@ public class UpdateView extends JPanel implements ActionListener {
 	}
 	
 	protected void deleteEntry(ArrayList<Object> results) {
-		
+		Delete.deleterow(c, "product_ID", String.valueOf(results.get(ID)));
 		
 	}
 
@@ -223,11 +229,13 @@ public class UpdateView extends JPanel implements ActionListener {
 		switch (e.getActionCommand()){
 		case "genderComboBox":
 			genderValue = (String)genderComboBox.getSelectedItem();
+			res[gender] = genderValue;
 			System.out.println("gender = "+ genderValue);
 			break;
-		case "sizeCombo":
-			sizeValue = (String)sizeComboBox.getSelectedItem();
-			System.out.println("Size = " + sizeValue);
+		case "sizeComboBox":
+			res[size] = sizeComboBox.getSelectedItem();
+			System.out.println("Size = " + (String)res[size]);
+			 
 			break;
 		default:
 			break;
@@ -238,6 +246,9 @@ public class UpdateView extends JPanel implements ActionListener {
 			res[stock] = false;
 		}else
 			res[stock] = true;
+		for (int i = 0; i < 10; i++){
+			System.out.println(res[i]);
+		}
 		ChangeValue.change(c,(Integer)res[ID], (String)res[cat], (String)res[style], (String)res[size], (String)res[gender], (Integer)res[num], (boolean)res[dis], (boolean)res[stock]);
 		
 		}
