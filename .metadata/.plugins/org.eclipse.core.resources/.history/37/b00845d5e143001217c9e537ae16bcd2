@@ -149,38 +149,4 @@ public class DatabaseEntry {
 	public String get_picture(){
 		return Picture;
 	}
-	public Boolean isEqual(DatabaseEntry other){
-		Boolean dis;//converting int to boolean
-		if(Disabled == 1){
-			dis = true;
-		}else{
-			dis = false;
-		}
-		Boolean sto;//converting int to boolean
-		if(In_stock == 1){
-			sto = true;
-		}else{
-			sto = false;
-		}
-		if(other.get_Product_ID() != Product_ID){
-			return false;
-		}else if(other.get_Category() != Category_name){
-			return false;
-		}else if(other.get_Style()	!= Style_name){
-			return false;
-		}else if(other.get_Gender() != Gender_name){
-			return false;
-		}else if(other.get_Size() != Size_name){
-			return false;
-		}else if(other.get_Num_in_inventory() != Num_in_inventory){
-			return false;
-		}else if(other.get_disabled() != dis){
-			return false;
-		}else if(other.get_in_stock() != sto){
-			return false;
-		}
-		
-		
-		return true; 
-	}
 }
