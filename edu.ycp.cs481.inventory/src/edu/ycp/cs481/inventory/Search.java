@@ -58,7 +58,7 @@ public class Search{
 		}else
 			query = query + " AND inventory.In_stock = 0";
 		
-		System.out.println("SQL query" + query);
+		System.out.println("SQL query: " + query);
 		try {
 			stmt = c.createStatement();
 			System.out.println("search stmt created");
@@ -70,7 +70,6 @@ public class Search{
 				 * Loops through the result set and creates a new DatabaseEntry object the the returnVal array list to return
 				 * to whoever called search
 				 */
-				//putting in placeholder values for barcode and picture because that shit will never get implmented in time
 				if(true){
 					System.out.println("Product_ID = " +rs.getInt("Product_ID"));
 					System.out.println("Category " + rs.getString("Category_name"));

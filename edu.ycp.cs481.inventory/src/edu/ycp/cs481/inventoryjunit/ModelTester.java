@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
 import edu.ycp.cs481.inventory.*;
 import static org.junit.Assert.*;
 
@@ -30,9 +31,7 @@ public class ModelTester {
 		
 	}
 	@Test
-	public void testInsert(){
-		testEntry = new DatabaseEntry();
-		
+	public void testInsert(){	
 		//Clear table data
 		try {
 			//create, execute and close the stmt
@@ -48,7 +47,7 @@ public class ModelTester {
 		
 		System.out.println("testInsert");
 		Boolean test = false;
-		test = Insert.insert(c, "testCat", "testSty", "s", "men", 6, null);
+		test = Insert.insert(c, "testCat", "testSty", "s", "men", 6, "");
 		System.out.println("shit in database");
 		assertEquals(test, true);
 	}
@@ -56,6 +55,9 @@ public class ModelTester {
 	@Test
 	public void testSearch() throws Exception{
 		System.out.println("testSearch");
+		boolean test = Insert.insert(c, "testCat", "testSty", "s", "men", 6, "");
+		if (!test)
+			System.out.println("ERROR");
 		testEntry = new DatabaseEntry();
 		testEntry.set_val(0, "Product_ID");
 		testEntry.set_val("testCat", "Category_name");
@@ -67,14 +69,14 @@ public class ModelTester {
 		testEntry.set_val(1, "In_Stock");
 		
 		list = Search.searchFor(c, "any", "any", "any", "any", false, true);
-		/*
+		
 		DatabaseEntry current = list.get(0);
 		System.out.println(current.get_Category());
 		
 		Boolean temp = current.isEqual(testEntry);
 		System.out.println("test5" + temp);
 		assertEquals(true, temp);
-		*/
+		
 	}
 
 }

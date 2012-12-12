@@ -2,7 +2,7 @@ package edu.ycp.cs481.inventory;
 
 import javax.swing.table.AbstractTableModel;
 
-public class MyTableModel extends AbstractTableModel{
+public class TableDataModel extends AbstractTableModel{
 	private String[] columnNames = {"Product ID",
 									"Style",
 									"Category",
@@ -30,11 +30,11 @@ public class MyTableModel extends AbstractTableModel{
 	}
 	public void setValueAt(Object value, int row, int col) {
 		
-        System.out.println("Setting value at " + row + "," + col
+        /*System.out.println("Setting value at " + row + "," + col
                                + " to " + value
                                + " (an instance of "
                                + value.getClass() + ")");
-        
+        */
 
         data[row][col] = value;
         fireTableCellUpdated(row, col);

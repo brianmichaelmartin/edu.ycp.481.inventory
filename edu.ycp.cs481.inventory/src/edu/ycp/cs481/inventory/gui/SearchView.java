@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import edu.ycp.cs481.inventory.gui.UpdateView;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,7 +22,7 @@ import javax.swing.ScrollPaneConstants;
 import edu.ycp.cs481.inventory.DatabaseEntry;
 import edu.ycp.cs481.inventory.Delete;
 import edu.ycp.cs481.inventory.GetConnection;
-import edu.ycp.cs481.inventory.MyTableModel;
+import edu.ycp.cs481.inventory.TableDataModel;
 import edu.ycp.cs481.inventory.Search;
 
 public class SearchView extends JPanel implements ActionListener {
@@ -36,15 +35,15 @@ public class SearchView extends JPanel implements ActionListener {
 	boolean disabled, stock;
 	Connection c = GetConnection.get(); //get connection established
 	
-	JComboBox CategoryComboBox = new JComboBox();
-	JComboBox StyleComboBox = new JComboBox();
-	JComboBox SizeComboBox = new JComboBox();
-	JComboBox GenderComboBox = new JComboBox();
-	JComboBox InStockComboBox = new JComboBox();
+	JComboBox<String> CategoryComboBox = new JComboBox<String>();
+	JComboBox<String> StyleComboBox = new JComboBox<String>();
+	JComboBox<String> SizeComboBox = new JComboBox<String>();
+	JComboBox<String> GenderComboBox = new JComboBox<String>();
+	JComboBox<String> InStockComboBox = new JComboBox<String>();
 	JComboBox DisabledComboBox = new JComboBox();
 	private JTable table_3;
 	private ArrayList<DatabaseEntry> returnVal;
-	final MyTableModel tab = new MyTableModel();
+	final TableDataModel tab = new TableDataModel();
 	/**
 	 * Create the panel.
 	 */
@@ -53,19 +52,15 @@ public class SearchView extends JPanel implements ActionListener {
 		switch (e.getActionCommand()){
 			case "CategoryComboBox":
 				categoryValue = (String)CategoryComboBox.getSelectedItem();
-				System.out.println("category = " + categoryValue);
 				break;
 			case "StyleComboBox":
 				styleValue = (String)StyleComboBox.getSelectedItem();
-				System.out.println("style = " + styleValue);
 				break;
 			case "SizeComboBox":
 				sizeValue = (String)SizeComboBox.getSelectedItem();
-				System.out.println("Size = " + sizeValue);
 				break;
 			case "GenderComboBox":
 				genderValue = (String)GenderComboBox.getSelectedItem();
-				System.out.println("gender = " + genderValue);
 				break;
 			case "DisabledComboBox":
 				if("Yes".equals((String)DisabledComboBox.getSelectedItem())){
@@ -91,12 +86,7 @@ public class SearchView extends JPanel implements ActionListener {
 	@SuppressWarnings("unchecked")
 	public SearchView() {
 		setLayout(null);
-		//Statement stmt = null;
-		//ResultSet rs = null;
-		
-
-		
-		
+	
 		JLabel lblFindAnItem = new JLabel("Search for an Item:");
 		lblFindAnItem.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblFindAnItem.setBounds(20, 29, 244, 29);
@@ -129,7 +119,7 @@ public class SearchView extends JPanel implements ActionListener {
 
 		JLabel lblDisabled = new JLabel("Disabled:");
 		lblDisabled.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblDisabled.setBounds(30, 211, 77, 29);
+		lblDisabled.setBounds(26, 204, 77, 29);
 		add(lblDisabled);
 		
 		//Category combobox
@@ -290,9 +280,13 @@ public class SearchView extends JPanel implements ActionListener {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> results = new ArrayList<Object>();
-				for (int i = 0; i < 10;i++){
-					int row = table_3.getSelectedRow();
-					results.add(table_3.getModel().getValueAt(row, i));
+				int row = table_3.getSelectedRow();
+				if (row < 0){
+					WarningDialog.main(null);
+				}else{
+					for (int i = 0; i < 10;i++){
+						results.add(table_3.getModel().getValueAt(row, i));
+					}
 				}
 				UpdateDialog up = new UpdateDialog(results);
 				up.addWindowListener(new WindowAdapter() {
@@ -311,9 +305,14 @@ public class SearchView extends JPanel implements ActionListener {
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				int row = table_3.getSelectedRow();
-				Delete.deleterow(c, "product_ID", String.valueOf(table_3.getModel().getValueAt(row, 0)));
-				performSearch();
+				if ((row < 0)||(row > returnVal.size())){
+					WarningDialog.main(null);
+				}else{
+					Delete.deleterow(c, "product_ID", String.valueOf(table_3.getModel().getValueAt(row, 0)));
+					performSearch();
+				}
 			}
 		});
 		btnDelete.setBounds(164, 321, 129, 29);
