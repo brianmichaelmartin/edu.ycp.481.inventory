@@ -87,7 +87,7 @@ public class SearchView extends JPanel implements ActionListener {
 	@SuppressWarnings("unchecked")
 	public SearchView() {
 		setLayout(null);
-		tab.setDataLength(0);
+	
 		JLabel lblFindAnItem = new JLabel("Search for an Item:");
 		lblFindAnItem.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblFindAnItem.setBounds(20, 29, 244, 29);
@@ -262,7 +262,6 @@ public class SearchView extends JPanel implements ActionListener {
 				"Last Modified"};
 		
 		final JTable table_3 = new JTable();
-		table_3.setFillsViewportHeight(true);
 		
 		table_3.setModel(tab);
 		table_3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -288,17 +287,16 @@ public class SearchView extends JPanel implements ActionListener {
 				}else{
 					for (int i = 0; i < 10;i++){
 						results.add(table_3.getModel().getValueAt(row, i));
-						
+						UpdateDialog up = new UpdateDialog(results);
+						up.addWindowListener(new WindowAdapter() {
+							@Override
+							public void windowClosed(WindowEvent e) {
+								performSearch();			            
+						}
+						});
+				up.main(results);
 						
 					}
-					UpdateDialog up = new UpdateDialog(results);
-					up.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosed(WindowEvent e) {
-						performSearch();			            
-					}
-					});
-					up.main(results);
 				}
 				
 			}
@@ -328,11 +326,8 @@ public class SearchView extends JPanel implements ActionListener {
 	}
 	protected void performSearch() {
 		returnVal = Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
-	
-		tab.resetArray(returnVal.size());
-
+		tab.resetArray();
 		resultsDisplayed = returnVal.size();
-
 		for (int i = 0; i < returnVal.size(); i++){
 			DatabaseEntry current = returnVal.get(i);
 				

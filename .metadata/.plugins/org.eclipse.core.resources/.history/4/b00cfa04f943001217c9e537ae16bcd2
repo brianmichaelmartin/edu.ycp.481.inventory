@@ -65,7 +65,7 @@ public class Search{
 			rs = stmt.executeQuery(query);
 			System.out.println("query executed");
 			while (rs.next()){
-				
+				System.out.println("in loop");
 				/*
 				 * Loops through the result set and creates a new DatabaseEntry object the the returnVal array list to return
 				 * to whoever called search
