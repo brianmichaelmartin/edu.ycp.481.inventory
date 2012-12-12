@@ -13,7 +13,7 @@ public class TableDataModel extends AbstractTableModel{
 									"In Stock",
 									"Date Added",
 									"Last Modified"};
-	private Object[][] data = new Object[100][10];
+	private Object[][] data;
 	@Override
 	public int getColumnCount() {
 		return columnNames.length;
@@ -21,9 +21,11 @@ public class TableDataModel extends AbstractTableModel{
 
 	@Override
 	public int getRowCount() {
-		return columnNames.length;
+		return data.length;
 	}
-
+	public void setDataLength(int length){
+		data = new Object[length][10];
+	}
 	@Override
 	public Object getValueAt(int row, int col){
 		return data[row][col];
@@ -40,8 +42,8 @@ public class TableDataModel extends AbstractTableModel{
         fireTableCellUpdated(row, col);
         
     }
-	public void resetArray(){
-		data = new Object[100][10];
+	public void resetArray(int length){
+		data = new Object[length][10];
 		fireTableDataChanged();
 	}
 	@Override
