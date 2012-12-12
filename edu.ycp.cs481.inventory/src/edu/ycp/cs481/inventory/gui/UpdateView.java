@@ -13,9 +13,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 
 import edu.ycp.cs481.inventory.Delete;
 import edu.ycp.cs481.inventory.ChangeValue;
@@ -53,9 +55,11 @@ public class UpdateView extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param updateDialog 
 	 */
-	public UpdateView(final ArrayList<Object> results) {
+	public UpdateView(final ArrayList<Object> results, UpdateDialog updateDialog) {
 		setLayout(null);
+		final JDialog parent = updateDialog;
 		res = new Object[10];
 		for(int i = 0; i < results.size();i++){
 			res[i] = results.get(i);
@@ -207,29 +211,24 @@ public class UpdateView extends JPanel {
 	btnUpdate.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			updateEntry(res);
-			
+			parent.dispose();
 		}
 	});
-	btnUpdate.setBounds(37, 254, 117, 29);
+	btnUpdate.setBounds(37, 254, 102, 29);
 	add(btnUpdate);
 	
-	JButton btnDelete = new JButton("Delete");
-	btnDelete.addActionListener(new ActionListener() {
+	JButton btnCancel = new JButton("Cancel");
+	btnCancel.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			deleteEntry(results);
+			parent.dispose();
 		}
 	});
-	btnDelete.setBounds(166, 254, 117, 29);
-	add(btnDelete);
+	btnCancel.setBounds(145, 254, 102, 29);
+	add(btnCancel);
 	if ((boolean) results.get(dis)){
 		comboBox.setSelectedItem("Yes");
 	}else
 		comboBox.setSelectedItem("No");
-	}
-	
-	protected void deleteEntry(ArrayList<Object> results) {
-		Delete.deleterow(c, "product_ID", String.valueOf(results.get(ID)));
-		
 	}
 
 	

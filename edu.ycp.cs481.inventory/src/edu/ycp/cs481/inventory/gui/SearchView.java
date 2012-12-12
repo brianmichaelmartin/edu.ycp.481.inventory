@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
 import edu.ycp.cs481.inventory.DatabaseEntry;
+import edu.ycp.cs481.inventory.Delete;
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.MyTableModel;
 import edu.ycp.cs481.inventory.Search;
@@ -43,6 +44,7 @@ public class SearchView extends JPanel implements ActionListener {
 	JComboBox DisabledComboBox = new JComboBox();
 	private JTable table_3;
 	private ArrayList<DatabaseEntry> returnVal;
+	final MyTableModel tab = new MyTableModel();
 	/**
 	 * Create the panel.
 	 */
@@ -267,7 +269,7 @@ public class SearchView extends JPanel implements ActionListener {
 				"In Stock",
 				"Date Added",
 				"Last Modified"};
-		final MyTableModel tab = new MyTableModel();
+		
 		final JTable table_3 = new JTable();
 		
 		table_3.setModel(tab);
@@ -277,25 +279,10 @@ public class SearchView extends JPanel implements ActionListener {
 		JButton btnClickToSearch = new JButton("Search");
 		btnClickToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				returnVal = Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
-				tab.resetArray();
-				for (int i = 0; i < returnVal.size(); i++){
-					DatabaseEntry current = returnVal.get(i);
-						
-					tab.setValueAt(current.get_Product_ID(), i, 0);
-					tab.setValueAt(current.get_Style(), i, 1);
-					tab.setValueAt(current.get_Category(), i, 2);
-					tab.setValueAt(current.get_Gender(), i, 3);
-					tab.setValueAt(current.get_Size(), i, 4);
-					tab.setValueAt(current.get_Num_in_inventory(), i, 5);
-					tab.setValueAt(current.get_disabled(), i, 6);
-					tab.setValueAt(current.get_in_stock(), i, 7);
-					tab.setValueAt(current.get_Date_added(), i, 8);
-					tab.setValueAt(current.get_last_Modified(), i, 9);
-				}
+				performSearch();
 			}
 		});
-		btnClickToSearch.setBounds(20, 293, 135, 23);
+		btnClickToSearch.setBounds(20, 286, 273, 23);
 
 		add(btnClickToSearch);
 		
@@ -311,19 +298,47 @@ public class SearchView extends JPanel implements ActionListener {
 				up.addWindowListener(new WindowAdapter() {
 			         @Override
 			         public void windowClosed(WindowEvent e) {
-			            System.out.println("DEBUG");
-			        	 tab.fireTableDataChanged();
-			            
+			        	performSearch();			            
 			         }
 				});
 				up.main(results);
 			}
 		});
 	
-		btnUpdate.setBounds(164, 290, 117, 29);
+		btnUpdate.setBounds(20, 321, 136, 29);
 		add(btnUpdate);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int row = table_3.getSelectedRow();
+				Delete.deleterow(c, "product_ID", String.valueOf(table_3.getModel().getValueAt(row, 0)));
+				performSearch();
+			}
+		});
+		btnDelete.setBounds(164, 321, 129, 29);
+		add(btnDelete);
 	
 	
 	
+	}
+	protected void performSearch() {
+		returnVal = Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
+		tab.resetArray();
+		for (int i = 0; i < returnVal.size(); i++){
+			DatabaseEntry current = returnVal.get(i);
+				
+			tab.setValueAt(current.get_Product_ID(), i, 0);
+			tab.setValueAt(current.get_Style(), i, 1);
+			tab.setValueAt(current.get_Category(), i, 2);
+			tab.setValueAt(current.get_Gender(), i, 3);
+			tab.setValueAt(current.get_Size(), i, 4);
+			tab.setValueAt(current.get_Num_in_inventory(), i, 5);
+			tab.setValueAt(current.get_disabled(), i, 6);
+			tab.setValueAt(current.get_in_stock(), i, 7);
+			tab.setValueAt(current.get_Date_added(), i, 8);
+			tab.setValueAt(current.get_last_Modified(), i, 9);
+		}
+		
 	}
 }

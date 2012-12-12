@@ -33,9 +33,10 @@ public class UpdateDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public UpdateDialog(ArrayList<Object> results) {
-		upView = new UpdateView(results);
+		upView = new UpdateView(results, this);
+		upView.setBounds(193, 5, 100, 96);
 		
-		setBounds(100, 100, 498, 400);
+		setBounds(100, 100, 300, 320);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -44,23 +45,9 @@ public class UpdateDialog extends JDialog {
 			JPanel panel = new JPanel();
 			panel.setBounds(6, 6, 486, 327);
 			contentPanel.add(panel);
+			//panel.setLayout(null);
 			panel.setLayout(new CardLayout(0, 0));
 			panel.add(upView);
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-					}
-				});
-				cancelButton.setActionCommand("Close");
-				buttonPane.add(cancelButton);
-			}
 		}
 	}
 
