@@ -113,7 +113,7 @@ public class SearchView extends JPanel implements ActionListener {
 		lblGender.setBounds(30, 171, 105, 29);
 		add(lblGender);
 	
-		JLabel lblInStockOnly = new JLabel("In Stock Only:");
+		JLabel lblInStockOnly = new JLabel("In Stock:");
 		lblInStockOnly.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblInStockOnly.setBounds(27, 245, 129, 29);
 		add(lblInStockOnly);
