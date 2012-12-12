@@ -24,6 +24,8 @@ import edu.ycp.cs481.inventory.Delete;
 import edu.ycp.cs481.inventory.GetConnection;
 import edu.ycp.cs481.inventory.TableDataModel;
 import edu.ycp.cs481.inventory.Search;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class SearchView extends JPanel implements ActionListener {
 
@@ -122,6 +124,12 @@ public class SearchView extends JPanel implements ActionListener {
 		lblDisabled.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblDisabled.setBounds(26, 204, 77, 29);
 		add(lblDisabled);
+		CategoryComboBox.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				generateCategory();
+			}
+		});
 		
 		//Category combobox
 		
@@ -129,40 +137,22 @@ public class SearchView extends JPanel implements ActionListener {
 		add(CategoryComboBox);
 
 		CategoryComboBox.addItem("any");
-		try {
-			Statement st = c.createStatement();
-			ResultSet rs = st.executeQuery("SELECT Category_name FROM Category");
-			while   (rs.next()){
-				CategoryComboBox.addItem(rs.getString("Category_name"));
-				categoryValue = (String) CategoryComboBox.getSelectedItem();
-
-			}
-			rs.close();
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		generateCategory();
 		CategoryComboBox.setActionCommand("CategoryComboBox");
 		CategoryComboBox.addActionListener(this);
+		StyleComboBox.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				generateStyle();
+			}
+		});
 		
 		//Style Combobox
 		
 		StyleComboBox.setBounds(164, 116, 129, 20);
 		add(StyleComboBox);
 		StyleComboBox.addItem("any");
-		try {
-			Statement st = c.createStatement();
-			ResultSet rs = st.executeQuery("SELECT Style_name FROM Style");
-			while   (rs.next()){
-				StyleComboBox.addItem(rs.getString("Style_name"));
-				styleValue = (String) StyleComboBox.getSelectedItem();
-
-			}
-			rs.close();
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		generateStyle();
 		StyleComboBox.setActionCommand("StyleComboBox");
 		StyleComboBox.addActionListener(this);
 		
@@ -173,18 +163,7 @@ public class SearchView extends JPanel implements ActionListener {
 		add(SizeComboBox);
 		
 		SizeComboBox.addItem("any");
-		try {
-			Statement st = c.createStatement();
-			ResultSet rs = st.executeQuery("SELECT Size_name FROM Size");
-			while   (rs.next()){
-				SizeComboBox.addItem(rs.getString("Size_name"));
-				sizeValue = (String) SizeComboBox.getSelectedItem();
-			}
-			rs.close();
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		generateSize();
 		SizeComboBox.setActionCommand("SizeComboBox");
 		SizeComboBox.addActionListener(this);
 		
@@ -195,18 +174,7 @@ public class SearchView extends JPanel implements ActionListener {
 		add(GenderComboBox);
 		
 		GenderComboBox.addItem("any");
-		try {
-			Statement st = c.createStatement();
-			ResultSet rs = st.executeQuery("SELECT Gender_Name FROM gender");
-			while   (rs.next()){
-				GenderComboBox.addItem(rs.getString("Gender_name"));
-				genderValue = (String) GenderComboBox.getSelectedItem();
-			}
-			rs.close();
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		generateGender();
 		GenderComboBox.setActionCommand("GenderComboBox");
 		GenderComboBox.addActionListener(this);
 		DisabledComboBox.setModel(new DefaultComboBoxModel(new String[] {"No", "Yes"}));
@@ -325,6 +293,68 @@ public class SearchView extends JPanel implements ActionListener {
 	
 	
 	
+	}
+	private void generateStyle() {
+		// TODO Auto-generated method stub
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Style_name FROM Style");
+			while   (rs.next()){
+				StyleComboBox.addItem(rs.getString("Style_name"));
+				styleValue = (String) StyleComboBox.getSelectedItem();
+
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	private void generateGender() {
+		// TODO Auto-generated method stub
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Gender_Name FROM gender");
+			while   (rs.next()){
+				GenderComboBox.addItem(rs.getString("Gender_name"));
+				genderValue = (String) GenderComboBox.getSelectedItem();
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	private void generateSize() {
+		// TODO Auto-generated method stub
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Size_name FROM Size");
+			while   (rs.next()){
+				SizeComboBox.addItem(rs.getString("Size_name"));
+				sizeValue = (String) SizeComboBox.getSelectedItem();
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	private void generateCategory() {
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Category_name FROM Category");
+			while   (rs.next()){
+				CategoryComboBox.addItem(rs.getString("Category_name"));
+				categoryValue = (String) CategoryComboBox.getSelectedItem();
+
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	protected void performSearch() {
 		returnVal = Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
