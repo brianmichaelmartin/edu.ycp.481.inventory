@@ -231,7 +231,23 @@ public class UpdateView extends JPanel {
 		comboBox.setSelectedItem("No");
 	}
 
-	
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()){
+		case "genderComboBox":
+			genderValue = (String)genderComboBox.getSelectedItem();
+			res[gender] = genderValue;
+			System.out.println("gender = "+ genderValue);
+			break;
+		case "sizeComboBox":
+			System.out.println("debug" + sizeComboBox.getSelectedItem());
+			res[size] = sizeComboBox.getSelectedItem();
+			System.out.println("Size = " + (String)res[size]);
+			 
+			break;
+		default:
+			break;
+		}
+	}
 	public void updateEntry(Object[] res){
 
 		

@@ -1,0 +1,91 @@
+package edu.ycp.cs481.inventory;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+/*
+ * README
+ * Search takes 7 variables as input. A connection object,  four strings for Category, Style, Size, and Gender
+ * AND two boolean flags for whether or not you want to return disabled or out of stock items
+ * It searches for any items that match all of the strings. Enter any for a string to have it ignore that field
+ * It will return an arraylist of DatabaseEntry objects
+ * 
+ */
+
+
+
+public class Search{
+	public static ArrayList<DatabaseEntry> searchFor(Connection c, String Category, String Style, String Size, String Gender, Boolean returnDisabled, Boolean returnOutOfStock){
+		
+		ResultSet rs = null;
+		Statement stmt = null;
+		//create an ArrayList that will contain a series of DatabaseEntry objects that represent each entry in the table
+		ArrayList<DatabaseEntry> returnVal = new ArrayList<DatabaseEntry>();
+		
+		
+		//create the sql query
+		String query = 	"SELECT Product_ID, Category_name, Style_name, Gender_name, Size_name, Num_in_inventory, Disabled, In_stock, Date_added, Last_modified FROM inventory, style, size, gender, category " +//create sql search statement
+						"WHERE inventory.style_ID = style.style_ID AND inventory.size_ID = size.size_ID AND inventory.gender_ID = gender.gender_ID AND inventory.category_ID = category.category_ID";
+		//if category doesnt equal any then narrow the field using the designated item
+		if(Category != "any"){
+			 query = query + " AND inventory.category_ID = " + ConvertToID.findCatID(c, Category);
+		}
+		//if style doesnt equal any then narrow the field using the designated item
+		if(Style != "any"){
+			 query = query + " AND inventory.Style_ID = " + ConvertToID.findStyID(c, Style);
+		}
+		//if gender doesnt equal any then narrow the field using the designated item
+		if(Gender != "any"){
+			 query = query + " AND inventory.Gender_ID = " + ConvertToID.findGenID(Gender);
+		}
+		//if size doesnt equal any then narrow the field using the designated item
+		if(Size != "any"){
+			 query = query + " AND inventory.category_ID = " + ConvertToID.findSizID(Size);
+		}
+		//if you are not returning disabled then narrow to items with Disabled set to 0
+		if(!returnDisabled){
+			query = query + " AND inventory.Disabled = 0";
+		}
+		//if you are not returning out of stock items then narrow to items with In_stock set to 1
+		if(!returnOutOfStock){
+			query = query + " AND inventory.In_stock = 1";
+		}
+		System.out.println("SQL query" + query);
+		try {
+			stmt = c.createStatement();
+			rs = stmt.executeQuery(query);
+			while (rs.next()){
+				/*
+				 * Loops through the result set and creates a new DatabaseEntry object the the returnVal array list to return
+				 * to whoever called search
+				 */
+				//putting in placeholder values for barcode and picture because that shit will never get implmented in time
+				returnVal.add(new DatabaseEntry(rs.getInt("Product_ID"),
+												rs.getString("Category_name"),
+												rs.getString("Style_name"),
+												rs.getString("Gender_name"),
+												rs.getString("Size_name"),
+												rs.getInt("Num_in_inventory"),
+												rs.getInt("Disabled"),
+												rs.getInt("In_stock"),
+												1234,//*/rs.getInt("Barcode"),
+												rs.getDate("Date_added"),
+												rs.getDate("Last_modified"),
+												null));//*/rs.getString("Picture")));
+			}
+			//close the sql stmt
+			stmt.close();
+		} catch (SQLException ex) {
+			//catch exceptions
+			System.out.println("there was an issue searching");
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+			return null;
+		}
+		
+		return returnVal;
+	}
+}

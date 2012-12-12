@@ -53,7 +53,7 @@ public class DatabaseEntry {
 				Picture = val;
 				break;
 			default:
-				System.out.println("Invalid field");
+				System.out.println("Invalid field" + Field);
 				
 				break;
 		}
@@ -77,7 +77,7 @@ public class DatabaseEntry {
 				Barcode = val;
 				break;
 			default:
-				System.out.println("Invalid field");
+				System.out.println("Invalid field" + Field);
 				
 				break;
 		}
@@ -92,7 +92,7 @@ public class DatabaseEntry {
 			Last_modified = val;
 			break;
 		default:
-			System.out.println("Invalid field");
+			System.out.println("Invalid field" + Field);
 			
 			break;
 		}
@@ -148,5 +148,48 @@ public class DatabaseEntry {
 	}
 	public String get_picture(){
 		return Picture;
+	}
+	public Boolean isEqual(DatabaseEntry other){
+		System.out.println("Comparing databaseENtry objects");
+		Boolean dis;//converting int to boolean
+		if(Disabled == 1){
+			dis = true;
+		}else{
+			dis = false;
+		}
+		Boolean sto;//converting int to boolean
+		if(In_stock == 1){
+			sto = true;
+		}else{
+			sto = false;
+		}
+		if(other.get_Product_ID() != Product_ID){
+			System.out.println("Product_ID !=");
+			return false;
+		} if(other.get_Category() != Category_name){
+			System.out.println("Category !=");
+			return false;
+		} if(other.get_Style()	!= Style_name){
+			System.out.println("Style !=");
+			return false;
+		} if(other.get_Gender() != Gender_name){
+			System.out.println("Gender !=");
+			return false;
+		} if(other.get_Size() != Size_name){
+			System.out.println("Size !=");
+			return false;
+		} if(other.get_Num_in_inventory() != Num_in_inventory){
+			System.out.println("Size !=");
+			return false;
+		} if(other.get_disabled() != dis){
+			System.out.println("Disabled !=");
+			return false;
+		} if(other.get_in_stock() != sto){
+			System.out.println("In stock !=");
+			return false;
+		}
+		System.out.println("all fields =");
+		
+		return true; 
 	}
 }

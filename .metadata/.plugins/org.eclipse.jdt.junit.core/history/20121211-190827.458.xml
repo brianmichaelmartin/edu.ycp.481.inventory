@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ModelTester" project="edu.ycp.cs481.inventory" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="edu.ycp.cs481.inventoryjunit.ModelTester" time="0.041">
+    <testcase name="testInsert" classname="edu.ycp.cs481.inventoryjunit.ModelTester" time="0.039"/>
+    <testcase name="testSearch" classname="edu.ycp.cs481.inventoryjunit.ModelTester" time="0.002"/>
+  </testsuite>
+</testrun>

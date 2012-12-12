@@ -23,7 +23,10 @@ public class Search{
 		Statement stmt = null;
 		//create an ArrayList that will contain a series of DatabaseEntry objects that represent each entry in the table
 		ArrayList<DatabaseEntry> returnVal = new ArrayList<DatabaseEntry>();
-		
+		/*
+		 SELECT Product_ID, Category_name, Style_name, Gender_name, Size_name, Num_in_inventory FROM inventory, style, size, gender, category  
+		 WHERE inventory.style_ID = style.style_ID AND inventory.size_ID = size.size_ID AND inventory.gender_ID = gender.gender_ID AND inventory.category_ID = category.category_ID;
+		 */
 		
 		//create the sql query
 		String query = 	"SELECT Product_ID, Category_name, Style_name, Gender_name, Size_name, Num_in_inventory, Disabled, In_stock, Date_added, Last_modified FROM inventory, style, size, gender, category " +//create sql search statement
@@ -54,16 +57,28 @@ public class Search{
 			query = query + " AND inventory.In_stock = 1";
 		}else
 			query = query + " AND inventory.In_stock = 0";
+		
 		System.out.println("SQL query" + query);
 		try {
 			stmt = c.createStatement();
+			System.out.println("search stmt created");
 			rs = stmt.executeQuery(query);
+			System.out.println("query executed");
 			while (rs.next()){
+				System.out.println("in loop");
 				/*
 				 * Loops through the result set and creates a new DatabaseEntry object the the returnVal array list to return
 				 * to whoever called search
 				 */
 				//putting in placeholder values for barcode and picture because that shit will never get implmented in time
+				if(true){
+					System.out.println("Product_ID = " +rs.getInt("Product_ID"));
+					System.out.println("Category " + rs.getString("Category_name"));
+					System.out.println("Style " + rs.getString("Style_name"));
+					System.out.println("Gender " + rs.getString("Gender_name"));
+					System.out.println("Size " + rs.getString("Size_name"));
+					System.out.println("Num " + rs.getInt("Num_in_inventory"));
+				}
 				returnVal.add(new DatabaseEntry(rs.getInt("Product_ID"),
 												rs.getString("Category_name"),
 												rs.getString("Style_name"),

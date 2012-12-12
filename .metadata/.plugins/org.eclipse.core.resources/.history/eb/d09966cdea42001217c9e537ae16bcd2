@@ -1,0 +1,329 @@
+package edu.ycp.cs481.inventory.gui;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import edu.ycp.cs481.inventory.gui.UpdateView;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
+
+import edu.ycp.cs481.inventory.DatabaseEntry;
+import edu.ycp.cs481.inventory.GetConnection;
+import edu.ycp.cs481.inventory.MyTableModel;
+import edu.ycp.cs481.inventory.Search;
+
+public class SearchView extends JPanel implements ActionListener {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String genderValue, sizeValue, categoryValue, styleValue, disabledValue, stockValue;
+	boolean disabled, stock;
+	Connection c = GetConnection.get(); //get connection established
+	
+	JComboBox CategoryComboBox = new JComboBox();
+	JComboBox StyleComboBox = new JComboBox();
+	JComboBox SizeComboBox = new JComboBox();
+	JComboBox GenderComboBox = new JComboBox();
+	JComboBox InStockComboBox = new JComboBox();
+	JComboBox DisabledComboBox = new JComboBox();
+	private JTable table_3;
+	private ArrayList<DatabaseEntry> returnVal;
+	/**
+	 * Create the panel.
+	 */
+	
+	public void actionPerformed(ActionEvent e){
+		switch (e.getActionCommand()){
+			case "CategoryComboBox":
+				categoryValue = (String)CategoryComboBox.getSelectedItem();
+				System.out.println("category = " + categoryValue);
+				break;
+			case "StyleComboBox":
+				styleValue = (String)StyleComboBox.getSelectedItem();
+				System.out.println("style = " + styleValue);
+				break;
+			case "SizeComboBox":
+				sizeValue = (String)SizeComboBox.getSelectedItem();
+				System.out.println("Size = " + sizeValue);
+				break;
+			case "GenderComboBox":
+				genderValue = (String)GenderComboBox.getSelectedItem();
+				System.out.println("gender = " + genderValue);
+				break;
+			case "DisabledComboBox":
+				if("Yes".equals((String)DisabledComboBox.getSelectedItem())){
+					disabled = true;
+				}
+				else{
+					disabled = false;
+				}
+				break;
+			case "InStockComboBox":
+				if("Yes".equals((String)InStockComboBox.getSelectedItem())){
+					stock = false;
+				}
+				else{
+					stock = true;
+				}
+				break;
+			default:
+				break;
+		}
+			
+	}
+	@SuppressWarnings("unchecked")
+	public SearchView() {
+		setLayout(null);
+		//Statement stmt = null;
+		//ResultSet rs = null;
+		
+
+		
+		
+		JLabel lblFindAnItem = new JLabel("Search for an Item:");
+		lblFindAnItem.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblFindAnItem.setBounds(20, 29, 244, 29);
+		add(lblFindAnItem);
+		
+		JLabel lblCategory = new JLabel("Category: ");
+		lblCategory.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblCategory.setBounds(30, 79, 105, 29);
+		add(lblCategory);
+		
+		JLabel lblStyle = new JLabel("Style: ");
+		lblStyle.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblStyle.setBounds(30, 110, 105, 29);
+		add(lblStyle);
+		
+		JLabel lblSize = new JLabel("Size: ");
+		lblSize.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblSize.setBounds(30, 139, 105, 29);
+		add(lblSize);
+		
+		JLabel lblGender = new JLabel("Gender: ");
+		lblGender.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblGender.setBounds(30, 171, 105, 29);
+		add(lblGender);
+	
+		JLabel lblInStockOnly = new JLabel("In Stock Only:");
+		lblInStockOnly.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblInStockOnly.setBounds(27, 245, 129, 29);
+		add(lblInStockOnly);
+
+		JLabel lblDisabled = new JLabel("Disabled:");
+		lblDisabled.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblDisabled.setBounds(30, 211, 77, 29);
+		add(lblDisabled);
+		
+		//Category combobox
+		
+		CategoryComboBox.setBounds(164, 85, 129, 20);
+		add(CategoryComboBox);
+
+		CategoryComboBox.addItem("any");
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Category_name FROM Category");
+			while   (rs.next()){
+				CategoryComboBox.addItem(rs.getString("Category_name"));
+				categoryValue = (String) CategoryComboBox.getSelectedItem();
+
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		CategoryComboBox.setActionCommand("CategoryComboBox");
+		CategoryComboBox.addActionListener(this);
+		
+		//Style Combobox
+		
+		StyleComboBox.setBounds(164, 116, 129, 20);
+		add(StyleComboBox);
+		StyleComboBox.addItem("any");
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Style_name FROM Style");
+			while   (rs.next()){
+				StyleComboBox.addItem(rs.getString("Style_name"));
+				styleValue = (String) StyleComboBox.getSelectedItem();
+
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		StyleComboBox.setActionCommand("StyleComboBox");
+		StyleComboBox.addActionListener(this);
+		
+		
+		//Size combo box
+		
+		SizeComboBox.setBounds(164, 145, 129, 20);
+		add(SizeComboBox);
+		
+		SizeComboBox.addItem("any");
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Size_name FROM Size");
+			while   (rs.next()){
+				SizeComboBox.addItem(rs.getString("Size_name"));
+				sizeValue = (String) SizeComboBox.getSelectedItem();
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		SizeComboBox.setActionCommand("SizeComboBox");
+		SizeComboBox.addActionListener(this);
+		
+		
+		//Gender ComboBox
+		
+		GenderComboBox.setBounds(164, 177, 129, 20);
+		add(GenderComboBox);
+		
+		GenderComboBox.addItem("any");
+		try {
+			Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery("SELECT Gender_Name FROM gender");
+			while   (rs.next()){
+				GenderComboBox.addItem(rs.getString("Gender_name"));
+				genderValue = (String) GenderComboBox.getSelectedItem();
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		GenderComboBox.setActionCommand("GenderComboBox");
+		GenderComboBox.addActionListener(this);
+		DisabledComboBox.setModel(new DefaultComboBoxModel(new String[] {"No", "Yes"}));
+
+		//Disabled ComboBox
+		DisabledComboBox.setBounds(164, 210, 129, 20);
+		add(DisabledComboBox);
+
+		if("Yes".equals((String)DisabledComboBox.getSelectedItem())){
+			disabled = true;
+		}
+		else{
+			disabled = false;
+		}
+		DisabledComboBox.setActionCommand("DisabledComboBox");
+		DisabledComboBox.addActionListener(this);
+		
+				
+		//InStock ComboBox
+		InStockComboBox.setBounds(168, 251, 129, 20);
+		add(InStockComboBox);
+		InStockComboBox.addItem("No");
+		InStockComboBox.addItem("Yes");
+		if("Yes".equals((String)InStockComboBox.getSelectedItem())){
+			stock = false;
+		}
+		else{
+			stock = true;
+		}
+		InStockComboBox.setActionCommand("InStockComboBox");
+		InStockComboBox.addActionListener(this);
+		
+		
+		
+
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(329, 75, 486, 269);
+		add(scrollPane);
+		
+		
+		final String[] columnNames = {"Product ID",
+				"Style",
+				"Category",
+				"Gender",
+				"Size",
+				"Number in Inventory",
+				"Disabled",
+				"In Stock",
+				"Date Added",
+				"Last Modified"};
+		final MyTableModel tab = new MyTableModel();
+		final JTable table_3 = new JTable();
+		
+		table_3.setModel(tab);
+		table_3.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		scrollPane.setViewportView(table_3);
+	
+		JButton btnClickToSearch = new JButton("Search");
+		btnClickToSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				returnVal = Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
+				tab.resetArray();
+				for (int i = 0; i < returnVal.size(); i++){
+					DatabaseEntry current = returnVal.get(i);
+						
+					tab.setValueAt(current.get_Product_ID(), i, 0);
+					tab.setValueAt(current.get_Style(), i, 1);
+					tab.setValueAt(current.get_Category(), i, 2);
+					tab.setValueAt(current.get_Gender(), i, 3);
+					tab.setValueAt(current.get_Size(), i, 4);
+					tab.setValueAt(current.get_Num_in_inventory(), i, 5);
+					tab.setValueAt(current.get_disabled(), i, 6);
+					tab.setValueAt(current.get_in_stock(), i, 7);
+					tab.setValueAt(current.get_Date_added(), i, 8);
+					tab.setValueAt(current.get_last_Modified(), i, 9);
+				}
+			}
+		});
+		btnClickToSearch.setBounds(20, 293, 135, 23);
+
+		add(btnClickToSearch);
+		
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Object> results = new ArrayList<Object>();
+				for (int i = 0; i < 10;i++){
+					int row = table_3.getSelectedRow();
+					results.add(table_3.getModel().getValueAt(row, i));
+				}
+				UpdateDialog up = new UpdateDialog(results);
+				up.addWindowListener(new WindowAdapter() {
+			         @Override
+			         public void windowClosed(WindowEvent e) {
+			            System.out.println("DEBUG");
+			        	 tab.fireTableDataChanged();
+			            
+			         }
+				});
+				up.main(results);
+			}
+		});
+	
+		btnUpdate.setBounds(164, 290, 117, 29);
+		add(btnUpdate);
+	
+	
+	
+	}
+}

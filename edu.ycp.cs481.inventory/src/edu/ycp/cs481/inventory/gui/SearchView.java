@@ -237,8 +237,8 @@ public class SearchView extends JPanel implements ActionListener {
 		//InStock ComboBox
 		InStockComboBox.setBounds(168, 251, 129, 20);
 		add(InStockComboBox);
-		InStockComboBox.addItem("No");
 		InStockComboBox.addItem("Yes");
+		InStockComboBox.addItem("No");
 		if("Yes".equals((String)InStockComboBox.getSelectedItem())){
 			stock = false;
 		}
