@@ -246,7 +246,7 @@ public class SearchView extends JPanel implements ActionListener {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(329, 75, 600, 269);
+		scrollPane.setBounds(329, 75, 486, 269);
 		add(scrollPane);
 		
 		

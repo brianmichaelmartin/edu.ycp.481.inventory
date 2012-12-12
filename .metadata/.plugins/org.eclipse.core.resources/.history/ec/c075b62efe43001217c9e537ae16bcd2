@@ -60,7 +60,7 @@ public class GuiMain extends JFrame{
 	 */
 	public GuiMain() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 300, 988, 523);
+		setBounds(300, 300, 829, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(UIManager.getColor("Button.background"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,7 +68,7 @@ public class GuiMain extends JFrame{
 		contentPane.setLayout(null);
 		
 		operationViewPanel = new JPanel();
-		operationViewPanel.setBounds(27, 33, 935, 441);
+		operationViewPanel.setBounds(27, 33, 779, 389);
 		contentPane.add(operationViewPanel);
 		operationViewPanel.setLayout(new CardLayout(0, 0));
 		operationViewPanel.add(InsertView);
@@ -77,7 +77,7 @@ public class GuiMain extends JFrame{
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(Color.LIGHT_GRAY);
-		menuBar.setBounds(0, -4, 972, 22);
+		menuBar.setBounds(0, -1, 823, 22);
 		contentPane.add(menuBar);
 		
 		JMenu mnView = new JMenu("View");

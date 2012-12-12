@@ -166,7 +166,7 @@ public class InsertView extends JPanel implements ActionListener {
 		btnClickToInsert = new JButton("Click to Insert!");
 		btnClickToInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if((CategoryName != null) && (StyleName != null) && (num != 0)){
+				if((CategoryName != null) && (StyleName != null)){
 					Insert.insert(c, CategoryName, StyleName, sizeValue, genderValue,  num, "");
 				}else{
 					System.out.println("Style or category empty");
@@ -206,10 +206,18 @@ public class InsertView extends JPanel implements ActionListener {
 	//HANDLE STYLE INPUT -- converts to String
 	protected void handleStyleChange(){
 		StyleName = textField_1.getText(); //stores input in String StyleName
-		
+		if(CategoryName == ""){
+			btnClickToInsert.setEnabled(false);
+		}else{
+			btnClickToInsert.setEnabled(true);
+		}
 	}
 	protected void handleNumChange(){
 		num = Integer.parseInt(textField_num.getText()); //
-		
+		if(CategoryName == ""){
+			btnClickToInsert.setEnabled(false);
+		}else{
+			btnClickToInsert.setEnabled(true);
+		}
 	}
 }

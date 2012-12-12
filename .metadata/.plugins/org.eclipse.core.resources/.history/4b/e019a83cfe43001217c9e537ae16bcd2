@@ -68,7 +68,7 @@ public class GuiMain extends JFrame{
 		contentPane.setLayout(null);
 		
 		operationViewPanel = new JPanel();
-		operationViewPanel.setBounds(27, 33, 935, 441);
+		operationViewPanel.setBounds(27, 33, 779, 389);
 		contentPane.add(operationViewPanel);
 		operationViewPanel.setLayout(new CardLayout(0, 0));
 		operationViewPanel.add(InsertView);
