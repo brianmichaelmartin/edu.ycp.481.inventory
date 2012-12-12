@@ -150,7 +150,7 @@ public class DatabaseEntry {
 		return Picture;
 	}
 	public Boolean isEqual(DatabaseEntry other){
-		System.out.println("Comparing databaseENtry objects");
+		//System.out.println("Comparing databaseENtry objects");
 		Boolean dis;//converting int to boolean
 		if(Disabled == 1){
 			dis = true;

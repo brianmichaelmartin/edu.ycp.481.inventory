@@ -41,11 +41,9 @@ public class InsertView extends JPanel implements ActionListener {
 		switch (e.getActionCommand()){
 			case "genderCombo":
 				genderValue = (String)genderCombo.getSelectedItem();
-				System.out.println("gender = "+ genderValue);
 				break;
 			case "sizeCombo":
 				sizeValue = (String)sizeCombo.getSelectedItem();
-				System.out.println("Size = " + sizeValue);
 				break;
 			default:
 				break;
@@ -196,17 +194,17 @@ public class InsertView extends JPanel implements ActionListener {
 	//HANDLE CATEGORY INPUT -- convert to String
 	protected void handleCategoryChange() {
 		CategoryName = textField.getText(); //store value in String CatgoryName 
-		System.out.println("catrgory name string ===  " + CategoryName);
+
 
 	}
 
 	//HANDLE STYLE INPUT -- converts to String
 	protected void handleStyleChange(){
 		StyleName = textField_1.getText(); //stores input in String StyleName
-		System.out.println("style name ==== " + StyleName);
+
 	}
 	protected void handleNumChange(){
 		num = Integer.parseInt(textField_num.getText()); //
-		System.out.println("Number ==== " + num);
+
 	}
 }

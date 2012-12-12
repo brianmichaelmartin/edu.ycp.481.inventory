@@ -37,7 +37,7 @@ public class ChangeValue {
 						", Disabled = " + dis +
 						", In_stock = " + sto +
 						",Last_modified=now() WHERE Product_ID = " + product_ID;
-		System.out.println("Update query" + query);
+		//System.out.println("Update query" + query);
 		try {
 			//create, execute and close the stmt
 			stmt = c.createStatement();

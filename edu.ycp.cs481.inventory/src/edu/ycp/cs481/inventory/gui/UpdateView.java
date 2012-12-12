@@ -180,8 +180,6 @@ public class UpdateView extends JPanel {
 				res[stock] = false;
 			}else
 				res[stock] = true;
-			System.out.println(res[num]);
-			System.out.println(res[stock]);
 		}
 	});
 	textField_2.setBounds(193, 195, 54, 28);

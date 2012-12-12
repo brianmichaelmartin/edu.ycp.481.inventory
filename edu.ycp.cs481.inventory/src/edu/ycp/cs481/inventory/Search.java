@@ -58,12 +58,12 @@ public class Search{
 		}else
 			query = query + " AND inventory.In_stock = 0";
 		
-		System.out.println("SQL query: " + query);
+		//System.out.println("SQL query: " + query);
 		try {
 			stmt = c.createStatement();
-			System.out.println("search stmt created");
+			//System.out.println("search stmt created");
 			rs = stmt.executeQuery(query);
-			System.out.println("query executed");
+			//System.out.println("query executed");
 			while (rs.next()){
 				
 				/*
