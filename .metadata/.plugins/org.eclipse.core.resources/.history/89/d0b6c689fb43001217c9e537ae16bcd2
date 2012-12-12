@@ -287,17 +287,16 @@ public class SearchView extends JPanel implements ActionListener {
 				}else{
 					for (int i = 0; i < 10;i++){
 						results.add(table_3.getModel().getValueAt(row, i));
-						
+						UpdateDialog up = new UpdateDialog(results);
+						up.addWindowListener(new WindowAdapter() {
+							@Override
+							public void windowClosed(WindowEvent e) {
+								performSearch();			            
+						}
+						});
+				up.main(results);
 						
 					}
-					UpdateDialog up = new UpdateDialog(results);
-					up.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosed(WindowEvent e) {
-						performSearch();			            
-					}
-					});
-					up.main(results);
 				}
 				
 			}
