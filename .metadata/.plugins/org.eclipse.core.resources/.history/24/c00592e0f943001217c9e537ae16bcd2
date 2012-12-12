@@ -30,7 +30,6 @@ public class SearchView extends JPanel implements ActionListener {
 	/**
 	 * 
 	 */
-	private int resultsDisplayed = 0;
 	private static final long serialVersionUID = 1L;
 	String genderValue, sizeValue, categoryValue, styleValue, disabledValue, stockValue;
 	boolean disabled, stock;
@@ -282,23 +281,21 @@ public class SearchView extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> results = new ArrayList<Object>();
 				int row = table_3.getSelectedRow();
-				if ((row < 0) || (row >= resultsDisplayed)){
+				if (row < 0 || row >= tab.getRowCount()-1){
 					WarningDialog.main(null);
 				}else{
 					for (int i = 0; i < 10;i++){
 						results.add(table_3.getModel().getValueAt(row, i));
-						UpdateDialog up = new UpdateDialog(results);
-						up.addWindowListener(new WindowAdapter() {
-							@Override
-							public void windowClosed(WindowEvent e) {
-								performSearch();			            
-						}
-						});
-				up.main(results);
-						
 					}
 				}
-				
+				UpdateDialog up = new UpdateDialog(results);
+				up.addWindowListener(new WindowAdapter() {
+			         @Override
+			         public void windowClosed(WindowEvent e) {
+			        	performSearch();			            
+			         }
+				});
+				up.main(results);
 			}
 		});
 	
@@ -310,7 +307,7 @@ public class SearchView extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				
 				int row = table_3.getSelectedRow();
-				if ((row < 0)||(row >= resultsDisplayed)){
+				if ((row < 0)||(row > returnVal.size())){
 					WarningDialog.main(null);
 				}else{
 					Delete.deleterow(c, "product_ID", String.valueOf(table_3.getModel().getValueAt(row, 0)));
@@ -327,7 +324,6 @@ public class SearchView extends JPanel implements ActionListener {
 	protected void performSearch() {
 		returnVal = Search.searchFor(c,categoryValue, styleValue, sizeValue, genderValue, disabled, stock);
 		tab.resetArray();
-		resultsDisplayed = returnVal.size();
 		for (int i = 0; i < returnVal.size(); i++){
 			DatabaseEntry current = returnVal.get(i);
 				
