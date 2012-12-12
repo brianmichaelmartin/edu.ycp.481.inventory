@@ -133,7 +133,7 @@ public class SearchView extends JPanel implements ActionListener {
 		
 		//Category combobox
 		
-		CategoryComboBox.setBounds(119, 85, 174, 20);
+		CategoryComboBox.setBounds(164, 85, 129, 20);
 		add(CategoryComboBox);
 
 		CategoryComboBox.addItem("any");
@@ -149,7 +149,7 @@ public class SearchView extends JPanel implements ActionListener {
 		
 		//Style Combobox
 		
-		StyleComboBox.setBounds(119, 116, 174, 20);
+		StyleComboBox.setBounds(164, 116, 129, 20);
 		add(StyleComboBox);
 		StyleComboBox.addItem("any");
 		generateStyle();
@@ -159,7 +159,7 @@ public class SearchView extends JPanel implements ActionListener {
 		
 		//Size combo box
 		
-		SizeComboBox.setBounds(119, 145, 174, 20);
+		SizeComboBox.setBounds(164, 145, 129, 20);
 		add(SizeComboBox);
 		
 		SizeComboBox.addItem("any");
@@ -170,7 +170,7 @@ public class SearchView extends JPanel implements ActionListener {
 		
 		//Gender ComboBox
 		
-		GenderComboBox.setBounds(119, 177, 174, 20);
+		GenderComboBox.setBounds(164, 177, 129, 20);
 		add(GenderComboBox);
 		
 		GenderComboBox.addItem("any");
@@ -180,7 +180,7 @@ public class SearchView extends JPanel implements ActionListener {
 		DisabledComboBox.setModel(new DefaultComboBoxModel(new String[] {"No", "Yes"}));
 
 		//Disabled ComboBox
-		DisabledComboBox.setBounds(119, 210, 174, 20);
+		DisabledComboBox.setBounds(164, 210, 129, 20);
 		add(DisabledComboBox);
 
 		if("Yes".equals((String)DisabledComboBox.getSelectedItem())){
@@ -194,7 +194,7 @@ public class SearchView extends JPanel implements ActionListener {
 		
 				
 		//InStock ComboBox
-		InStockComboBox.setBounds(119, 251, 178, 20);
+		InStockComboBox.setBounds(168, 251, 129, 20);
 		add(InStockComboBox);
 		InStockComboBox.addItem("Yes");
 		InStockComboBox.addItem("No");
