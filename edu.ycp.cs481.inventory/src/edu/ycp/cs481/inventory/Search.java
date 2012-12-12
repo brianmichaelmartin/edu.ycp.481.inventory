@@ -57,17 +57,28 @@ public class Search{
 			query = query + " AND inventory.In_stock = 1";
 		}else
 			query = query + " AND inventory.In_stock = 0";
-
+		
 		System.out.println("SQL query" + query);
 		try {
 			stmt = c.createStatement();
+			System.out.println("search stmt created");
 			rs = stmt.executeQuery(query);
+			System.out.println("query executed");
 			while (rs.next()){
+				System.out.println("in loop");
 				/*
 				 * Loops through the result set and creates a new DatabaseEntry object the the returnVal array list to return
 				 * to whoever called search
 				 */
 				//putting in placeholder values for barcode and picture because that shit will never get implmented in time
+				if(true){
+					System.out.println("Product_ID = " +rs.getInt("Product_ID"));
+					System.out.println("Category " + rs.getString("Category_name"));
+					System.out.println("Style " + rs.getString("Style_name"));
+					System.out.println("Gender " + rs.getString("Gender_name"));
+					System.out.println("Size " + rs.getString("Size_name"));
+					System.out.println("Num " + rs.getInt("Num_in_inventory"));
+				}
 				returnVal.add(new DatabaseEntry(rs.getInt("Product_ID"),
 												rs.getString("Category_name"),
 												rs.getString("Style_name"),

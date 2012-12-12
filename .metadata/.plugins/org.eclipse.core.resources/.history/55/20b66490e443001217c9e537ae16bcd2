@@ -1,0 +1,17 @@
+
+package edu.ycp.cs481.inventoryjunit;
+
+import edu.ycp.cs481.inventory.*;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class ModelTester {
+
+	@Test
+	public void test() {
+		//assumes empty database
+		DatabaseEntry testEntry = new DatabaseEntry();
+	}
+
+}
