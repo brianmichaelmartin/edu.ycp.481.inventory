@@ -13,7 +13,7 @@ public class TableDataModel extends AbstractTableModel{
 									"In Stock",
 									"Date Added",
 									"Last Modified"};
-	private Object[][] data;
+	private Object[][] data = new Object[0][0];
 	@Override
 	public int getColumnCount() {
 		return columnNames.length;
